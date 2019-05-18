@@ -52,6 +52,13 @@ class GameBoard {
   public void showBoard() {
     fill(0,0,0);
     square(150,50,700);
+    stroke(255);
+    fill(0);
+    for (int x=0; x < 10; x++) {
+        for (int y=0; y < 10; y++) {
+           square(x*70 + 150, y*70 + 50, 70);
+       } 
+   } 
   }
 }
 
@@ -72,6 +79,6 @@ void setup() {
   GameBoard b = new GameBoard(10,10);
   b.showBoard();
 }
-void draw() {
-  
+void draw() {   
+ 
 }
