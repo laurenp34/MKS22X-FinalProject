@@ -1,28 +1,9 @@
-class Game {
-  Board board1;
-  Board board2;
-  int turns;
-  
-  public Game() {
-   turns = 0; 
-  }
-  
-  
-}
-
-class GameBoard {
-  Square[][] board;
-  int rows;
-  int cols;
-  Ship[] ships;
-  
-}
 
 class Ship {
   int size;
   int x1;
-  int x2;
-  int y1;
+  int y1; 
+  int x2; 
   int y2;
   int dir; //vertical is 0, horizontal is 1. 
   boolean alive;
@@ -35,13 +16,12 @@ class Ship {
     
   }
   
-  public show() {
+  public void show() {
     
     
   }
   
 }
-
 class Square {
   int xcor;
   int ycor;
@@ -54,5 +34,44 @@ class Square {
     ycor = y;
     
   }
+  
+}
+
+class GameBoard {
+  Square[][] board;
+  int rows;
+  int cols;
+  Ship[] ships;
+  
+  public GameBoard(int r, int c) {
+    rows = r; 
+    cols = c;
+    board = new Square[r][c];
+  }
+  
+  public void showBoard() {
+    fill(0,0,0);
+    square(150,50,700);
+  }
+}
+
+class Game {
+  GameBoard board1;
+  GameBoard board2;
+  int turns;
+  
+  public Game() {
+   turns = 0; 
+  }
+  
+  
+}
+
+void setup() {
+  size(1000,800);
+  GameBoard b = new GameBoard(10,10);
+  b.showBoard();
+}
+void draw() {
   
 }
