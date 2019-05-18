@@ -12,22 +12,32 @@ class Game {
 
 class GameBoard {
   Square[][] board;
+  int rows;
+  int cols;
   Ship[] ships;
   
 }
 
 class Ship {
   int size;
-  int startRow;
-  int startCol;
-  int endRow;
-  int endCol;
-  int dir 
+  int x1;
+  int x2;
+  int y1;
+  int y2;
+  int dir; //vertical is 0, horizontal is 1. 
   boolean alive;
   boolean placed;
   
   public Ship(int newSize){ 
     size = newSize; 
+    dir = (int) (Math.random() * 2); // choose 1 or 0 randomly.
+    //for first part of development, ship's xy are chosen randomly too
+    
+  }
+  
+  public show() {
+    
+    
   }
   
 }
