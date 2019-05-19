@@ -2,8 +2,8 @@
 class Ship {
   int size;
   int x1;
-  int y1; 
-  int x2; 
+  int y1;
+  int x2;
   int y2;
   int dir; //vertical is 0, horizontal is 1. 
   boolean alive;
@@ -18,7 +18,6 @@ class Ship {
   
   public void show() {
     
-    
   }
   
 }
@@ -32,9 +31,18 @@ class Square {
   public Square(int x, int y) {
     xcor = x;
     ycor = y;
-    
+    attacked = false;
+    hasShip = false;
   }
   
+  public boolean isShipHere(){
+    return hasShip;
+  }
+  
+  public int addShipHere(Ship newShip){
+    shipHere = newShip;
+    attacked = false;
+    hasShip = true;
 }
 
 class GameBoard {
@@ -50,28 +58,29 @@ class GameBoard {
   }
   
   public void showBoard() {
-    fill(0,0,0);
-    square(150,50,700);
     stroke(255);
     fill(0);
     for (int x=0; x < 10; x++) {
-        for (int y=0; y < 10; y++) {
-           square(x*70 + 150, y*70 + 50, 70);
-       } 
-   } 
+      for (int y=0; y < 10; y++) {
+         square(x*70 + 150, y*70 + 50, 70);
+      }
+    }
   }
 }
 
 class Game {
-  GameBoard board1;
-  GameBoard board2;
+  GameBoard compBoard;
+  GameBoard vCompBoard;
+  GameBoard userBoard;
   int turns;
   
-  public Game() {
+  public Game(){
    turns = 0; 
+   compBoard = new GameBoard(10, 10);
+   vCompBoard = new GameBoard(10, 10);
+   userBoard = new GameBoard (10, 10);
   }
-  
-  
+   
 }
 
 void setup() {
