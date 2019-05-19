@@ -72,6 +72,10 @@ class GameBoard {
   public void addShip(Ship newShip, int row, int col){
     board[row][col].addShipHere(newShip);
   }
+  
+  public boolean isShipHere(int row, int col){
+    return board[row][col].isShipHere();
+  }
 }
 
 class Game {
@@ -94,7 +98,11 @@ class Game {
     Ship p1 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
     Ship p2 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
     Ship p3 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
-  }  
+  } 
+  
+  public boolean checkUserBoard(int row, int col){
+    return userBoard.isShipHere(row, col);
+  }
 }
 
 void setup() {
@@ -102,6 +110,13 @@ void setup() {
   GameBoard b = new GameBoard(10,10);
   b.showBoard();
 }
-void draw() {  
- 
+void draw() {
+   for (int x = 0; x < 10; x++) {
+      for (int y = 0; y < 10; y++) {
+        //if (checkUserBoard(x, y)){
+          fill(150);
+          square(x*70 + 150, y*70 + 50, 70);
+       // }
+      }
+   }
 }
