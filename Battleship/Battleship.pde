@@ -1,3 +1,4 @@
+import java.util.Random;
 
 class Ship {
   int size;
@@ -9,7 +10,7 @@ class Ship {
   boolean alive;
   boolean placed;
   
-  public Ship(int newSize){ 
+  public Ship(int newSize, int xcor, int ycor){ 
     size = newSize; 
     dir = (int) (Math.random() * 2); // choose 1 or 0 randomly.
     //for first part of development, ship's xy are chosen randomly too
@@ -39,10 +40,11 @@ class Square {
     return hasShip;
   }
   
-  public int addShipHere(Ship newShip){
+  public void addShipHere(Ship newShip){
     shipHere = newShip;
     attacked = false;
     hasShip = true;
+  }
 }
 
 class GameBoard {
@@ -66,6 +68,10 @@ class GameBoard {
       }
     }
   }
+  
+  public void addShip(Ship newShip, int row, int col){
+    board[row][col].addShipHere(newShip);
+  }
 }
 
 class Game {
@@ -80,7 +86,15 @@ class Game {
    vCompBoard = new GameBoard(10, 10);
    userBoard = new GameBoard (10, 10);
   }
-   
+  public void setupShips(){
+    Random ran = new Random();
+    Ship c1 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
+    Ship c2 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
+    Ship c3 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
+    Ship p1 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
+    Ship p2 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
+    Ship p3 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
+  }  
 }
 
 void setup() {
@@ -88,6 +102,6 @@ void setup() {
   GameBoard b = new GameBoard(10,10);
   b.showBoard();
 }
-void draw() {   
+void draw() {  
  
 }
