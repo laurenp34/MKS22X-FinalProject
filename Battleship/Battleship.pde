@@ -68,7 +68,6 @@ class GameBoard {
       for (int i2=0;i2<10;i2++) {
         board[i][i2] = new Square(i*70+150,i2*70+50);
       }
-      
     }
   }
   
