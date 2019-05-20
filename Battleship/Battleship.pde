@@ -40,6 +40,13 @@ class Square {
     return hasShip;
   }
   
+  public int getX() {
+    return x1;
+  }
+  public int getY() {
+    return y1;
+  }
+  
   public void addShipHere(Ship newShip){
     shipHere = newShip;
     attacked = false;
@@ -59,7 +66,7 @@ class GameBoard {
     board = new Square[10][10];
     for (int i=0;i<10;i++) {
       for (int i2=0;i2<10;i2++) {
-        board[i][i2] = new Square(
+        board[i][i2] = new Square(i*70+150,i2*70+50);
       }
       
     }
@@ -70,7 +77,7 @@ class GameBoard {
     fill(0);
     for (int x=0; x < 10; x++) {
       for (int y=0; y < 10; y++) {
-         rect(x*70 + 150, y*70 + 50, 70,70);
+         rect(board[x][y]., 70,70);
       }
     }
   }
