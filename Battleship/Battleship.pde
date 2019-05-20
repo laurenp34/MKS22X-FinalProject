@@ -43,15 +43,22 @@ class GameBoard {
   int cols;
   Ship[] ships;
   
-  public GameBoard(int r, int c) {
-    rows = r; 
-    cols = c;
-    board = new Square[r][c];
+  public GameBoard(){
+    rows = 10; 
+    cols = 10;
+    board = new Square[10][10];
+    for (int i=0;i<10;i++) {
+      for (int i2=0;i2<10;i2++) {
+
+      }
+      
+    }
   }
   
   public void showBoard() {
     fill(0,0,0);
-    square(150,50,700);
+    rectMode(RADIUS);
+    rect(width/2, height/2, 300,300);
   }
 }
 
@@ -69,7 +76,7 @@ class Game {
 
 void setup() {
   size(1000,800);
-  GameBoard b = new GameBoard(10,10);
+  GameBoard b = new GameBoard();
   b.showBoard();
 }
 void draw() {
