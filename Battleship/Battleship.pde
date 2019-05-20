@@ -23,8 +23,8 @@ class Ship {
   
 }
 class Square {
-  int xcor;
-  int ycor;
+  int x1; //x1 and y1 represent the upper left coordinates of the square
+  int y1;
   boolean hasShip;
   boolean attacked;
   Ship shipHere;
@@ -59,23 +59,18 @@ class GameBoard {
     board = new Square[10][10];
     for (int i=0;i<10;i++) {
       for (int i2=0;i2<10;i2++) {
-
+        board[i][i2] = new Square(
       }
       
     }
   }
   
   public void showBoard() {
-<<<<<<< HEAD
-    fill(0,0,0);
-    rectMode(RADIUS);
-    rect(width/2, height/2, 300,300);
-=======
     stroke(255);
     fill(0);
     for (int x=0; x < 10; x++) {
       for (int y=0; y < 10; y++) {
-         square(x*70 + 150, y*70 + 50, 70);
+         rect(x*70 + 150, y*70 + 50, 70,70);
       }
     }
   }
@@ -86,7 +81,6 @@ class GameBoard {
   
   public boolean isShipHere(int row, int col){
     return board[row][col].isShipHere();
->>>>>>> 9bbdba13ade3f47a054a97c7e11fde6768722fdf
   }
 }
 
@@ -98,9 +92,9 @@ class Game {
   
   public Game(){
    turns = 0; 
-   compBoard = new GameBoard(10, 10);
-   vCompBoard = new GameBoard(10, 10);
-   userBoard = new GameBoard (10, 10);
+   compBoard = new GameBoard();
+   vCompBoard = new GameBoard();
+   userBoard = new GameBoard ();
   }
   public void setupShips(){
     Random ran = new Random();
@@ -117,7 +111,7 @@ class Game {
       for (int y = 0; y < 10; y++) {
         if (userBoard.isShipHere(x, y)){
           fill(150);
-          square(x*70 + 150, y*70 + 50, 70);
+          rect(x*70 + 150, y*70 + 50, 70,70);
        }
       }
    }
