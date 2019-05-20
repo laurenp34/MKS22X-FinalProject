@@ -30,8 +30,8 @@ class Square {
   Ship shipHere;
   
   public Square(int x, int y) {
-    xcor = x;
-    ycor = y;
+    x1 = x;
+    y1 = y;
     attacked = false;
     hasShip = false;
   }
@@ -77,7 +77,7 @@ class GameBoard {
     fill(0);
     for (int x=0; x < 10; x++) {
       for (int y=0; y < 10; y++) {
-         rect(board[x][y]., 70,70);
+         rect(board[x][y].getX(),board[x][y].getY(), 70,70);
       }
     }
   }
