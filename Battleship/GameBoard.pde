@@ -36,21 +36,20 @@ class GameBoard {
     }
   }
   
+  //check to see if a ship (with no location yet) can be placed at row,col
    public boolean canAddShipHere(Ship newShip, int row, int col) {
     int size = newShip.getSize();
     int dir = newShip.getDir();
-    int r1 = newShip.getR1();
-    int c1 = newShip.getC1();
     
      //vertical ship
     if (dir==0) {
       for (int n=0;n<size;n++) {
-        if (board[r1+n][c1].isShipHere()) return false;
+        if (board[row+n][col].isShipHere()) return false;
       }
     //horizontal ship
     } else {
       for (int n=0;n<size;n++) {
-         if (board[r1][c1+n].isShipHere()) return false;
+         if (board[row][col+n].isShipHere()) return false;
       }
     }
     return true;
@@ -58,29 +57,44 @@ class GameBoard {
   
   
   //adds a ship to the board, as well as to the ships array.
-  public void addShip(Ship newShip, int row, int col){
+  public boolean addShip(Ship newShip, int row, int col){
     int size = newShip.getSize();
     int dir = newShip.getDir();
-    int r1 = newShip.getR1();
-    int c1 = newShip.getC1();
+    //int r1 = newShip.getR1();
+    //int c1 = newShip.getC1();
+    
+    if (!canAddShipHere(newShip,row,col)) return false;
+    
+    //set location of ship to row,col
+    newShip.setLocation(row,col);
     
      //vertical ship
     if (dir==0) {
       for (int n=0;n<size;n++) {
-        board[r1+n][c1].addShipHere(newShip);
+        board[row+n][col].addShipHere(newShip);
       }
     //horizontal ship
     } else {
       for (int n=0;n<size;n++) {
-         board[r1][c1+n].addShipHere(newShip); 
+         board[row][col+n].addShipHere(newShip); 
       }
     }
     ships[shipCount] = newShip;
     shipCount++;
+    return true;
   }
   
   public void placeShipsRandomly() {
-   for (int  
+   for (int i=0;i<6;i++) { //loop runs 6 times
+   //for now, only place ships size 3 (coordinates can be btn. 0-7)
+     int r = (int) (Math.random() * 8);
+     int c = (int) (Math.random() * 8);
+     Ship s = new Ship(3);
+     while (!addShip(s,r,c)) {
+       r = (int) (Math.random() * 8);
+       c = (int) (Math.random() * 8); 
+     }
+   }
   }
   
   
