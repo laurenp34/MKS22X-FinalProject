@@ -41,15 +41,25 @@ class GameBoard {
     int size = newShip.getSize();
     int dir = newShip.getDir();
     
+    //check 3 squares a
+    
      //vertical ship
     if (dir==0) {
-      for (int n=0;n<size;n++) {
-        if (board[row+n][col].isShipHere()) return false;
+      for (int n=-1;n<=size;n++) {
+        if (row>=0 && row < 10) {
+          if (isShipHere(row+n,col)) return false;
+          if (col>0 && isShipHere(row+n,col-1)) return false;
+          if (col<9 && isShipHere(row+n,col+1)) return false;
+        }
       }
     //horizontal ship
     } else {
-      for (int n=0;n<size;n++) {
-         if (board[row][col+n].isShipHere()) return false;
+      for (int n=-1;n<=size;n++) {
+        if (col>=0 && col<10) {
+         if (isShipHere(row,col+n)) return false;
+         if (row>0 && isShipHere(row-1,col+n)) return false;
+         if (row<9 && isShipHere(row+1,col+n)) return false;
+        }
       }
     }
     return true;
