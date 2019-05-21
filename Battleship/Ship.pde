@@ -35,9 +35,20 @@ class Ship {
   public int getSize() {
     return size;
   }
-  
   public int getDir() {
     return dir;
+  }
+  public int getR1() {
+    return r1;
+  }
+  public int getR2() {
+    return r2;
+  }
+  public int getC1() {
+    return c1;
+  }
+  public int getC2() {
+    return c2;
   }
   
 }
