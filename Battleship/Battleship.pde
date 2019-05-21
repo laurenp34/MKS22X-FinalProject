@@ -52,6 +52,14 @@ class Square {
     attacked = false;
     hasShip = true;
   }
+  
+  public void displaySquare() {
+   if (hasShip) {
+    fill(255,0,0);
+    rect(x1,y1,70,70);
+   }
+  }
+  
 }
 
 class GameBoard {
@@ -106,7 +114,7 @@ class Game {
     Random ran = new Random();
     Ship c1 = new Ship(3, 150, 50);
     userBoard.addShip(c1,0,0);
-    System.out.println(userBoard[0][0].isShipHere());
+    System.out.println(userBoard.board[0][0].isShipHere());
     //Ship c2 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
     //Ship c3 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
     //Ship p1 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
@@ -118,9 +126,7 @@ class Game {
     for (int x = 0; x < 10; x++) {
       for (int y = 0; y < 10; y++) {
         if (userBoard.isShipHere(x, y)){
-          System.out.println("true");
-          fill(150);
-          rect(x*70 + 150, y*70 + 50, 70,70);
+          userBoard.board[x][y].displaySquare();
        }
       }
    }
@@ -134,5 +140,6 @@ void setup() {
 }
 void draw() {
   Game g = new Game();
+  g.setupShips();
   g.fillShips();
 }
