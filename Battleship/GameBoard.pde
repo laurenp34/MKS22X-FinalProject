@@ -38,7 +38,22 @@ class GameBoard {
   
   //adds a ship to the board, as well as to the ships array.
   public void addShip(Ship newShip, int row, int col){
-    board[row][col].addShipHere(newShip);
+    int size = newShip.getSize();
+    int dir = newShip.getDir();
+    int r1 = newShip.getR1();
+    int c1 = newShip.getC1();
+    
+     //vertical ship
+    if (dir==0) {
+      for (int n=0;n<size;n++) {
+        board[r1+n][c1].addShipHere(newShip);
+      }
+    //horizontal ship
+    } else {
+      for (int n=0;n<size;n++) {
+         board[r1][c1+n].addShipHere(newShip); 
+      }
+    }
     ships[shipCount] = newShip;
     shipCount++;
   }
