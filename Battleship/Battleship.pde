@@ -67,16 +67,23 @@ class GameBoard {
   int rows;
   int cols;
   Ship[] ships;
+  int shipCount;
   
   public GameBoard(){
     rows = 10; 
     cols = 10;
+    shipCount =0;
+    ships = new Ship[6];
     board = new Square[10][10];
     for (int i=0;i<10;i++) {
       for (int i2=0;i2<10;i2++) {
         board[i][i2] = new Square(i*70+150,i2*70+50);
       }
     }
+  }
+  
+  public getBoard() {
+    return board;
   }
   
   public void showBoard() {
@@ -91,6 +98,8 @@ class GameBoard {
   
   public void addShip(Ship newShip, int row, int col){
     board[row][col].addShipHere(newShip);
+    ships[shipCount] = newShip;
+    shipCount++;
   }
   
   public boolean isShipHere(int row, int col){
@@ -122,12 +131,10 @@ class Game {
     //Ship p3 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
   } 
   
-  public void fillShips(){
-    for (int x = 0; x < 10; x++) {
-      for (int y = 0; y < 10; y++) {
-        if (userBoard.isShipHere(x, y)){
-          userBoard.board[x][y].displaySquare();
-       }
+  public void displayBoard(){
+    for (int r = 0; r < 10; r++) {
+      for (int c = 0; c < 10; c++) {
+        userBoard,
       }
    }
   }
