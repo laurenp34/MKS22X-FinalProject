@@ -36,6 +36,27 @@ class GameBoard {
     }
   }
   
+   public boolean canAddShipHere(Ship newShip, int row, int col) {
+    int size = newShip.getSize();
+    int dir = newShip.getDir();
+    int r1 = newShip.getR1();
+    int c1 = newShip.getC1();
+    
+     //vertical ship
+    if (dir==0) {
+      for (int n=0;n<size;n++) {
+        if (board[r1+n][c1].isShipHere()) return false;
+      }
+    //horizontal ship
+    } else {
+      for (int n=0;n<size;n++) {
+         if (board[r1][c1+n].isShipHere()) return false;
+      }
+    }
+    return true;
+   }
+  
+  
   //adds a ship to the board, as well as to the ships array.
   public void addShip(Ship newShip, int row, int col){
     int size = newShip.getSize();
@@ -57,6 +78,11 @@ class GameBoard {
     ships[shipCount] = newShip;
     shipCount++;
   }
+  
+  public void placeShipsRandomly() {
+   for (int  
+  }
+  
   
   public boolean isShipHere(int row, int col){
     return board[row][col].isShipHere();
