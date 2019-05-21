@@ -19,4 +19,12 @@ class Ship {
     
   }
   
+  public int getSize() {
+    return size;
+  }
+  
+  public int getDir() {
+    return dir;
+  }
+  
 }
