@@ -31,11 +31,17 @@ class Game {
    }
   }
   
-  public void attack() {
+  public boolean userChooseSquare() {
      if (mousePressed) {
-       if (mouseX 
+       //check to see if the mouse clicks within the square
+       //also check to see that you didn't click directly on a border
+       if (mouseX >=150 && mouseX <= 850 && mouseY >= 50 && mouseY <= 750 && (mouseX-150) % 70 != 0 && (mouseY-50) % 70 != 0) {
+           int r = (mouseY - 50) / 70;
+           int c = (mouseX - 150) / 70;
+       }
+       return userBoard[r][c].attack(); //false if already attacked
      }
-  }
+     return false;// mouse wasn't pressed or wasn't on the board.
   
   public boolean turnOver(){
     // should check if any of the squares have been changed
