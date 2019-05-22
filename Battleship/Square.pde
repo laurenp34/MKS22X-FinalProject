@@ -38,12 +38,38 @@ class Square {
   }
   
   //continuous method to be run in draw()
-  public void displaySquare() {
+  public void displaySquareUser() {
    if (hasShip) {
      //if the square is occupied by a ship color it red (early development)
-    fill(255,0,0);
-    rect(x1,y1,70,70);
+     if (attacked){   
+      fill(255,0,0);
+      rect(x1,y1,70,70);
+     }
+     else{
+       fill(150)
+       rect(x1,y1,70,70);
+     }
+   }
+   else if (attacked){
+     fill(0, 0, 255)
+     rect(x1,y1,70,70);
    }
   }
   
+  public void displaySquareComp() {
+   if (attacked){
+      if (hasShip) {
+        fill(255,0,0);
+        rect(x1,y1,70,70);
+       }
+       else{
+         fill(0, 0, 255)
+         rect(x1,y1,70,70);
+       } 
+   }
+  }
+  
+  public void wasAttacked(){
+    attacked = true;
+  }
 }

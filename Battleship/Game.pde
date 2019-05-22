@@ -1,3 +1,5 @@
+import java.util.Random;
+
 class Game {
   GameBoard compBoard;
   GameBoard vCompBoard;
@@ -18,7 +20,7 @@ class Game {
   public void displayBoard(){
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
-        userBoard.getBoard()[r][c].displaySquare();
+        userBoard.getBoard()[r][c].displaySquareuser();
       }
    }
   }
@@ -26,7 +28,7 @@ class Game {
   public void displayCompBoard(){
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
-        vCompBoard.getBoard()[r][c].displaySquare();
+        vCompBoard.getBoard()[r][c].displaySquareComp();
       }
    }
   }
@@ -47,4 +49,10 @@ class Game {
     // should check if any of the squares have been changed
     return false;
   }
+  
+  public void compChooseSquare(){
+    int xcor = (int)Math.random() * 10;
+    int ycor = (int)Math.random() * 10;
+    compBoard[ycor][xcor].wasAttacked();
+    vCompBoard[ycor][xcor].wasAttacked();
 }
