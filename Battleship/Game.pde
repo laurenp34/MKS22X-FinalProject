@@ -1,3 +1,5 @@
+import java.util.Random;
+
 class Game {
   GameBoard compBoard;
   GameBoard vCompBoard;
@@ -41,4 +43,9 @@ class Game {
     // should check if any of the squares have been changed
     return false;
   }
+  
+  public void compChooseSquare(){
+    int xcor = (int)Math.random() * 10;
+    int ycor = (int)Math.random() * 10;
+    
 }
