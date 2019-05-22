@@ -5,13 +5,20 @@ void setup() {
   size(1000,800);
   Game g = new Game();
   g.setupShips();
-  g.displayBoard();
+  g.compBoard.setupBoard();
+  g.displayCompBoard();
 }
 
 private int turns = 0;
 private int prevTurns = 0;
 
 void draw() {
+  
+  while (turns == 0) {
+     if (g.userChooseSquare()) turns++; 
+  }
+  
+  /*
   //int turns = 0;
   if (turns % 2 == 0){
     g.displayBoard();
@@ -23,12 +30,12 @@ void draw() {
   else{
     g.displayCompBoard();
     if (prevTurns != turns){
-      g.compChooseSquare();
+      //g.compChooseSquare();
       prevTurns = turns;
     }
   }
   // this hasn't been implemented yet
   if (g.turnOver()){
     turns ++;
-  }
+  }*/
 }
