@@ -29,6 +29,14 @@ class Square {
     hasShip = true;
   }
   
+  public boolean attack() {
+     if (!attacked) {
+       attacked = true;
+       return true;
+     }
+     return false; // already attacked
+  }
+  
   //continuous method to be run in draw()
   public void displaySquare() {
    if (hasShip) {
