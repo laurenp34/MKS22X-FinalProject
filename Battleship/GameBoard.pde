@@ -41,8 +41,6 @@ class GameBoard {
     int size = newShip.getSize();
     int dir = newShip.getDir();
     
-    //check 3 squares a
-    
      //vertical ship
     if (dir==0) {
       for (int n=-1;n<=size;n++) {
@@ -109,6 +107,7 @@ class GameBoard {
   
   
   public boolean isShipHere(int row, int col){
+    if (row > 9 || row < 0 || col < 0 || col > 9) return false;
     return board[row][col].isShipHere();
   }
 }
