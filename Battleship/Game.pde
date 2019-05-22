@@ -12,6 +12,7 @@ class Game {
   }
   public void setupShips(){
      userBoard.placeShipsRandomly();
+     compBoard.placeShipsRandomly();
   } 
   
   public void displayBoard(){
@@ -28,6 +29,12 @@ class Game {
         vCompBoard.getBoard()[r][c].displaySquare();
       }
    }
+  }
+  
+  public void attack() {
+     if (mousePressed) {
+       if (mouseX 
+     }
   }
   
   public boolean turnOver(){
