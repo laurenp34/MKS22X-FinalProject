@@ -60,4 +60,8 @@ class Square {
        } 
    }
   }
+  
+  public void wasAttacked(){
+    attacked = true;
+  }
 }
