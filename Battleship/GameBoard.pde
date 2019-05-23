@@ -36,29 +36,78 @@ class GameBoard {
     }
   }
   
-  //adds a ship to the board, as well as to the ships array.
-  public void addShip(Ship newShip){
+  //check to see if a ship (with no location yet) can be placed at row,col
+   public boolean canAddShipHere(Ship newShip, int row, int col) {
     int size = newShip.getSize();
     int dir = newShip.getDir();
-    int r1 = newShip.getR1();
-    int c1 = newShip.getC1();
+    
+     //vertical ship
+    if (dir==0) {
+      for (int n=-1;n<=size;n++) {
+        if (row>=0 && row < 10) {
+          if (isShipHere(row+n,col)) return false;
+          if (col>0 && isShipHere(row+n,col-1)) return false;
+          if (col<9 && isShipHere(row+n,col+1)) return false;
+        }
+      }
+    //horizontal ship
+    } else {
+      for (int n=-1;n<=size;n++) {
+        if (col>=0 && col<10) {
+         if (isShipHere(row,col+n)) return false;
+         if (row>0 && isShipHere(row-1,col+n)) return false;
+         if (row<9 && isShipHere(row+1,col+n)) return false;
+        }
+      }
+    }
+    return true;
+   }
+  
+  
+  //adds a ship to the board, as well as to the ships array.
+  public boolean addShip(Ship newShip, int row, int col){
+    int size = newShip.getSize();
+    int dir = newShip.getDir();
+    //int r1 = newShip.getR1();
+    //int c1 = newShip.getC1();
+    
+    if (!canAddShipHere(newShip,row,col)) return false;
+    
+    //set location of ship to row,col
+    newShip.setLocation(row,col);
     
      //vertical ship
     if (dir==0) {
       for (int n=0;n<size;n++) {
-        board[r1+n][c1].addShipHere(newShip);
+        board[row+n][col].addShipHere(newShip);
       }
     //horizontal ship
     } else {
       for (int n=0;n<size;n++) {
-         board[r1][c1+n].addShipHere(newShip); 
+         board[row][col+n].addShipHere(newShip); 
       }
     }
     ships[shipCount] = newShip;
     shipCount++;
+    return true;
   }
   
+  public void placeShipsRandomly() {
+   for (int i=0;i<6;i++) { //loop runs 6 times
+   //for now, only place ships size 3 (coordinates can be btn. 0-7)
+     int r = (int) (Math.random() * 8);
+     int c = (int) (Math.random() * 8);
+     Ship s = new Ship(3);
+     while (!addShip(s,r,c)) {
+       r = (int) (Math.random() * 8);
+       c = (int) (Math.random() * 8); 
+     }
+   }
+  }
+  
+  
   public boolean isShipHere(int row, int col){
+    if (row > 9 || row < 0 || col < 0 || col > 9) return false;
     return board[row][col].isShipHere();
   }
 }

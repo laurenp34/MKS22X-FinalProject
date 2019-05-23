@@ -13,6 +13,11 @@ class Ship {
   boolean alive; 
   boolean placed;
   
+  public Ship(int newSize) {
+    size = newSize; 
+    dir = (int) (Math.random() * 2); // choose 1 or 0 randomly.
+  }
+  
   public Ship(int newSize, int r, int c){ 
     r1=r;
     c1=c;
@@ -30,6 +35,11 @@ class Ship {
   
   public void show() {
     
+  }
+  
+  public void setLocation(int r, int c) {
+    r1 = r;
+    c1 = c;
   }
   
   public int getSize() {
