@@ -37,7 +37,7 @@ class GameBoard {
   }
   
   //adds a ship to the board, as well as to the ships array.
-  public void addShip(Ship newShip, int row, int col){
+  public void addShip(Ship newShip){
     int size = newShip.getSize();
     int dir = newShip.getDir();
     int r1 = newShip.getR1();

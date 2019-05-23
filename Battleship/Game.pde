@@ -11,10 +11,17 @@ class Game {
    userBoard = new GameBoard();
   }
   public void setupShips(){
-    Random ran = new Random();
-    Ship c1 = new Ship(3, 0,0);
-    userBoard.addShip(c1,0,0);
-    System.out.println(userBoard.board[0][0].isShipHere());
+    
+    Ship c1 = new Ship(3, (int) (Math.random() * 8), (int) (Math.random() * 8));
+    Ship c2 = new Ship(3, (int) (Math.random() * 8), (int) (Math.random() * 8));
+    Ship c3 = new Ship(3, (int) (Math.random() * 8), (int) (Math.random() * 8));
+    Ship c4 = new Ship(3, (int) (Math.random() * 8), (int) (Math.random() * 8));
+    Ship c5 = new Ship(3, (int) (Math.random() * 8), (int) (Math.random() * 8));
+    userBoard.addShip(c1);
+    userBoard.addShip(c2);
+    userBoard.addShip(c3);
+    userBoard.addShip(c4);
+    userBoard.addShip(c5);
     //Ship c2 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
     //Ship c3 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
     //Ship p1 = new Ship(3, 150 + ran.nextInt() % 600, 50 + ran.nextInt() % 600);
