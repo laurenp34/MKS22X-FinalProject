@@ -2,10 +2,12 @@ class GameBoard {
   Square[][] board;
   int rows;
   int cols;
+  int squaresAttacked;
   Ship[] ships;
   int shipCount; //how many ships have been placed on the board
   
   public GameBoard(){
+    squaresAttacked = 0;
     rows = 10; 
     cols = 10;
     shipCount =0;
@@ -61,6 +63,11 @@ class GameBoard {
       }
     }
     return true;
+   }
+   
+   //increment squaresAttacked
+   public void addAttacked() {
+     squaresAttacked++;
    }
   
   
