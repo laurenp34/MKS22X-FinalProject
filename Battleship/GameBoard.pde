@@ -100,7 +100,7 @@ class GameBoard {
      Ship s = new Ship(3);
      while (!addShip(s,r,c)) {
        r = (int) (Math.random() * 8);
-       c = (int) (Math.random() * 8); 
+       c = (int) (Math.random() * 8);
      }
    }
   }

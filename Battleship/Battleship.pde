@@ -20,6 +20,7 @@ void draw() {
   // this hasn't been implemented yet
   if (g.turnOver(turns % 2)){
     turns ++;
+    delay(200);
   }
   if (turns % 2 == 0){
     g.displayBoard();

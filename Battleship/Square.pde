@@ -83,7 +83,7 @@ class Square {
        else{
          fill(0, 0, 255);
          rect(x1,y1,70,70);
-       } 
+       }
    }
   }
   
