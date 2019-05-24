@@ -6,7 +6,7 @@ void setup() {
   Game g = new Game();
   g.setupShips();
   g.compBoard.setupBoard();
-  g.displayCompBoard();
+  //g.displayBoard();
 }
 
 private int turns = 0;
@@ -18,21 +18,24 @@ void draw() {
      if (g.userChooseSquare()) turns++; 
   }*/
   // this hasn't been implemented yet
+  /*
   if (g.turnOver(turns % 2)){
     turns ++;
   }
   if (turns % 2 == 0){
     g.displayBoard();
     if (prevTurns != turns){
-      g.userChooseSquare();
+      if (g.userChooseSquare()) turns++;
       prevTurns = turns;
     }
   }
-  else{
+  else{*/
     g.displayCompBoard();
-    if (prevTurns != turns){
+    g.userChooseSquare();
+    System.out.println(g.compBoard.squaresAttacked);
+    //if (prevTurns != turns){
       //g.compChooseSquare();
-      prevTurns = turns;
-    }
-  }
+      //prevTurns = turns;
+    //}
+  //}
 }
