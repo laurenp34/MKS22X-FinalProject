@@ -22,6 +22,7 @@ void draw() {
   /*
   if (g.turnOver(turns % 2)){
     turns ++;
+    delay(200);
   }
   if (turns % 2 == 0){
     g.displayBoard();
@@ -39,4 +40,7 @@ void draw() {
       //prevTurns = turns;
     //}
   //}
+      prevTurns = turns;
+    }
+    }
 }
