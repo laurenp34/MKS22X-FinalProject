@@ -2,14 +2,12 @@ import java.util.Random;
 
 class Game {
   GameBoard compBoard;
-  GameBoard vCompBoard;
   GameBoard userBoard;
   int turns;
   
   public Game(){
    turns = 0; 
    compBoard = new GameBoard();
-   vCompBoard = new GameBoard();
    userBoard = new GameBoard();
   }
   public void setupShips(){
@@ -28,7 +26,7 @@ class Game {
   public void displayCompBoard(){
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
-        vCompBoard.getBoard()[r][c].displaySquareComp();
+        compBoard.getBoard()[r][c].displaySquareComp();
       }
    }
   }
@@ -40,7 +38,7 @@ class Game {
        if (mouseX >=150 && mouseX <= 850 && mouseY >= 50 && mouseY <= 750 && (mouseX-150) % 70 != 0 && (mouseY-50) % 70 != 0) {
            int r = (mouseY - 50) / 70;
            int c = (mouseX - 150) / 70;
-           if (compBoard.getBoard()[r][c].attack()) {
+           if (compBoard.getBoard()[c][r].attack()) {
               compBoard.addAttacked();
               return true;
              
