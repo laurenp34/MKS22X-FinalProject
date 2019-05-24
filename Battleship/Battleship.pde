@@ -14,12 +14,13 @@ private int prevTurns = 0;
 
 void draw() {
   
-  while (turns == 0) {
+  /*while (turns == 0) {
      if (g.userChooseSquare()) turns++; 
+  }*/
+  // this hasn't been implemented yet
+  if (g.turnOver(turns % 2)){
+    turns ++;
   }
-  
-  /*
-  //int turns = 0;
   if (turns % 2 == 0){
     g.displayBoard();
     if (prevTurns != turns){
@@ -34,8 +35,4 @@ void draw() {
       prevTurns = turns;
     }
   }
-  // this hasn't been implemented yet
-  if (g.turnOver()){
-    turns ++;
-  }*/
 }

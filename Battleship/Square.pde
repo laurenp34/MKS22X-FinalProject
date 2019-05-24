@@ -3,6 +3,7 @@ class Square {
   int y1;
   boolean hasShip;
   boolean attacked;
+  boolean wasAttacked;
   Ship shipHere;
   
   public Square(int x, int y) {
@@ -10,7 +11,10 @@ class Square {
     y1 = y;
     attacked = false;
     hasShip = false;
+    wasAttacked = false;
   }
+  
+
   
   public boolean isShipHere(){
     return hasShip;
@@ -36,6 +40,20 @@ class Square {
      }
      return false; // already attacked
   }
+  
+  public boolean isAttacked() {
+    return attacked;
+  }
+  
+  public boolean wasAttacked() {
+    return wasAttacked;
+  }
+  
+  public void changeWasAttacked() {
+    wasAttacked = true;
+  }
+  
+  
   
   //continuous method to be run in draw()
   public void displaySquareUser() {
@@ -69,7 +87,6 @@ class Square {
    }
   }
   
-  public void wasAttacked(){
-    attacked = true;
-  }
+  
+  
 }

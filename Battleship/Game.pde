@@ -45,15 +45,31 @@ class Game {
      }
      return false;// mouse wasn't pressed or wasn't on the board.
   }
-  public boolean turnOver(){
-    // should check if any of the squares have been changed
+  public boolean turnOver(int num){
+    for (int y = 0; y < compBoard.getBoard().length; y++){
+       for (int x = 0; x < compBoard.getBoard()[0].length; x++){
+         if (num == 0){
+            if (compBoard.getBoard()[y][x].isAttacked() == true &&
+                 compBoard.getBoard()[y][x].wasAttacked() == false){
+               compBoard.getBoard()[y][x].changeWasAttacked();
+                return true;
+                 }
+         }
+         else{
+            if (userBoard.getBoard()[y][x].isAttacked() == true &&
+                 userBoard.getBoard()[y][x].wasAttacked() == false){
+               userBoard.getBoard()[y][x].changeWasAttacked();
+               return true;
+              }
+           }
+       }
+    }
     return false;
   }
   
-  public void compChooseSquare(){
+  public boolean compChooseSquare(){
     int xcor = (int)Math.random() * 10;
     int ycor = (int)Math.random() * 10;
-    compBoard.getBoard()[ycor][xcor].wasAttacked();
-    vCompBoard.getBoard()[ycor][xcor].wasAttacked();
+    return userBoard.getBoard()[ycor][xcor].attack();
 }
 }
