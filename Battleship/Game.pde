@@ -73,6 +73,10 @@ class Game {
   public boolean compChooseSquare(){
     int xcor = (int)Math.random() * 10;
     int ycor = (int)Math.random() * 10;
-    return userBoard.getBoard()[ycor][xcor].attack();
+    if (userBoard.getBoard()[ycor][xcor].attack()) {
+          userBoard.addAttacked();
+          return true;  
+   } 
+   return false;
 }
 }

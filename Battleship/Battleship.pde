@@ -1,3 +1,4 @@
+ 
 import java.util.Random;
 Game g = new Game();
 
@@ -7,7 +8,7 @@ void setup() {
   g.setupShips();
   System.out.println(g.compBoard.ships.length);
   g.compBoard.setupBoard();
-  //g.displayBoard();
+  g.displayBoard();
 }
 
 private int turns = 0;
@@ -42,5 +43,5 @@ void draw() {
   //}
       prevTurns = turns;
     }
-    }
-}
+   // }
+//}
