@@ -26,7 +26,7 @@ class Game {
   public void displayCompBoard(){
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
-        compBoard.getBoard()[r][c].displaySquareComp();
+        compBoard.board[r][c].displaySquareComp();
       }
    }
   }
@@ -38,7 +38,8 @@ class Game {
        if (mouseX >=150 && mouseX <= 850 && mouseY >= 50 && mouseY <= 750 && (mouseX-150) % 70 != 0 && (mouseY-50) % 70 != 0) {
            int r = (mouseY - 50) / 70;
            int c = (mouseX - 150) / 70;
-           if (compBoard.getBoard()[c][r].attack()) {
+           //System.out.println(compBoard.getBoard()[c][r].hasShip);
+           if (compBoard.board[c][r].attack()) {
               compBoard.addAttacked();
               return true;
              
@@ -73,7 +74,7 @@ class Game {
   public boolean compChooseSquare(){
     int xcor = (int)Math.random() * 10;
     int ycor = (int)Math.random() * 10;
-    if (userBoard.getBoard()[ycor][xcor].attack()) {
+    if (userBoard.board[ycor][xcor].attack()) {
           userBoard.addAttacked();
           return true;  
    } 
