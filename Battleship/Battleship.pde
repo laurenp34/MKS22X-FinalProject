@@ -4,17 +4,22 @@ Game g = new Game();
 
 void setup() {
   size(1000,800);
-  Game g = new Game();
+  //Game g = new Game();
   g.setupShips();
-  System.out.println(g.compBoard.ships.length);
+  //System.out.println(g.compBoard.ships.length);
   g.compBoard.setupBoard();
-  g.displayBoard();
+  //g.displayCompBoard();
+      
 }
 
 private int turns = 0;
 private int prevTurns = 0;
 
 void draw() {
+  g.userChooseSquare();
+  g.displayCompBoard(); 
+  //g.displayBoard();
+
   
   /*while (turns == 0) {
      if (g.userChooseSquare()) turns++; 
@@ -33,8 +38,8 @@ void draw() {
     }
   }
   else{*/
-    g.displayCompBoard();
-    g.userChooseSquare();
+    //g.displayCompBoard();
+    //g.userChooseSquare();
     // System.out.println(g.compBoard.squaresAttacked);
     //if (prevTurns != turns){
       //g.compChooseSquare();
