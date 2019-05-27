@@ -16,8 +16,26 @@ private int turns = 0;
 private int prevTurns = 0;
 
 void draw() {
-  g.userChooseSquare();
-  g.displayCompBoard(); 
+  System.out.println(turns);
+  while (turns % 2 == 0){
+    g.displayCompBoard();
+    //first turn: user choose square
+    if (g.userChooseSquare()) {
+       turns++;
+      g.displayCompBoard();
+      delay(6000);
+    }
+  }
+  System.out.println(turns);
+  while (turns % 2 == 1) {
+    //display user board.
+    g.displayBoard();
+    if (g.compChooseSquare()) turns++;
+    g.displayBoard();
+    delay(6000);
+  }
+  
+ // g.displayCompBoard(); 
   //g.displayBoard();
 
   
@@ -46,7 +64,7 @@ void draw() {
       //prevTurns = turns;
     //}
   //}
-      prevTurns = turns;
+      //prevTurns = turns;
     }
    // }
 //}
