@@ -32,7 +32,8 @@ void draw() {
       g.displayBoard(f);
     }
     if (frameCount-c == 160) {
-      g.compChooseSquare();
+      //if for some reason a square isn't attacked, don't increment framecount (keep trying)
+      if (!g.compChoose()) c++;
  
     }
     if (frameCount-c > 240) {
