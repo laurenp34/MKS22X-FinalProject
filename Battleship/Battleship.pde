@@ -18,7 +18,9 @@ private int turns = 0;
 
 void draw() {
   g.displayTurns(turns, f);
-  if (turns%2 == 0) {
+  g.displayCompBoard(f);
+  if (g.userChooseSquare()) turns++;
+  /*if (turns%2 == 0) {
     g.displayCompBoard(f);
     //first turn: user choose square
     while (turns%2 == 0) {
@@ -74,5 +76,5 @@ void draw() {
   //}
   //prevTurns = turns;
   //}
-  // }
+  // }*/
 }
