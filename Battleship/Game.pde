@@ -92,12 +92,21 @@ class Game {
   }
   
   public boolean compChooseSquare(){
-    int xcor = (int)Math.random() * 10;
-    int ycor = (int)Math.random() * 10;
+    int xcor = (int) (Math.random() * 10);
+    int ycor = (int) (Math.random() * 10);
     if (userBoard.board[ycor][xcor].attack()) {
           userBoard.addAttacked();
           return true;  
    } 
    return false;
 }
+
+  public void displayTurns(int t, PFont f) {
+    fill(0,255,0);
+    rect(width/2-10,0,20,20);
+    
+    textFont(f,15);                  // STEP 3 Specify font to be used
+    fill(0);                         // STEP 4 Specify font color 
+    text(""+t,width/2,15);   // STEP 5 Display Text
+  }
 }
