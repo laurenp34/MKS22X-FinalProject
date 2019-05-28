@@ -19,9 +19,10 @@ void draw() {
   System.out.println(turns);
   while (turns % 2 == 0){
     g.displayCompBoard();
+    System.out.println(turns);
     //first turn: user choose square
     if (g.userChooseSquare()) {
-       turns++;
+      turns++;
       g.displayCompBoard();
       delay(6000);
     }
