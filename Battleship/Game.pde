@@ -107,7 +107,7 @@ class Game {
    for (int r=0;r<10;r++){
       for(int c=0;c<10;c++) {
         //if the square has not been attacked yet, add it to the list of available spots to attack
-        if (userBoard.board[r][c].isAttacked()) {
+        if (!userBoard.board[r][c].isAttacked()) {
            spots.add(r);
            spots.add(c);
         }
@@ -116,8 +116,10 @@ class Game {
    int i = (int) (Math.random() * (spots.size()/2));
    int i1 = i*2;
    int i2 = i1+1;
+   int r = spots.get(i1);
+   int c = spots.get(i2);
    
-   if (userBoard.board[i1][i2].attack()) {
+   if (userBoard.board[r][c].attack()) {
      userBoard.addAttacked();
      return true;
    }
