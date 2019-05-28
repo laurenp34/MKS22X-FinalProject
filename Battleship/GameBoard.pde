@@ -86,18 +86,32 @@ class GameBoard {
      //vertical ship
     if (dir==0) {
       for (int n=0;n<size;n++) {
-        board[row+n][col].addShipHere(newShip);
+        Square s = board[row+n][col];
+        s.addShipHere(newShip);
+        newShip.addSquare(n,s);
       }
     //horizontal ship
     } else {
       for (int n=0;n<size;n++) {
-         board[row][col+n].addShipHere(newShip); 
+         Square s = board[row][col+n];
+         s.addShipHere(newShip); 
+         newShip.addSquare(n,s);
       }
     }
     ships[shipCount] = newShip;
     shipCount++;
     return true;
   }
+  
+  public boolean attack(int r, int c) {
+    boolean out = board[r][c].attack();
+    //if attack doens't work, return false immediately
+    if (!out) return out;
+    
+    //if this attack made the ship fully attacked:
+    if (board[r][c].shipHere.attacks == board[r][c].shipHere.size) {
+        
+    }
   
   public void placeShipsRandomly() {
    for (int i=0;i<6;i++) { //loop runs 6 times
