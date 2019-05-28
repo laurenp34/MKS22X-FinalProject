@@ -14,41 +14,60 @@ void setup() {
 }
 
 private int turns = 0;
+int c = 0;
 //private int prevTurns = 0;
 
 void draw() {
   g.displayTurns(turns, f);
-  g.displayCompBoard(f);
-  if (g.userChooseSquare()) turns++;
-  /*if (turns%2 == 0) {
+
+  if (turns % 2 == 0) {
     g.displayCompBoard(f);
-    //first turn: user choose square
-    while (turns%2 == 0) {
-      if (g.userChooseSquare()) {
-        g.displayCompBoard(f);
-        turns++;
-        g.displayTurns(turns, f);
-        //delay(1000);
-      }
+    if (g.userChooseSquare()) {
+      turns++;
+      c = frameCount;
+      g.displayCompBoard(f);
     }
   } else {
-    while (turns % 2 == 1) {
-      //display user board.
+    if (frameCount-c > 80) {
       g.displayBoard(f);
-      if (g.compChooseSquare()) {
-        turns++;
-        g.displayTurns(turns, f);
-        g.displayBoard(f);
-        //delay(1000);
-      }
+    }
+    if (frameCount-c == 160) {
+      g.compChooseSquare();
+ 
+    }
+    if (frameCount-c > 240) {
+      turns++; 
     }
   }
-  delay(1000);
-
-  // g.displayCompBoard(); 
-  //g.displayBoard();
-
-
+  /*if (turns%2 == 0) {
+   g.displayCompBoard(f);
+   //first turn: user choose square
+   while (turns%2 == 0) {
+   if (g.userChooseSquare()) {
+   g.displayCompBoard(f);
+   turns++;
+   g.displayTurns(turns, f);
+   //delay(1000);
+   }
+   }
+   } else {
+   while (turns % 2 == 1) {
+   //display user board.
+   g.displayBoard(f);
+   if (g.compChooseSquare()) {
+   turns++;
+   g.displayTurns(turns, f);
+   g.displayBoard(f);
+   //delay(1000);
+   }
+   }
+   }
+   delay(1000);
+   
+   // g.displayCompBoard(); 
+   //g.displayBoard();
+   
+   
   /*while (turns == 0) {
    if (g.userChooseSquare()) turns++; 
    }*/
