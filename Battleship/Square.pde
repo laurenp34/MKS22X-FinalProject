@@ -1,18 +1,17 @@
 class Square {
   int x1; //x1 and y1 represent the upper left coordinates of the square
   int y1;
-  int squaresAttacked;
   boolean hasShip;
+  boolean fullShipFound; //if there is a ship here, has that ship been fully found
   boolean attacked;
-  boolean wasAttacked;
   Ship shipHere;
   
   public Square(int x, int y) {
     x1 = x;
     y1 = y;
     attacked = false;
+    fullShipFound = false;
     hasShip = false;
-    wasAttacked = false;
   }
   
 
@@ -37,7 +36,7 @@ class Square {
   public boolean attack() {
      if (!attacked) {
        attacked = true;
-       shipHere.attack();
+       if (hasShip) shipHere.attack();
        return true;
      }
      return false; // already attacked
@@ -46,15 +45,6 @@ class Square {
   public boolean isAttacked() {
     return attacked;
   }
-  
-  public boolean wasAttacked() {
-    return wasAttacked;
-  }
-  
-  public void changeWasAttacked() {
-    wasAttacked = true;
-  }
-  
   
   
   //continuous method to be run in draw()
