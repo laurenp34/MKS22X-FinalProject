@@ -18,6 +18,11 @@ class Game {
   } 
   
   public void displayBoard(PFont f){
+    userBoard.setupBoard();
+    
+    fill(0,255,0);
+    rect(0,80,150,30);
+    
     textFont(f,16);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
     text("User Board",10,100);   // STEP 5 Display Text
@@ -30,6 +35,10 @@ class Game {
   }
   
   public void displayCompBoard(PFont f){
+    compBoard.setupBoard();
+    
+    fill(0,255,0);
+    rect(0,80,150,30);
     
     textFont(f,16);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
