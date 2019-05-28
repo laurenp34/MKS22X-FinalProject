@@ -101,6 +101,29 @@ class Game {
    return false;
 }
 
+  public boolean compChoose() {
+   ArrayList<Integer> spots = new ArrayList<Integer>();
+   //loop through all squares in user board
+   for (int r=0;r<10;r++){
+      for(int c=0;c<10;c++) {
+        //if the square has not been attacked yet, add it to the list of available spots to attack
+        if (userBoard.board[r][c].isAttacked()) {
+           spots.add(r);
+           spots.add(c);
+        }
+      }     
+   }
+   int i = (int) (Math.random() * (spots.size()/2));
+   int i1 = i*2;
+   int i2 = i1+1;
+   
+   if (userBoard.board[i1][i2].attack()) {
+     userBoard.addAttacked();
+     return true;
+   }
+   return false;
+ }
+
   public void displayTurns(int t, PFont f) {
     fill(0,255,0);
     rect(width/2-10,0,60,20);
