@@ -103,7 +103,7 @@ class Game {
 
   public void displayTurns(int t, PFont f) {
     fill(0,255,0);
-    rect(width/2-10,0,20,20);
+    rect(width/2-10,0,60,20);
     
     textFont(f,15);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
