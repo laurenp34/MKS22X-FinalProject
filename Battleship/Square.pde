@@ -37,7 +37,7 @@ class Square {
   public boolean attack() {
      if (!attacked) {
        attacked = true;
-       System.out.println(hasShip);
+       shipHere.attack();
        return true;
      }
      return false; // already attacked
