@@ -1,9 +1,11 @@
  
 import java.util.Random;
 Game g = new Game();
+PFont f;
 
 void setup() {
   size(1000,800);
+  f = createFont("Arial",16,true);
   //Game g = new Game();
   g.setupShips();
   //System.out.println(g.compBoard.ships.length);
@@ -17,23 +19,30 @@ private int prevTurns = 0;
 
 void draw() {
   System.out.println(turns);
-  while (turns % 2 == 0){
-    g.displayCompBoard();
-    System.out.println(turns);
+  //while (turns % 2 == 0){
+    g.compBoard.setupBoard();
+   g.displayCompBoard();
+    //System.out.println(turns);
     //first turn: user choose square
     if (g.userChooseSquare()) {
-      turns++;
       g.displayCompBoard();
+      turns++;
       delay(6000);
     }
-  }
+      //g.displayCompBoard();
+      //delay(6000);
+    //}
+  
   System.out.println(turns);
   while (turns % 2 == 1) {
     //display user board.
-    g.displayBoard();
-    if (g.compChooseSquare()) turns++;
-    g.displayBoard();
-    delay(6000);
+    g.userBoard.setupBoard();
+    g.displayBoard(f);
+    if (g.compChooseSquare()) {
+      turns++;
+      g.displayBoard(f);
+      delay(6000);
+    }
   }
   
  // g.displayCompBoard(); 
@@ -66,6 +75,6 @@ void draw() {
     //}
   //}
       //prevTurns = turns;
-    }
+    //}
    // }
-//}
+}
