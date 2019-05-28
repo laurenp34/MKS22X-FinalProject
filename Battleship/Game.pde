@@ -4,8 +4,10 @@ class Game {
   GameBoard compBoard;
   GameBoard userBoard;
   int turns;
+  //PFont f; 
   
   public Game(){
+    //f = createFont("Arial",16,true); // STEP 2 Create Font
    turns = 0; 
    compBoard = new GameBoard();
    userBoard = new GameBoard();
@@ -15,7 +17,11 @@ class Game {
      compBoard.placeShipsRandomly();
   } 
   
-  public void displayBoard(){
+  public void displayBoard(PFont f){
+    textFont(f,16);                  // STEP 3 Specify font to be used
+    fill(0);                         // STEP 4 Specify font color 
+    text("User Board",10,100);   // STEP 5 Display Text
+
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
         userBoard.getBoard()[r][c].displaySquareUser();
@@ -23,7 +29,12 @@ class Game {
    }
   }
   
-  public void displayCompBoard(){
+  public void displayCompBoard(PFont f){
+    
+    textFont(f,16);                  // STEP 3 Specify font to be used
+    fill(0);                         // STEP 4 Specify font color 
+    text("Comp Board",10,100);   // STEP 5 Display Text
+    
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
         compBoard.board[r][c].displaySquareComp();
