@@ -33,7 +33,8 @@ void draw() {
     }
     if (frameCount-c == 160) {
       //if for some reason a square isn't attacked, don't increment framecount (keep trying)
-      if (!g.compChoose()) c++;
+      //if (!g.compChoose()) c++;
+      g.compChoose();
  
     }
     if (frameCount-c > 240) {
