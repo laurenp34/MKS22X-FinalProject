@@ -48,3 +48,6 @@ Lauren:
 <b>Thursday, May 23rd</b>
 Sophie:
 * made turnOver() method
+<br>
+Lauren: 
+* Kept testing because displayBoard doesn't work, spent period debugging.
