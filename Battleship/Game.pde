@@ -95,7 +95,7 @@ class Game {
   public boolean compChooseSquare(){
     int xcor = (int) (Math.random() * 10);
     int ycor = (int) (Math.random() * 10);
-    if (userBoard.board[ycor][xcor].attack()) {
+    if (userBoard.attack(ycor,xcor)) {
           userBoard.addAttacked();
           return true;  
    } 
@@ -134,5 +134,24 @@ class Game {
     textFont(f,15);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
     text(""+t,width/2,15);   // STEP 5 Display Text
+  }
+  
+  
+  //returns 0 if game is not over, 1 if user wins, 2 if computer won
+  public int isGameOver() {
+    boolean compWon = true;
+    boolean userWon = true;
+    for (int i=0;i<userBoard.ships.length;i++) { //both arrays are same length
+        if (userBoard.ships[i].alive) {
+          compWon = false; //a user ship is still alive ,, comp did not win
+        }
+        if (compBoard.ships[i].alive) {
+           userWon = false; // a comp ship is alive. 
+        }
+        if (!userWon && !compWon) i = userBoard.ships.length; //break out of loop since none of them won
+    }
+   if (compWon) return 2;
+   if (userWon) return 1;
+   else return 0;
   }
 }
