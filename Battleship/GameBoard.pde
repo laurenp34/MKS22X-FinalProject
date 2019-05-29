@@ -31,8 +31,11 @@ class GameBoard {
   //prints board for the first time.
   //creates a 10x10 grid with all black squares (no ships yet).
   public void setupBoard() {
+    PImage ocean = loadImage("ocean.png");
+    image(ocean, board[0][0].getX(), board[0][0].getY(), 700,700);
+    //create white grid on ocean
     stroke(255);
-    fill(0);
+    noFill();
     for (int x=0; x < 10; x++) {
       for (int y=0; y < 10; y++) {
         rect(board[x][y].getX(), board[x][y].getY(), 70, 70);
