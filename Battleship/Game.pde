@@ -154,4 +154,19 @@ class Game {
    if (userWon) return 1;
    else return 0;
   }
+  
+  //whoWon: 1 is user, 2 is computer
+  public void gameOver(int whoWon, PFont f) {
+    fill(0,255,0);
+    rect(height/2-100,width/2-20, 200,40);
+    
+    String t = "";
+    if (whoWon == 1) t = "USER won!";
+    if (whoWon == 2) t = "COMP won!";
+    
+    textFont(f,16);                  // STEP 3 Specify font to be used
+    fill(0);     // STEP 4 Specify font color 
+    text(t,height/2,width/2);   // STEP 5 Display Text
+    
+  }
 }
