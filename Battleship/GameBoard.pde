@@ -112,11 +112,12 @@ class GameBoard {
     if (!out) return out;
 
     //if this attack made the ship fully attacked:
-    if (s.shipHere.attacks == s.shipHere.size) {
+    if (s.hasShip && s.shipHere.attacks == s.shipHere.size) {
       //iterate through squares covered by ship and change fullyAttacked variable
       for (int i=0; i<s.shipHere.size; i++) {
         Square sq = s.shipHere.squares[i];
         sq.fullShipFound = true;
+      } } /*
         //also ask adjacent squares to be attacked (eliminate)
         int row = sq.r;
         int col = sq.c;
@@ -149,7 +150,7 @@ class GameBoard {
           }
         
       }
-    }
+    } */
     return true;
   }
 
