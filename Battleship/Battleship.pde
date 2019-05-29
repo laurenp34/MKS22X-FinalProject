@@ -19,6 +19,11 @@ int c = 0;
 
 void draw() {
   g.displayTurns(turns, f);
+  int gmo = g.isGameOver();
+  if (gmo != 0) {
+    g.gameOver(gmo, f);
+    noLoop();
+  }
 
   if (turns % 2 == 0) {
     g.displayCompBoard(f);
@@ -26,6 +31,12 @@ void draw() {
       turns++;
       c = frameCount;
       g.displayCompBoard(f);
+
+       gmo = g.isGameOver();
+      if (gmo != 0) {
+        g.gameOver(gmo, f);
+        noLoop();
+      }
     }
   } else {
     if (frameCount-c > 80) {
@@ -35,10 +46,9 @@ void draw() {
       //if for some reason a square isn't attacked, don't increment framecount (keep trying)
       //if (!g.compChoose()) c++;
       g.compChoose();
- 
     }
     if (frameCount-c > 240) {
-      turns++; 
+      turns++;
     }
   }
   /*if (turns%2 == 0) {
