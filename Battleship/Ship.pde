@@ -17,6 +17,7 @@ class Ship {
   boolean placed;
   
   public Ship(int newSize) {
+    alive = true;
     size = newSize; 
     squares = new Square[size];
     dir = (int) (Math.random() * 2); // choose 1 or 0 randomly.
