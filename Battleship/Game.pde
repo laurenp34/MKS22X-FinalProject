@@ -59,7 +59,7 @@ class Game {
            int r = (mouseY - 50) / 70;
            int c = (mouseX - 150) / 70;
            //System.out.println(compBoard.getBoard()[c][r].hasShip);
-           if (compBoard.board[c][r].attack()) {
+           if (compBoard.attack(c,r)) {
               compBoard.addAttacked();
               return true;
              
@@ -69,6 +69,7 @@ class Game {
      }
      return false;// mouse wasn't pressed or wasn't on the board.
   }
+  /*
   public boolean turnOver(int num){
     for (int y = 0; y < compBoard.getBoard().length; y++){
        for (int x = 0; x < compBoard.getBoard()[0].length; x++){
@@ -89,7 +90,7 @@ class Game {
        }
     }
     return false;
-  }
+  }*/
   
   public boolean compChooseSquare(){
     int xcor = (int) (Math.random() * 10);
