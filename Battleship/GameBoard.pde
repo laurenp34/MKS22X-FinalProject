@@ -5,11 +5,13 @@ class GameBoard {
   int squaresAttacked;
   Ship[] ships;
   int shipCount; //how many ships have been placed on the board
+  int hits;
 
   public GameBoard() {
     squaresAttacked = 0;
     rows = 10; 
     cols = 10;
+    hits = 0;
     shipCount =0;
     ships = new Ship[6]; //6 ships total
     board = new Square[10][10]; //10x10 board.
@@ -110,7 +112,7 @@ class GameBoard {
     boolean out = s.attack();
     //if attack doens't work, return false immediately
     if (!out) return out;
-
+    hits++;
     //if this attack made the ship fully attacked:
     if (s.hasShip && s.shipHere.attacks == s.shipHere.size) {
       //kill the ship
@@ -119,6 +121,7 @@ class GameBoard {
       for (int i=0; i<s.shipHere.size; i++) {
         Square sq = s.shipHere.squares[i];
         sq.fullShipFound = true;
+        hits -- s.shipHere.size();
 
         //also ask adjacent squares to be attacked (eliminate)
         int row = sq.r;
@@ -189,9 +192,22 @@ class GameBoard {
     }
   }
 
+  public Square compStrategize(){
+    for (int y = 0; y < board.length; y++){
+      for (int x = 0; x < board[0].length; x++){
+        if (board[y][x].isAttacked()){
+          int xory = Math.random() * 2;
+          int posorneg = Math.random() * 2;
+          if (xory == 0){
+            if (posorneg == 0){
+              if (board[x-1][y]
 
   public boolean isShipHere(int row, int col) {
     if (row > 9 || row < 0 || col < 0 || col > 9) return false;
     return board[row][col].isShipHere();
+  }
+  
+  public int getHits(){
+    return hits;
   }
 }

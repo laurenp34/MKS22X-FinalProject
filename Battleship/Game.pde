@@ -95,7 +95,9 @@ class Game {
   public boolean compChooseSquare(){
     int xcor = (int) (Math.random() * 10);
     int ycor = (int) (Math.random() * 10);
-    if (userBoard.attack(ycor,xcor)) {
+    if (userBoard.getHits() > 0){
+      
+    else if (userBoard.attack(ycor,xcor)) {
           userBoard.addAttacked();
           return true;  
    } 
