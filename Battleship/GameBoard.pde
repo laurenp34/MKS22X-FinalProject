@@ -117,11 +117,12 @@ class GameBoard {
       for (int i=0; i<s.shipHere.size; i++) {
         Square sq = s.shipHere.squares[i];
         sq.fullShipFound = true;
-      
+
         //also ask adjacent squares to be attacked (eliminate)
         int row = sq.r;
         int col = sq.c;
         //first square in ship-- ask previous row/col outside ship to be attacked
+        //only execute this part once
         if (i==0) {
           //vertical ship
           if (s.shipHere.dir == 0 && row > 0) {
@@ -131,27 +132,45 @@ class GameBoard {
           }
           //horizontal ship
           if (s.shipHere.dir == 1 && col > 0) {
-             if (row > 0) board[row-1][col-1].attack();
-             board[row][col-1].attack();
-             if (row < 9) board[row+1][col-1].attack();
+            if (row > 0) board[row-1][col-1].attack();
+            board[row][col-1].attack();
+            if (row < 9) board[row+1][col-1].attack();
           }
+
         } 
-        
+
         if (s.shipHere.dir == 0) {
-            if (col > 0) board[row][col-1].attack();
-            board[row][col].attack();
-            if (col < 9) board[row][col+1].attack();
+          if (col > 0) board[row][col-1].attack();
+          board[row][col].attack();
+          if (col < 9) board[row][col+1].attack();
+        }
+        //horizontal ship
+        if (s.shipHere.dir == 1) {
+          if (row > 0) board[row-1][col].attack();
+          board[row][col].attack();
+          if (row < 9) board[row+1][col].attack();
+        }
+        
+        if (i+1 == s.shipHere.size) {
+         //only execute this once:
+          //now attack the row/column after the last row/column
+          if (s.shipHere.dir == 0 && row < 9) {
+            if (col > 0) board[row+1][col-1].attack();
+            board[row+1][col].attack();
+            if (col < 9) board[row+1][col+1].attack();
           }
           //horizontal ship
-          if (s.shipHere.dir == 1) {
-             if (row > 0) board[row-1][col].attack();
-             board[row][col].attack();
-             if (row < 9) board[row+1][col].attack();
-          }
-        
+          if (s.shipHere.dir == 1 && col < 9) {
+            if (row > 0) board[row-1][col+1].attack();
+            board[row][col+1].attack();
+            if (row < 9) board[row+1][col+1].attack();
+          } 
+          
+          
+        }
       }
     }
-     
+
     return true;
   }
 
