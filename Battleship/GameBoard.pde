@@ -117,7 +117,7 @@ class GameBoard {
       for (int i=0; i<s.shipHere.size; i++) {
         Square sq = s.shipHere.squares[i];
         sq.fullShipFound = true;
-      } } /*
+      
         //also ask adjacent squares to be attacked (eliminate)
         int row = sq.r;
         int col = sq.c;
@@ -150,7 +150,8 @@ class GameBoard {
           }
         
       }
-    } */
+    }
+     
     return true;
   }
 
