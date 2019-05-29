@@ -78,10 +78,11 @@ class Square {
       else if (hasShip) {
         fill(255, 0, 0);
         rect(x1, y1, 70, 70);
-      } else {
-        fill(0, 0, 255);
-        rect(x1, y1, 70, 70);
-      }
+      } 
+    } else {
+         stroke(255);
+         fill(0);
+         rect(x1,y1,70,70);
     }
   }
 }
