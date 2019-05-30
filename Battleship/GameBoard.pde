@@ -75,6 +75,10 @@ class GameBoard {
   public void addAttacked() {
     squaresAttacked++;
   }
+  
+  public Square getSquare(int r, int c){
+    return board[r][c];
+  }
 
 
   //adds a ship to the board, as well as to the ships array.
@@ -133,7 +137,7 @@ class GameBoard {
       for (int i=0; i<s.shipHere.size; i++) {
         Square sq = s.shipHere.squares[i];
         sq.fullShipFound = true;
-        hits -- s.shipHere.size();
+        hits -= s.shipHere.size();
 
         //also ask adjacent squares to be attacked (eliminate)
         int row = sq.r;
@@ -203,7 +207,7 @@ class GameBoard {
       }
     }
   }
-
+/*
   public Square compStrategize(){
     for (int y = 0; y < board.length; y++){
       for (int x = 0; x < board[0].length; x++){
@@ -212,7 +216,7 @@ class GameBoard {
           int posorneg = Math.random() * 2;
           if (xory == 0){
             if (posorneg == 0){
-              if (board[x-1][y]
+              if (board[x-1][y]*/
 
   public boolean isShipHere(int row, int col) {
     if (row > 9 || row < 0 || col < 0 || col > 9) return false;

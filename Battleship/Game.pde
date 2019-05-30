@@ -98,11 +98,24 @@ class Game {
     if (userBoard.getHits() > 0){
           int x = userBoard.lastHitX();
           int y = userBoard.lastHitY();
-          int dir = Math.random() * 4;
+          ArrayList<int[]> coords = new ArrayList<int[]>();
+          if (x > 0 && !userBoard.getSquare(x-1,y).isAttacked()){
+            coords.add({x-1, y});
+          }
+          if (x < row[0].length - 2 && !userBoard.getSquare(y,x+1).isAttacked()){
+            coords.add(x+1, y);
+          }
+          if (y > 0 && !userBoard.getSquare(y-1, x).isAttacked()){
+            coords.add(x, y-1);
+          }
+          if (y < row.length - 2 && !userBoard.getSquare(y+1,x).isAttacked()){
+            coords.add(x, y+1);
+          }
+          
     }
     else if (userBoard.attack(ycor,xcor)) {
           userBoard.addAttacked();
-          return true;  
+          return true;
    } 
    return false;
 }
