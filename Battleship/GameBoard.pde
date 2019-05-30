@@ -52,12 +52,12 @@ class GameBoard {
       if (ships[i].size == 3) {
         p = loadImage("ship3.png");
         //ship image is rotated horizontally, so if vertical rotate again
-        if (ships[i].dir == 0) rotate(-90);
+        if (ships[i].dir == 0) rotate(90);
         //get top-most, left-most x and y coordinates (use ship's square array)
         int x1 = ships[i].squares[0].getX();
         int y1 = ships[i].squares[0].getY();
-        image(p, x1, y1, 30, 10);
-        if (ships[i].dir == 0) rotate(90); //rotate back
+        image(p, x1, y1, 210, 70);
+        if (ships[i].dir == 0) rotate(-90); //rotate back
       }
     }
   }
