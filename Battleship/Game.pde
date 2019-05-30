@@ -21,10 +21,8 @@ class Game {
     //first, set up ocean
     userBoard.printOcean();
     userBoard.printGrid();
-    //then set up ship images
-    PImage ship3;
-    ship3 = loadImage("ship3.png");
-    userBoard.printShips();
+
+    //userBoard.printShips();
     
     
     fill(0,255,0);
@@ -36,14 +34,14 @@ class Game {
 
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
-        userBoard.getBoard()[r][c].displaySquareUser();
+        userBoard.getBoard()[r][c].displayUserSquareTest();
       }
    }
   }
   
   public void displayCompBoard(PFont f){
     compBoard.printOcean();
-    compBoard.printShipsDead();
+    //compBoard.printShipsDead();
     compBoard.printGrid();
     
     fill(0,255,0);
@@ -55,7 +53,7 @@ class Game {
     
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
-        compBoard.board[r][c].displaySquareComp();
+        compBoard.board[r][c].displayCompSquareTest();
       }
    }
   }
@@ -105,14 +103,13 @@ class Game {
     int xcor = (int) (Math.random() * 10);
     int ycor = (int) (Math.random() * 10);
     if (userBoard.getHits() > 0){
-      
+    }
     else if (userBoard.attack(ycor,xcor)) {
           userBoard.addAttacked();
           return true;  
    } 
    return false;
 }
-  }
 
   public boolean compChoose() {
    ArrayList<Integer> spots = new ArrayList<Integer>();
@@ -182,4 +179,4 @@ class Game {
     
   }
 
-  }
+}
