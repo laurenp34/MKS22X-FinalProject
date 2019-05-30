@@ -55,10 +55,12 @@ class GameBoard {
         int y1 = ships[i].squares[0].getY();
         //horizontal ship
         if (ships[i].dir == 0) {
-          p = loadImage("ship3.png");
+          if (ships[i].alive) p = loadImage("ship3.png");
+          else p = loadImage("ship3dead.png");
           image(p, x1, y1, 210, 70);
         } else {
-          p = loadImage("ship3up.png");
+          if (ships[i].alive) p = loadImage("ship3up.png");
+          else p = loadImage("ship3updead.png");
           image(p, x1, y1, 70, 210);
         }
       }
@@ -76,10 +78,10 @@ class GameBoard {
           int y1 = ships[i].squares[0].getY();
           //horizontal ship
           if (ships[i].dir == 0) {
-            p = loadImage("ship3.png");
+            p = loadImage("ship3dead.png");
             image(p, x1, y1, 210, 70);
           } else {
-            p = loadImage("ship3up.png");
+            p = loadImage("ship3updead.png");
             image(p, x1, y1, 70, 210);
           }
         }
