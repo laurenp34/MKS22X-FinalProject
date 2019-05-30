@@ -38,15 +38,15 @@ void draw() {
       }
     }
   } else {
-    if (frameCount-c > 80) {
+    if (frameCount-c > 60) {
       g.displayBoard(f);
     }
-    if (frameCount-c == 160) {
+    if (frameCount-c == 120) {
       //if for some reason a square isn't attacked, don't increment framecount (keep trying)
       //if (!g.compChoose()) c++;
       g.compChoose();
     }
-    if (frameCount-c > 240) {
+    if (frameCount-c > 180) {
       turns++;
     }
   }
