@@ -20,7 +20,6 @@ class Game {
   public void displayBoard(PFont f){
     //first, set up ocean
     userBoard.printOcean();
-    userBoard.printShips();
     userBoard.printGrid();
     //then set up ship images
     PImage ship3;
@@ -40,6 +39,7 @@ class Game {
         userBoard.getBoard()[r][c].displaySquareUser();
       }
    }
+       userBoard.printShips();
   }
   
   public void displayCompBoard(PFont f){
