@@ -28,12 +28,14 @@ class GameBoard {
     return board;
   }
 
-  //prints board for the first time.
-  //creates a 10x10 grid with all black squares (no ships yet).
-  public void setupBoard() {
+  //prints ocean picture resized correctly- to be covered up partially.
+  public void printOcean() {
     PImage ocean = loadImage("ocean.png");
     image(ocean, board[0][0].getX(), board[0][0].getY(), 700,700);
-    //create white grid on ocean
+  }
+  
+  //prints 10x10 white grid to cover up ocean and ships.
+  public void printGrid() {
     stroke(255);
     noFill();
     for (int x=0; x < 10; x++) {
@@ -41,6 +43,15 @@ class GameBoard {
         rect(board[x][y].getX(), board[x][y].getY(), 70, 70);
       }
     }
+  }
+  
+  //prints ship images 
+  public void printShips(){
+   for (int i=0;i<ships.length;i++) {
+     PImage p;
+     if (ships[i].size == 3) p = loadImage("ship3.png");
+   }
+    
   }
 
   //check to see if a ship (with no location yet) can be placed at row,col
