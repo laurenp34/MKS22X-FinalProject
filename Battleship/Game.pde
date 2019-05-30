@@ -24,7 +24,7 @@ class Game {
     //then set up ship images
     PImage ship3;
     ship3 = loadImage("ship3.png");
-    
+    userBoard.printShips();
     
     
     fill(0,255,0);
@@ -39,12 +39,11 @@ class Game {
         userBoard.getBoard()[r][c].displaySquareUser();
       }
    }
-       userBoard.printShips();
   }
   
   public void displayCompBoard(PFont f){
     compBoard.printOcean();
-    compBoard.printShips();
+    compBoard.printShipsDead();
     compBoard.printGrid();
     
     fill(0,255,0);
