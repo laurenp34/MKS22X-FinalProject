@@ -8,8 +8,7 @@ void setup() {
   f = createFont("Arial", 16, true);
   //Game g = new Game();
   g.setupShips();
-  //System.out.println(g.compBoard.ships.length);
-  g.compBoard.setupBoard();
+  //System.out.println(g.compBoard.ships.length);;
   //g.displayCompBoard();
 }
 
