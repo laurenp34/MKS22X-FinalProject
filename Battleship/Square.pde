@@ -59,10 +59,10 @@ class Square {
       if (attacked) {   
         fill(255, 0, 0);
         rect(x1, y1, 70, 70);
-      } else {
+      } /*else {
         fill(150);
         rect(x1, y1, 70, 70);
-      }
+      }*/
     } else if (attacked) {
       fill(0, 0, 255);
       rect(x1, y1, 70, 70);
@@ -70,16 +70,7 @@ class Square {
   }
 
   public void displaySquareComp() {
-    if (attacked) {
-      if (fullShipFound) {
-        fill(255, 248, 220);
-        rect(x1, y1, 70, 70);
-      }
-      else if (hasShip) {
-        fill(255, 0, 0);
-        rect(x1, y1, 70, 70);
-      } 
-    } else {
+    if (!attacked) {
          stroke(255);
          fill(0);
          rect(x1,y1,70,70);
