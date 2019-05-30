@@ -96,7 +96,10 @@ class Game {
     int xcor = (int) (Math.random() * 10);
     int ycor = (int) (Math.random() * 10);
     if (userBoard.getHits() > 0){
-      
+          int x = userBoard.lastHitX();
+          int y = userBoard.lastHitY();
+          int dir = Math.random() * 4;
+    }
     else if (userBoard.attack(ycor,xcor)) {
           userBoard.addAttacked();
           return true;  

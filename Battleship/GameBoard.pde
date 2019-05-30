@@ -6,6 +6,8 @@ class GameBoard {
   Ship[] ships;
   int shipCount; //how many ships have been placed on the board
   int hits;
+  int hitXcor;
+  int hitYcor;
 
   public GameBoard() {
     squaresAttacked = 0;
@@ -106,6 +108,14 @@ class GameBoard {
     shipCount++;
     return true;
   }
+  
+  public int lastHitX(){
+    return hitXcor;
+  }
+  
+  public int lastHitY(){
+    return hitYcor;
+  }
 
   public boolean attack(int r, int c) {
     Square s = board[r][c];
@@ -113,6 +123,8 @@ class GameBoard {
     //if attack doens't work, return false immediately
     if (!out) return out;
     hits++;
+    hitXcor = r;
+    hitYcor = c;
     //if this attack made the ship fully attacked:
     if (s.hasShip && s.shipHere.attacks == s.shipHere.size) {
       //kill the ship
