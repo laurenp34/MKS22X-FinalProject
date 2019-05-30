@@ -103,6 +103,7 @@ class Game {
    } 
    return false;
 }
+  }
 
   public boolean compChoose() {
    ArrayList<Integer> spots = new ArrayList<Integer>();
@@ -171,4 +172,5 @@ class Game {
     text(t,height/2,width/2);   // STEP 5 Display Text
     
   }
-}
+
+  }
