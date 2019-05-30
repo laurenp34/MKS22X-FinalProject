@@ -31,9 +31,9 @@ class GameBoard {
   //prints ocean picture resized correctly- to be covered up partially.
   public void printOcean() {
     PImage ocean = loadImage("ocean.png");
-    image(ocean, board[0][0].getX(), board[0][0].getY(), 700,700);
+    image(ocean, board[0][0].getX(), board[0][0].getY(), 700, 700);
   }
-  
+
   //prints 10x10 white grid to cover up ocean and ships.
   public void printGrid() {
     stroke(255);
@@ -44,14 +44,22 @@ class GameBoard {
       }
     }
   }
-  
+
   //prints ship images 
-  public void printShips(){
-   for (int i=0;i<ships.length;i++) {
-     PImage p;
-     if (ships[i].size == 3) p = loadImage("ship3.png");
-   }
-    
+  public void printShips() {
+    for (int i=0; i<ships.length; i++) {
+      PImage p;
+      if (ships[i].size == 3) {
+        p = loadImage("ship3.png");
+        //ship image is rotated horizontally, so if vertical rotate again
+        if (ships[i].dir == 0) rotate(-90);
+        //get top-most, left-most x and y coordinates (use ship's square array)
+        int x1 = ships[i].squares[0].getX();
+        int y1 = ships[i].squares[0].getY();
+        image(p, x1, y1, 30, 10);
+        if (ships[i].dir == 0) rotate(90); //rotate back
+      }
+    }
   }
 
   //check to see if a ship (with no location yet) can be placed at row,col
@@ -152,7 +160,6 @@ class GameBoard {
             board[row][col-1].attack();
             if (row < 9) board[row+1][col-1].attack();
           }
-
         } 
 
         if (s.shipHere.dir == 0) {
@@ -166,9 +173,9 @@ class GameBoard {
           board[row][col].attack();
           if (row < 9) board[row+1][col].attack();
         }
-        
+
         if (i+1 == s.shipHere.size) {
-         //only execute this once:
+          //only execute this once:
           //now attack the row/column after the last row/column
           if (s.shipHere.dir == 0 && row < 9) {
             if (col > 0) board[row+1][col-1].attack();
@@ -180,9 +187,7 @@ class GameBoard {
             if (row > 0) board[row-1][col+1].attack();
             board[row][col+1].attack();
             if (row < 9) board[row+1][col+1].attack();
-          } 
-          
-          
+          }
         }
       }
     }
