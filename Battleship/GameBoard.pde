@@ -170,7 +170,7 @@ class GameBoard {
       for (int i=0; i<s.shipHere.size; i++) {
         Square sq = s.shipHere.squares[i];
         sq.fullShipFound = true;
-        hits -- s.shipHere.size();
+        //hits -= s.shipHere.size();
 
         //also ask adjacent squares to be attacked (eliminate)
         int row = sq.r;
@@ -226,11 +226,16 @@ class GameBoard {
   }
 
   public void placeShipsRandomly() {
-    for (int i=0; i<6; i++) { //loop runs 6 times
+    for (int i=0; i<5; i++) { //loop runs 5 times
       //for now, only place ships size 3 (coordinates can be btn. 0-7)
       int r = (int) (Math.random() * 8);
       int c = (int) (Math.random() * 8);
-      Ship s = new Ship(3);
+      Ship s;
+      if (i < 1) s = new Ship(5); //add 1 ship size 5
+      else if (i < 2) s = new Ship(4); //add 1 ship size 4
+      else if (i < 4) s = new Ship(3); //add 2 ships size 3
+      else s = new Ship(2); //add 1 ship size 2
+      
       while (!addShip(s, r, c)) {
         r = (int) (Math.random() * 8);
         c = (int) (Math.random() * 8);
@@ -238,6 +243,7 @@ class GameBoard {
     }
   }
 
+/*
   public Square compStrategize(){
     for (int y = 0; y < board.length; y++){
       for (int x = 0; x < board[0].length; x++){
@@ -246,7 +252,7 @@ class GameBoard {
           int posorneg = Math.random() * 2;
           if (xory == 0){
             if (posorneg == 0){
-              if (board[x-1][y]
+              if (board[x-1][y] */
 
   public boolean isShipHere(int row, int col) {
     if (row > 9 || row < 0 || col < 0 || col > 9) return false;
