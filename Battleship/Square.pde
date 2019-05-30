@@ -78,4 +78,26 @@ class Square {
         image(p, x1, y1, 70, 70);
       } //if the full ship is found, just print the ship.
   }
+  }
+  
+  public void displayUserSquareTest(){
+    if (hasShip && attacked) {
+     fill(255,0,0);
+     rect(x1,y1,70,70);
+    } else if (hasShip) {
+      fill(0,255,0);
+      rect(x1,y1,70,70);
+    } else if (attacked) {
+      fill(0,0,255);
+      rect(x1,y1,70,70);
+    }
+  }
+  
+  public void displayCompSquareTest() {
+    if (attacked) {
+      if (hasShip) fill(255,0,0);
+      else fill(0,0,255);
+    } else fill(0);
+    rect(x1,y1,70,70);
+  }
 }
