@@ -227,40 +227,65 @@ class GameBoard {
 
   public void placeShipsRandomly() {
     for (int i=0; i<5; i++) { //loop runs 5 times
-      //for now, only place ships size 3 (coordinates can be btn. 0-7)
-      int r = (int) (Math.random() * 8);
-      int c = (int) (Math.random() * 8);
       Ship s;
-      if (i < 1) s = new Ship(5); //add 1 ship size 5
-      else if (i < 2) s = new Ship(4); //add 1 ship size 4
-      else if (i < 4) s = new Ship(3); //add 2 ships size 3
-      else s = new Ship(2); //add 1 ship size 2
-      
-      while (!addShip(s, r, c)) {
-        r = (int) (Math.random() * 8);
-        c = (int) (Math.random() * 8);
+      if (i < 1) {
+        s = new Ship(5); //add 1 ship size 5
+        //coordinates can be btn (0-5) b/c size 5
+        int r = (int) (Math.random() * 6);
+        int c = (int) (Math.random() * 6);
+        while (!addShip(s, r, c)) {
+          r = (int) (Math.random() * 6);
+          c = (int) (Math.random() * 6);
+        }
+      } else if (i < 2) {
+        s = new Ship(4); //add 1 ship size 4
+        //coordinates can be btn (0-6) b/c size 4
+        int r = (int) (Math.random() * 7);
+        int c = (int) (Math.random() * 7);
+        while (!addShip(s, r, c)) {
+          r = (int) (Math.random() * 7);
+          c = (int) (Math.random() * 7);
+        }
+      } else if (i < 4) {
+        s = new Ship(3); //add 2 ships size 3
+        //coordinates can be btn (0-7) b/c size 3
+        int r = (int) (Math.random() * 8);
+        int c = (int) (Math.random() * 8);
+        while (!addShip(s, r, c)) {
+          r = (int) (Math.random() * 8);
+          c = (int) (Math.random() * 8);
+        }
+      } else {
+        s = new Ship(2); //add 1 ship size 2
+        //coordinates can be btn (0-8) b/c size 2
+        int r = (int) (Math.random() * 9);
+        int c = (int) (Math.random() * 9);
+        while (!addShip(s, r, c)) {
+          r = (int) (Math.random() * 9);
+          c = (int) (Math.random() * 9);
+        }
       }
     }
   }
 
-/*
+  /*
   public Square compStrategize(){
-    for (int y = 0; y < board.length; y++){
-      for (int x = 0; x < board[0].length; x++){
-        if (board[y][x].isAttacked()){
-          int xory = Math.random() * 2;
-          int posorneg = Math.random() * 2;
-          if (xory == 0){
-            if (posorneg == 0){
-              if (board[x-1][y] */
+   for (int y = 0; y < board.length; y++){
+   for (int x = 0; x < board[0].length; x++){
+   if (board[y][x].isAttacked()){
+   int xory = Math.random() * 2;
+   int posorneg = Math.random() * 2;
+   if (xory == 0){
+   if (posorneg == 0){
+   if (board[x-1][y] */
 
   public boolean isShipHere(int row, int col) {
     if (row > 9 || row < 0 || col < 0 || col > 9) return false;
     return board[row][col].isShipHere();
   }
 
-  
-  public int getHits(){
+
+  public int getHits() {
     return hits;
   }
 }
