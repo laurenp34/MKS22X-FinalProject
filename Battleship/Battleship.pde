@@ -8,8 +8,7 @@ void setup() {
   f = createFont("Arial", 16, true);
   //Game g = new Game();
   g.setupShips();
-  //System.out.println(g.compBoard.ships.length);
-  g.compBoard.setupBoard();
+  //System.out.println(g.compBoard.ships.length);;
   //g.displayCompBoard();
 }
 
@@ -39,15 +38,15 @@ void draw() {
       }
     }
   } else {
-    if (frameCount-c > 80) {
+    if (frameCount-c > 30) {
       g.displayBoard(f);
     }
-    if (frameCount-c == 160) {
+    if (frameCount-c == 60) {
       //if for some reason a square isn't attacked, don't increment framecount (keep trying)
       //if (!g.compChoose()) c++;
       g.compChoose();
     }
-    if (frameCount-c > 240) {
+    if (frameCount-c > 90) {
       turns++;
     }
   }

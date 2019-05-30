@@ -30,14 +30,63 @@ class GameBoard {
     return board;
   }
 
-  //prints board for the first time.
-  //creates a 10x10 grid with all black squares (no ships yet).
-  public void setupBoard() {
+  //prints ocean picture resized correctly- to be covered up partially.
+  public void printOcean() {
+    PImage ocean = loadImage("ocean.png");
+    image(ocean, board[0][0].getX(), board[0][0].getY(), 700, 700);
+  }
+
+  //prints 10x10 white grid to cover up ocean and ships.
+  public void printGrid() {
     stroke(255);
-    fill(0);
+    noFill();
     for (int x=0; x < 10; x++) {
       for (int y=0; y < 10; y++) {
         rect(board[x][y].getX(), board[x][y].getY(), 70, 70);
+      }
+    }
+  }
+
+  //prints ship images -- PRINTS ALL SHIPS
+  public void printShips() {
+    for (int i=0; i<ships.length; i++) {
+      PImage p;
+      if (ships[i].size == 3) {
+        //get top-most, left-most x and y coordinates (use ship's square array)
+        int x1 = ships[i].squares[0].getX();
+        int y1 = ships[i].squares[0].getY();
+        //horizontal ship
+        if (ships[i].dir == 0) {
+          if (ships[i].alive) p = loadImage("ship3.png");
+          else p = loadImage("ship3dead.png");
+          image(p, x1, y1, 210, 70);
+        } else {
+          if (ships[i].alive) p = loadImage("ship3up.png");
+          else p = loadImage("ship3updead.png");
+          image(p, x1, y1, 70, 210);
+        }
+      }
+    }
+  }
+
+  //prints ship images - ONLY FOR DEAD SHIPS// displaying on comp board
+  public void printShipsDead() {
+    for (int i=0; i<ships.length; i++) {
+      PImage p;
+      if (!ships[i].alive) {
+        if (ships[i].size == 3) {
+          //get top-most, left-most x and y coordinates (use ship's square array)
+          int x1 = ships[i].squares[0].getX();
+          int y1 = ships[i].squares[0].getY();
+          //horizontal ship
+          if (ships[i].dir == 0) {
+            p = loadImage("ship3dead.png");
+            image(p, x1, y1, 210, 70);
+          } else {
+            p = loadImage("ship3updead.png");
+            image(p, x1, y1, 70, 210);
+          }
+        }
       }
     }
   }
@@ -141,7 +190,6 @@ class GameBoard {
             board[row][col-1].attack();
             if (row < 9) board[row+1][col-1].attack();
           }
-
         } 
 
         if (s.shipHere.dir == 0) {
@@ -155,9 +203,9 @@ class GameBoard {
           board[row][col].attack();
           if (row < 9) board[row+1][col].attack();
         }
-        
+
         if (i+1 == s.shipHere.size) {
-         //only execute this once:
+          //only execute this once:
           //now attack the row/column after the last row/column
           if (s.shipHere.dir == 0 && row < 9) {
             if (col > 0) board[row+1][col-1].attack();
@@ -169,9 +217,7 @@ class GameBoard {
             if (row > 0) board[row-1][col+1].attack();
             board[row][col+1].attack();
             if (row < 9) board[row+1][col+1].attack();
-          } 
-          
-          
+          }
         }
       }
     }
@@ -206,6 +252,7 @@ class GameBoard {
     if (row > 9 || row < 0 || col < 0 || col > 9) return false;
     return board[row][col].isShipHere();
   }
+
   
   public int getHits(){
     return hits;

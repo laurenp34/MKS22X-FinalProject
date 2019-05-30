@@ -54,19 +54,10 @@ class Square {
 
   //continuous method to be run in draw()
   public void displaySquareUser() {
-    if (hasShip) {
-      //if the square is occupied by a ship color it red (early development)
-      if (attacked) {   
-        fill(255, 0, 0);
-        rect(x1, y1, 70, 70);
-      } else {
-        fill(150);
-        rect(x1, y1, 70, 70);
-      }
-      if (fullShipFound) {
-        fill(244,164,96);
-        rect(x1,y1,70,70);
-      }
+    if (hasShip && attacked) {
+      PImage p;
+      p = loadImage("fire.png");
+      image(p, x1, y1, 70, 70);
     } else if (attacked) {
       fill(0, 0, 255);
       rect(x1, y1, 70, 70);
@@ -74,18 +65,17 @@ class Square {
   }
 
   public void displaySquareComp() {
-    if (attacked) {
-      if (fullShipFound) {
-        fill(244,164,96);
-        rect(x1, y1, 70, 70);
-      }
-      else if (hasShip) {
-        fill(255, 0, 0);
-        rect(x1, y1, 70, 70);
-      } else {
-        fill(0, 0, 255);
-        rect(x1, y1, 70, 70);
-      }
-    }
+    if (!attacked) {
+      stroke(255);
+      fill(0);
+      rect(x1, y1, 70, 70);
+    } else if (hasShip) {
+      //if the square is attacked, and has a partially attacked ship underneath, print fire ( to not reveal ship's direction)
+      if (!fullShipFound) {
+        //print fire
+        PImage p;
+        p = loadImage("fire.png");
+        image(p, x1, y1, 70, 70);
+      } //if the full ship is found, just print the ship.
   }
 }
