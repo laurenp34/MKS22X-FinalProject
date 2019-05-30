@@ -18,7 +18,15 @@ class Game {
   } 
   
   public void displayBoard(PFont f){
-    userBoard.setupBoard();
+    //first, set up ocean
+    userBoard.printOcean();
+    userBoard.printShips();
+    userBoard.printGrid();
+    //then set up ship images
+    PImage ship3;
+    ship3 = loadImage("ship3.png");
+    
+    
     
     fill(0,255,0);
     rect(0,80,150,30);
@@ -35,7 +43,9 @@ class Game {
   }
   
   public void displayCompBoard(PFont f){
-    compBoard.setupBoard();
+    compBoard.printOcean();
+    compBoard.printShips();
+    compBoard.printGrid();
     
     fill(0,255,0);
     rect(0,80,150,30);
