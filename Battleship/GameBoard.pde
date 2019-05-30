@@ -45,22 +45,43 @@ class GameBoard {
     }
   }
 
-  //prints ship images 
+  //prints ship images -- PRINTS ALL SHIPS
   public void printShips() {
     for (int i=0; i<ships.length; i++) {
       PImage p;
       if (ships[i].size == 3) {
-         //get top-most, left-most x and y coordinates (use ship's square array)
+        //get top-most, left-most x and y coordinates (use ship's square array)
         int x1 = ships[i].squares[0].getX();
         int y1 = ships[i].squares[0].getY();
         //horizontal ship
-        if (ships[i].dir == 1) {
+        if (ships[i].dir == 0) {
           p = loadImage("ship3.png");
           image(p, x1, y1, 210, 70);
-        }
-        else {
+        } else {
           p = loadImage("ship3up.png");
           image(p, x1, y1, 70, 210);
+        }
+      }
+    }
+  }
+
+  //prints ship images - ONLY FOR DEAD SHIPS// displaying on comp board
+  public void printShipsDead() {
+    for (int i=0; i<ships.length; i++) {
+      PImage p;
+      if (!ships[i].alive) {
+        if (ships[i].size == 3) {
+          //get top-most, left-most x and y coordinates (use ship's square array)
+          int x1 = ships[i].squares[0].getX();
+          int y1 = ships[i].squares[0].getY();
+          //horizontal ship
+          if (ships[i].dir == 0) {
+            p = loadImage("ship3.png");
+            image(p, x1, y1, 210, 70);
+          } else {
+            p = loadImage("ship3up.png");
+            image(p, x1, y1, 70, 210);
+          }
         }
       }
     }
