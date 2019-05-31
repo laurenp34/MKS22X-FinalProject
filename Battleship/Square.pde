@@ -79,3 +79,4 @@ class Square {
       } //if the full ship is found, just print the ship.
   }
 }
+}
