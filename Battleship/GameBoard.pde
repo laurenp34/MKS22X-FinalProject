@@ -13,7 +13,7 @@ class GameBoard {
     cols = 10;
     hits = 0;
     shipCount =0;
-    ships = new Ship[6]; //6 ships total
+    ships = new Ship[5]; //5 ships total
     board = new Square[10][10]; //10x10 board.
     for (int i=0; i<10; i++) {
       for (int i2=0; i2<10; i2++) {
@@ -51,21 +51,62 @@ class GameBoard {
   public void printShips() {
     for (int i=0; i<ships.length; i++) {
       PImage p;
+      //get top-most, left-most x and y coordinates (use ship's square array)
+      int x1 = ships[i].squares[0].getX();
+      int y1 = ships[i].squares[0].getY();
       if (ships[i].size == 3) {
-        //get top-most, left-most x and y coordinates (use ship's square array)
-        int x1 = ships[i].squares[0].getX();
-        int y1 = ships[i].squares[0].getY();
         //horizontal ship
         if (ships[i].dir == 0) {
-          if (ships[i].alive) p = loadImage("ship3.png");
-          else p = loadImage("ship3dead.png");
-          image(p, x1, y1, 210, 70);
+          if (ships[i].alive) {
+            p = loadImage("ship3.png");
+            //else p = loadImage("ship3.png");
+            image(p, x1, y1, 210, 70);
+          }
         } else {
-          if (ships[i].alive) p = loadImage("ship3up.png");
-          else p = loadImage("ship3updead.png");
-          image(p, x1, y1, 70, 210);
+          if (ships[i].alive) {
+            p = loadImage("ship3up.png");
+           // else p = loadImage("ship3up.png");
+            image(p, x1, y1, 70, 210);
+          }
         }
-      }
+      }/*
+      if (ships[i].size == 2) {
+       //horizontal ship
+       if (ships[i].dir == 0) {
+       if (ships[i].alive) p = loadImage("ship2.png");
+       else p = loadImage("ship3.png");
+       image(p, x1, y1, 140, 70);
+       } else {
+       if (ships[i].alive) p = loadImage("ship2up.png");
+       else p = loadImage("ship3up.png");
+       image(p, x1, y1, 70, 140);
+       }
+       }
+       if (ships[i].size == 4) {
+       //horizontal ship
+       if (ships[i].dir == 0) {
+       if (ships[i].alive) p = loadImage("ship4.png");
+       else p = loadImage("ship3.png");
+       image(p, x1, y1, 280, 70);
+       } else {
+       if (ships[i].alive) p = loadImage("ship4up.png");
+       else p = loadImage("ship3up.png");
+       image(p, x1, y1, 70, 280);
+       }
+       }
+       if (ships[i].size == 5) {
+       //horizontal ship
+       if (ships[i].dir == 0) {
+       if (ships[i].alive) p = loadImage("ship5.png");
+       else p = loadImage("ship3.png");
+       image(p, x1, y1, 350, 70);
+       } else {
+       if (ships[i].alive) p = loadImage("ship5up.png");
+       else p = loadImage("ship3up.png");
+       image(p, x1, y1, 70, 350);
+       }
+       }
+       }*/
     }
   }
 
