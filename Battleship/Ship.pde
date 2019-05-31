@@ -1,5 +1,6 @@
 class Ship {
   int size;
+  int attacks;
   //**** coordinates refer to indices in Square[][] array, not x or y
   //(r1,c1) is top-most, left-most coordinate
   int r1;
@@ -8,13 +9,17 @@ class Ship {
   int r2;
   int c2;
   
+  Square[] squares;
+  
   int dir; //vertical is 0, horizontal is 1. 
   
   boolean alive; 
   boolean placed;
   
   public Ship(int newSize) {
+    alive = true;
     size = newSize; 
+    squares = new Square[size];
     dir = (int) (Math.random() * 2); // choose 1 or 0 randomly.
   }
   
@@ -33,8 +38,8 @@ class Ship {
     }
   }
   
-  public void show() {
-    
+  public void addSquare(int idx, Square sq) {
+   squares[idx] = sq; 
   }
   
   public void setLocation(int r, int c) {
@@ -59,6 +64,13 @@ class Ship {
   }
   public int getC2() {
     return c2;
+  }
+  
+  public int getAttacks() {
+    return attacks;
+  }
+  public void attack() {
+    attacks++;
   }
   
 }
