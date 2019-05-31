@@ -29,13 +29,14 @@ class Game {
     
     fill(0,255,0);
     rect(0,80,150,30);
-    rect(0,150,40,80);
+    rect(0,150,40,100);
     
     textFont(f,16);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
     text("User Board",10,100);   // STEP 5 Display Text
     text(userBoard.getHits(),10,170);
-    text(userBoard.lastHitX()+" "+userBoard.lastHitY(),10,200);
+    text(userBoard.totalAttacks,10,200);
+    text(userBoard.lastHitX()+" "+userBoard.lastHitY(),10,230);
 
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
@@ -133,6 +134,7 @@ class Game {
           int myX = myCoor[0];
           int myY = myCoor[1];
           if (userBoard.attack(myY, myX)) {
+            System.out.println("hi");
             userBoard.addAttacked();
             return true;
           }
