@@ -92,10 +92,11 @@ class Game {
     return false;
   }*/
   
-  public boolean compChooseSquare(){
-    int xcor = (int) (Math.random() * 10);
-    int ycor = (int) (Math.random() * 10);
+  public boolean compChooseSquare(){ 
     if (userBoard.getHits() > 0){
+      //textFont(f,16);                  // STEP 3 Specify font to be used
+      //fill(0);                         // STEP 4 Specify font color 
+      //text("hi",20,50);
           int x = userBoard.lastHitX();
           int y = userBoard.lastHitY();
           ArrayList<int[]> coords = new ArrayList<int[]>();
@@ -124,35 +125,29 @@ class Game {
             return true;
           }
     }
-    else if (userBoard.attack(ycor,xcor)) {
-          userBoard.addAttacked();
-          return true;
-   } 
-   return false;
-}
-
-  public boolean compChoose() {
-   ArrayList<Integer> spots = new ArrayList<Integer>();
-   //loop through all squares in user board
-   for (int r=0;r<10;r++){
-      for(int c=0;c<10;c++) {
-        //if the square has not been attacked yet, add it to the list of available spots to attack
-        if (!userBoard.board[r][c].isAttacked()) {
-           spots.add(r);
-           spots.add(c);
-        }
-      }     
-   }
-   int i = (int) (Math.random() * (spots.size()/2));
-   int i1 = i*2;
-   int i2 = i1+1;
-   int r = spots.get(i1);
-   int c = spots.get(i2);
+    else{
+     ArrayList<Integer> spots = new ArrayList<Integer>();
+     //loop through all squares in user board
+     for (int r=0;r<10;r++){
+        for(int c=0;c<10;c++) {
+          //if the square has not been attacked yet, add it to the list of available spots to attack
+          if (!userBoard.board[r][c].isAttacked()) {
+             spots.add(r);
+             spots.add(c);
+          }
+        }     
+     }
+     int i = (int) (Math.random() * (spots.size()/2));
+     int i1 = i*2;
+     int i2 = i1+1;
+     int r = spots.get(i1);
+     int c = spots.get(i2);
    
-   if (userBoard.board[r][c].attack()) {
-     userBoard.addAttacked();
-     return true;
-   }
+     if (userBoard.board[r][c].attack()) {
+       userBoard.addAttacked();
+       return true;
+     }
+    }
    return false;
  }
 
