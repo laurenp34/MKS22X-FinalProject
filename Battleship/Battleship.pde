@@ -43,7 +43,7 @@ void draw() {
     if (frameCount-c == 60) {
       //if for some reason a square isn't attacked, don't increment framecount (keep trying)
       //if (!g.compChoose()) c++;
-      g.compChoose();
+      g.compChooseSquare();
     }
     if (frameCount-c > 90) {
       turns++;

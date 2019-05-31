@@ -101,41 +101,63 @@ class Game {
     return false;
   }*/
   
-  public boolean compChooseSquare(){
-    int xcor = (int) (Math.random() * 10);
-    int ycor = (int) (Math.random() * 10);
+  public boolean compChooseSquare(){ 
     if (userBoard.getHits() > 0){
-      
-    else if (userBoard.attack(ycor,xcor)) {
-          userBoard.addAttacked();
-          return true;  
-   } 
-   return false;
-}
-  }
-
-  public boolean compChoose() {
-   ArrayList<Integer> spots = new ArrayList<Integer>();
-   //loop through all squares in user board
-   for (int r=0;r<10;r++){
-      for(int c=0;c<10;c++) {
-        //if the square has not been attacked yet, add it to the list of available spots to attack
-        if (!userBoard.board[r][c].isAttacked()) {
-           spots.add(r);
-           spots.add(c);
-        }
-      }     
-   }
-   int i = (int) (Math.random() * (spots.size()/2));
-   int i1 = i*2;
-   int i2 = i1+1;
-   int r = spots.get(i1);
-   int c = spots.get(i2);
+      //textFont(f,16);                  // STEP 3 Specify font to be used
+      //fill(0);                         // STEP 4 Specify font color 
+      //text("hi",20,50);
+          int x = userBoard.lastHitX();
+          int y = userBoard.lastHitY();
+          ArrayList<int[]> coords = new ArrayList<int[]>();
+          if (x > 0 && !userBoard.getSquare(x-1,y).isAttacked()){
+            int[] coor = {x-1, y};
+            coords.add(coor);
+          }
+          if (x < 9 && !userBoard.getSquare(y,x+1).isAttacked()){
+            int[] coor = {x+1, y};
+            coords.add(coor);
+          }
+          if (y > 0 && !userBoard.getSquare(y-1, x).isAttacked()){
+            int[] coor = {x, y-1};
+            coords.add(coor);
+          }
+          if (y < 9 && !userBoard.getSquare(y+1,x).isAttacked()){
+            int[] coor = {x, y+1};
+            coords.add(coor);
+          }
+          int target = (int)Math.random() * coords.size();
+          int[] myCoor = coords.get(target);
+          int myX = myCoor[0];
+          int myY = myCoor[1];
+          if (userBoard.attack(myY, myX)) {
+            userBoard.addAttacked();
+            return true;
+          }
+    }
+    else{
+     ArrayList<Integer> spots = new ArrayList<Integer>();
+     //loop through all squares in user board
+     for (int r=0;r<10;r++){
+        for(int c=0;c<10;c++) {
+          //if the square has not been attacked yet, add it to the list of available spots to attack
+          if (!userBoard.board[r][c].isAttacked()) {
+             spots.add(r);
+             spots.add(c);
+          }
+        }     
+     }
+     int i = (int) (Math.random() * (spots.size()/2));
+     int i1 = i*2;
+     int i2 = i1+1;
+     int r = spots.get(i1);
+     int c = spots.get(i2);
+>>>>>>> sophie
    
-   if (userBoard.board[r][c].attack()) {
-     userBoard.addAttacked();
-     return true;
-   }
+     if (userBoard.board[r][c].attack()) {
+       userBoard.addAttacked();
+       return true;
+     }
+    }
    return false;
  }
 
@@ -144,8 +166,8 @@ class Game {
     rect(width/2-10,0,60,20);
     
     textFont(f,15);                  // STEP 3 Specify font to be used
-    fill(0);                         // STEP 4 Specify font color 
-    text(""+t,width/2,15);   // STEP 5 Display Text
+    fill(0);                           // STEP 4 Specify font color 
+    text(""+t,width/2,15);            // STEP 5 Display Text
   }
   
   

@@ -6,6 +6,8 @@ class GameBoard {
   Ship[] ships;
   int shipCount; //how many ships have been placed on the board
   int hits;
+  int hitXcor;
+  int hitYcor;
 
   public GameBoard() {
     squaresAttacked = 0;
@@ -122,6 +124,10 @@ class GameBoard {
   public void addAttacked() {
     squaresAttacked++;
   }
+  
+  public Square getSquare(int r, int c){
+    return board[r][c];
+  }
 
 
   //adds a ship to the board, as well as to the ships array.
@@ -155,13 +161,26 @@ class GameBoard {
     shipCount++;
     return true;
   }
+  
+  public int lastHitX(){
+    return hitXcor;
+  }
+  
+  public int lastHitY(){
+    return hitYcor;
+  }
 
   public boolean attack(int r, int c) {
+    hits ++;
+    //textFont(f,16);                  // STEP 3 Specify font to be used
+    //fill(0);                         // STEP 4 Specify font color 
+    //text("" + hits,20,20); 
     Square s = board[r][c];
     boolean out = s.attack();
     //if attack doens't work, return false immediately
     if (!out) return out;
-    hits++;
+    hitXcor = r;
+    hitYcor = c;
     //if this attack made the ship fully attacked:
     if (s.hasShip && s.shipHere.attacks == s.shipHere.size) {
       //kill the ship
@@ -170,7 +189,7 @@ class GameBoard {
       for (int i=0; i<s.shipHere.size; i++) {
         Square sq = s.shipHere.squares[i];
         sq.fullShipFound = true;
-        hits -- s.shipHere.size();
+        hits -= s.shipHere.getSize();
 
         //also ask adjacent squares to be attacked (eliminate)
         int row = sq.r;
@@ -237,7 +256,7 @@ class GameBoard {
       }
     }
   }
-
+/*
   public Square compStrategize(){
     for (int y = 0; y < board.length; y++){
       for (int x = 0; x < board[0].length; x++){
@@ -246,7 +265,7 @@ class GameBoard {
           int posorneg = Math.random() * 2;
           if (xory == 0){
             if (posorneg == 0){
-              if (board[x-1][y]
+              if (board[x-1][y]*/
 
   public boolean isShipHere(int row, int col) {
     if (row > 9 || row < 0 || col < 0 || col > 9) return false;
@@ -257,4 +276,5 @@ class GameBoard {
   public int getHits(){
     return hits;
   }
+
 }
