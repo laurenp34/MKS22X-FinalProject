@@ -29,10 +29,12 @@ class Game {
     
     fill(0,255,0);
     rect(0,80,150,30);
+    rect(0,150,40,40);
     
     textFont(f,16);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
     text("User Board",10,100);   // STEP 5 Display Text
+    text(userBoard.getHits(),10,120);
 
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
@@ -152,7 +154,7 @@ class Game {
      int r = spots.get(i1);
      int c = spots.get(i2);
    
-     if (userBoard.board[r][c].attack()) {
+     if (userBoard.attack(r,c)) {
        userBoard.addAttacked();
        return true;
      }
