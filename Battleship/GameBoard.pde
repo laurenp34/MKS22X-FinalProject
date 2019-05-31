@@ -171,7 +171,7 @@ class GameBoard {
   }
 
   public boolean attack(int r, int c) {
-    hits ++;
+//hits ++;
     //textFont(f,16);                  // STEP 3 Specify font to be used
     //fill(0);                         // STEP 4 Specify font color 
     //text("" + hits,20,20); 
@@ -179,8 +179,11 @@ class GameBoard {
     boolean out = s.attack();
     //if attack doens't work, return false immediately
     if (!out) return out;
-    hitXcor = r;
-    hitYcor = c;
+    if (s.hasShip) {
+      hitXcor = r;
+      hitYcor = c;
+      hits++;
+    }
     //if this attack made the ship fully attacked:
     if (s.hasShip && s.shipHere.attacks == s.shipHere.size) {
       //kill the ship
