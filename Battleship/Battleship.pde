@@ -8,6 +8,10 @@ void setup() {
   f = createFont("Arial", 16, true);
   //Game g = new Game();
   g.setupShips();
+  Ship[] ships = g.userBoard.ships;
+  for (int i=0;i<ships.length;i++) {
+     System.out.println(ships[i].squares[0].getX()+" "+ships[i].squares[0].getY()); 
+  }
   //System.out.println(g.compBoard.ships.length);;
   //g.displayCompBoard();
 }
