@@ -100,18 +100,29 @@ class Game {
           int y = userBoard.lastHitY();
           ArrayList<int[]> coords = new ArrayList<int[]>();
           if (x > 0 && !userBoard.getSquare(x-1,y).isAttacked()){
-            coords.add({x-1, y});
+            int[] coor = {x-1, y};
+            coords.add(coor);
           }
-          if (x < row[0].length - 2 && !userBoard.getSquare(y,x+1).isAttacked()){
-            coords.add(x+1, y);
+          if (x < 9 && !userBoard.getSquare(y,x+1).isAttacked()){
+            int[] coor = {x+1, y};
+            coords.add(coor);
           }
           if (y > 0 && !userBoard.getSquare(y-1, x).isAttacked()){
-            coords.add(x, y-1);
+            int[] coor = {x, y-1};
+            coords.add(coor);
           }
-          if (y < row.length - 2 && !userBoard.getSquare(y+1,x).isAttacked()){
-            coords.add(x, y+1);
+          if (y < 9 && !userBoard.getSquare(y+1,x).isAttacked()){
+            int[] coor = {x, y+1};
+            coords.add(coor);
           }
-          
+          int target = (int)Math.random() * coords.size();
+          int[] myCoor = coords.get(target);
+          int myX = myCoor[0];
+          int myY = myCoor[1];
+          if (userBoard.attack(myY, myX)) {
+            userBoard.addAttacked();
+            return true;
+          }
     }
     else if (userBoard.attack(ycor,xcor)) {
           userBoard.addAttacked();
