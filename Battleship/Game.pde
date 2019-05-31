@@ -161,8 +161,8 @@ class Game {
     rect(width/2-10,0,60,20);
     
     textFont(f,15);                  // STEP 3 Specify font to be used
-    fill(0);                         // STEP 4 Specify font color 
-    text(""+t,width/2,15);   // STEP 5 Display Text
+    fill(0);                           // STEP 4 Specify font color 
+    text(""+t,width/2,15);            // STEP 5 Display Text
   }
   
   

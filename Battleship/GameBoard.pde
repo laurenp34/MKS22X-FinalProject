@@ -122,11 +122,14 @@ class GameBoard {
   }
 
   public boolean attack(int r, int c) {
+    hits ++;
+    textFont(f,16);                  // STEP 3 Specify font to be used
+    fill(0);                         // STEP 4 Specify font color 
+    text("hi",20,20); 
     Square s = board[r][c];
     boolean out = s.attack();
     //if attack doens't work, return false immediately
     if (!out) return out;
-    hits++;
     hitXcor = r;
     hitYcor = c;
     //if this attack made the ship fully attacked:
