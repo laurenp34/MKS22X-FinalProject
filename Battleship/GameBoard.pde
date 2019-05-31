@@ -97,11 +97,11 @@ class GameBoard {
       if (ships[i].size == 5) {
         //horizontal ship
         if (ships[i].dir == 0) {
-          if (ships[i].alive) p = loadImage("ship5.png");
+          if (ships[i].alive) p = loadImage("ship52.png");
           else p = loadImage("ship3.png");
           image(p, x1, y1, 350, 70);
         } else {
-          if (ships[i].alive) p = loadImage("ship5up.png");
+          if (ships[i].alive) p = loadImage("ship52up.png");
           else p = loadImage("ship3up.png");
           image(p, x1, y1, 70, 350);
         }
