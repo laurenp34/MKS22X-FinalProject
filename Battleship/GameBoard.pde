@@ -253,6 +253,7 @@ class GameBoard {
     return board[row][col].isShipHere();
   }
 
+  
   public int getHits(){
     return hits;
   }

@@ -1,4 +1,3 @@
-
 import java.util.Random;
 Game g = new Game();
 PFont f;
@@ -8,7 +7,8 @@ void setup() {
   f = createFont("Arial", 16, true);
   //Game g = new Game();
   g.setupShips();
-
+  //System.out.println(g.compBoard.ships.length);;
+  //g.displayCompBoard();
 }
 
 private int turns = 0;
