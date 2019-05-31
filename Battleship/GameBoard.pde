@@ -6,6 +6,7 @@ class GameBoard {
   Ship[] ships;
   int shipCount; //how many ships have been placed on the board
   int hits;
+  int totalAttacks;
   int hitXcor;
   int hitYcor;
 
@@ -179,6 +180,7 @@ class GameBoard {
     boolean out = s.attack();
     //if attack doens't work, return false immediately
     if (!out) return out;
+    totalAttacks++;
     if (s.hasShip) {
       hitXcor = r;
       hitYcor = c;
