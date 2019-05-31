@@ -22,7 +22,7 @@ class Game {
     userBoard.printOcean();
     userBoard.printGrid();
 
-    //userBoard.printShips();
+    userBoard.printShips();
     
     
     fill(0,255,0);
@@ -34,7 +34,7 @@ class Game {
 
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
-        userBoard.getBoard()[r][c].displayUserSquareTest();
+        userBoard.getBoard()[r][c].displaySquareUser();
       }
    }
   }
