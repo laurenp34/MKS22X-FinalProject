@@ -50,64 +50,10 @@ class GameBoard {
   //prints ship images -- PRINTS ALL SHIPS
   public void printShips() {
     for (int i=0; i<ships.length; i++) {
-      PImage p;
-      //get top-most, left-most x and y coordinates (use ship's square array)
-      int x1 = ships[i].squares[0].getX();
-      int y1 = ships[i].squares[0].getY();
-      if (ships[i].size == 3) {
-        //horizontal ship
-        if (ships[i].dir == 0) {
-          if (ships[i].alive) {
-            p = loadImage("ship3.png");
-            //else p = loadImage("ship3.png");
-            image(p, x1, y1, 210, 70);
-          }
-        } else {
-          if (ships[i].alive) {
-            p = loadImage("ship3up.png");
-            // else p = loadImage("ship3up.png");
-            image(p, x1, y1, 70, 210);
-          }
-        }
-      }
-      if (ships[i].size == 2) {
-        //horizontal ship
-        if (ships[i].dir == 0) {
-          if (ships[i].alive) p = loadImage("ship2.png");
-          else p = loadImage("ship3.png");
-          image(p, x1, y1, 140, 70);
-        } else {
-          if (ships[i].alive) p = loadImage("ship2up.png");
-          else p = loadImage("ship3up.png");
-          image(p, x1, y1, 70, 140);
-        }
-      }
-      if (ships[i].size == 4) {
-        //horizontal ship
-        if (ships[i].dir == 0) {
-          if (ships[i].alive) p = loadImage("ship4.png");
-          else p = loadImage("ship3.png");
-          image(p, x1, y1, 280, 70);
-        } else {
-          if (ships[i].alive) p = loadImage("ship4up.png");
-          else p = loadImage("ship3up.png");
-          image(p, x1, y1, 70, 280);
-        }
-      }
-      if (ships[i].size == 5) {
-        //horizontal ship
-        if (ships[i].dir == 0) {
-          if (ships[i].alive) p = loadImage("ship52.png");
-          else p = loadImage("ship3.png");
-          image(p, x1, y1, 350, 70);
-        } else {
-          if (ships[i].alive) p = loadImage("ship52up.png");
-          else p = loadImage("ship3up.png");
-          image(p, x1, y1, 70, 350);
-        }
-      }
+       ships[i].display();
     }
   }
+
 
   //prints ship images - ONLY FOR DEAD SHIPS// displaying on comp board
   public void printShipsDead() {

@@ -38,6 +38,67 @@ class Ship {
     }
   }
   
+  public void display() {
+    PImage p;
+      //get top-most, left-most x and y coordinates (use ship's square array)
+      int x1 = squares[0].getX();
+      int y1 = squares[0].getY();
+      if (size == 3) {
+        //horizontal ship
+        if (dir == 0) {
+          if (alive) {
+            p = loadImage("ship3.png");
+            //else p = loadImage("ship3.png");
+            image(p, x1, y1, 210, 70);
+          }
+        } else {
+          if (alive) {
+            p = loadImage("ship3up.png");
+            // else p = loadImage("ship3up.png");
+            image(p, x1, y1, 70, 210);
+          }
+        }
+      }
+      if (size == 2) {
+        //horizontal ship
+        if (dir == 0) {
+          if (alive) p = loadImage("ship2.png");
+          else p = loadImage("ship3.png");
+          image(p, x1, y1, 140, 70);
+        } else {
+          if (alive) p = loadImage("ship2up.png");
+          else p = loadImage("ship3up.png");
+          image(p, x1, y1, 70, 140);
+        }
+      }
+      if (size == 4) {
+        //horizontal ship
+        if (dir == 0) {
+          if (alive) p = loadImage("ship4.png");
+          else p = loadImage("ship3.png");
+          image(p, x1, y1, 280, 70);
+        } else {
+          if (alive) p = loadImage("ship4up.png");
+          else p = loadImage("ship3up.png");
+          image(p, x1, y1, 70, 280);
+        }
+      }
+      if (size == 5) {
+        //horizontal ship
+        if (dir == 0) {
+          if (alive) p = loadImage("ship5.png");
+          else p = loadImage("ship3.png");
+          image(p, x1, y1, 350, 70);
+        } else {
+          if (alive) p = loadImage("ship5up.png");
+          else p = loadImage("ship3up.png");
+          image(p, x1, y1, 70, 350);
+        }
+      } 
+    
+    
+  }
+  
   public void addSquare(int idx, Square sq) {
    squares[idx] = sq; 
   }
