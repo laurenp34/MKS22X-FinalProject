@@ -9,6 +9,10 @@ class Ship {
   int r2;
   int c2;
   
+  int x1; //top-most, left-most coordinates
+  int y1; //useful before ship gets matched to a square w/ r,c
+  //later, ^^these coordinates are the same as squares[0]'s
+  
   Square[] squares;
   
   int dir; //vertical is 0, horizontal is 1. 
@@ -41,8 +45,8 @@ class Ship {
   public void display() {
     PImage p;
       //get top-most, left-most x and y coordinates (use ship's square array)
-      int x1 = squares[0].getX();
-      int y1 = squares[0].getY();
+      //int x1 = squares[0].getX();
+      //int y1 = squares[0].getY();
       if (size == 3) {
         //horizontal ship
         if (dir == 0) {
@@ -101,6 +105,18 @@ class Ship {
   
   public void addSquare(int idx, Square sq) {
    squares[idx] = sq; 
+  }
+  
+  public void setXY(int x,int y) {
+   x1 = x;
+   y1 = y;
+  }
+  
+  //update x and y coordinates after ship is placed on a square
+  //matched to squares[0]
+  public void updateXY() {
+    x1 = squares[0].getX();
+    y1 = squares[0].getY();
   }
   
   public void setLocation(int r, int c) {
