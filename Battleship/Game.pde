@@ -53,7 +53,7 @@ class Game {
     
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
-        compBoard.board[r][c].displayCompSquareTest();
+        compBoard.board[r][c].displaySquareComp();
       }
    }
   }
