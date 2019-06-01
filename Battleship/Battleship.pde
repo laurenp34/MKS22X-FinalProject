@@ -37,12 +37,12 @@ void draw() {
     if (frameCount-c > 30) {
       g.displayBoard(f);
     }
-    if (frameCount-c == 60) {
+    if (frameCount-c == 35) {
       //if for some reason a square isn't attacked, don't increment framecount (keep trying)
       //if (!g.compChoose()) c++;
       g.compChoose();
     }
-    if (frameCount-c > 90) {
+    if (frameCount-c > 40) {
       turns++;
     }
   }
