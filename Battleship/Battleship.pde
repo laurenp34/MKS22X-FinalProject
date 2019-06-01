@@ -4,21 +4,13 @@ Game g = new Game();
 PFont f;
 
 void setup() {
-  size(1000, 800);
+  size(1500, 800);
   f = createFont("Arial", 16, true);
-  //Game g = new Game();
   g.setupShips();
-  Ship[] ships = g.userBoard.ships;
-  for (int i=0;i<ships.length;i++) {
-     System.out.println(ships[i].squares[0].getX()+" "+ships[i].squares[0].getY()); 
-  }
-  //System.out.println(g.compBoard.ships.length);;
-  //g.displayCompBoard();
 }
 
 private int turns = 0;
 int c = 0;
-//private int prevTurns = 0;
 
 void draw() {
   g.displayTurns(turns, f);
