@@ -151,7 +151,6 @@ class Game {
      int i2 = i1+1;
      int r = spots.get(i1);
      int c = spots.get(i2);
->>>>>>> sophie
    
      if (userBoard.board[r][c].attack()) {
        userBoard.addAttacked();
