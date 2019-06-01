@@ -307,6 +307,21 @@ class GameBoard {
   
   //if no ship is clicked, return -1, else return the index of ships that the ship is
   public int shipClicked() {
-    return 0;
+    if (mousePressed) {
+      //if clicking ship size 5
+      if (ships[0].dir == 0 && mouseX >= 900 && mouseX <= 970 && mouseY >= 50 && mouseY <= 400) return 0;
+      if (ships[0].dir == 1 && mouseX >= 900 && mouseX <= 1250 && mouseY >= 50 && mouseY <= 120) return 0;
+      
+      //if clicking ship size 4
+      if (ships[1].dir == 0 && mouseX >= 900 && mouseX <= 970 && mouseY >= 450 && mouseY <= 730) return 1;
+      if (ships[1].dir == 1 && mouseX >= 900 && mouseX <= 1180 && mouseY 450 && mouseY <= 520) return 1;
+      
+      //if clicking 1st ship size 3
+      if (ships[2].dir == 0 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 50 && mouseY <= 260) return 2;
+      if (ships[2].dir == 1 && mouseX >= 1300 && mouseX <= 1510 && mouseY >= 50 && mouseY <= 120) return 2;
+      
+      //if clicking 2nd ship size 3
+    } else{
+      return -1;
   }
 }
