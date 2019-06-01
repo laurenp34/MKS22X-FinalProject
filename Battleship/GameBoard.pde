@@ -194,7 +194,7 @@ class GameBoard {
       for (int i=0; i<s.shipHere.size; i++) {
         Square sq = s.shipHere.squares[i];
         sq.fullShipFound = true;
-        hits -= s.shipHere.getSize();
+        hits = 0;
 
         //also ask adjacent squares to be attacked (eliminate)
         int row = sq.r;
