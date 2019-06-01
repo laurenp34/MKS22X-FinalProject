@@ -307,6 +307,14 @@ class GameBoard {
       }
     }
   }
+  
+  //puts ships on side, ready to be dragged by user
+  public void setupShips() {
+    for (int i=0;i<ships.length;i++) {
+       if (ships[i].size == 3);
+    }
+    
+  }
 
   /*
   public Square compStrategize(){
@@ -327,5 +335,10 @@ class GameBoard {
 
   public int getHits() {
     return hits;
+  }
+  
+  //if no ship is clicked, return -1, else return the index of ships that the ship is
+  public int shipClicked() {
+    return 0;
   }
 }

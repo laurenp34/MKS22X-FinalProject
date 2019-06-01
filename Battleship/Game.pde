@@ -178,5 +178,6 @@ class Game {
     text(t,height/2,width/2);   // STEP 5 Display Text
     
   }
+ 
 
 }
