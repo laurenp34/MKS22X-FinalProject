@@ -4,14 +4,16 @@ Game g = new Game();
 PFont f;
 
 void setup() {
-  size(1500, 800);
+  size(1600, 800);
   f = createFont("Arial", 16, true);
-  g.setupShips();
+  g.compBoard.setupShips();
+  g.displayCompBoard(f);
+  g.compBoard.printShips();
 }
 
 private int turns = 0;
 int c = 0;
-
+/*
 void draw() {
   g.displayTurns(turns, f);
   int gmo = g.isGameOver();
@@ -102,5 +104,4 @@ void draw() {
   //}
   //prevTurns = turns;
   //}
-  // }*/
-}
+  // }
