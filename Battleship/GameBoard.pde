@@ -137,6 +137,7 @@ class GameBoard {
         newShip.addSquare(n, s);
       }
     }
+    newShip.updateXY();
     ships[shipCount] = newShip;
     shipCount++;
     return true;
@@ -256,9 +257,9 @@ class GameBoard {
   
   //puts ships on side, ready to be dragged by user
   public void setupShips() {
-    for (int i=0;i<ships.length;i++) {
-       if (ships[i].size == 3);
-    }
+    //add ship size 5
+    Ship a = new Ship(5);
+    a.setXY(900,50);
     
   }
 
