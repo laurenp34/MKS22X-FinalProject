@@ -260,6 +260,27 @@ class GameBoard {
     //add ship size 5
     Ship a = new Ship(5);
     a.setXY(900,50);
+    ships[0] = a;
+    
+    //add ship size 4
+    Ship b = new Ship(4);
+    b.setXY(900,450);
+    ships[1] = b;
+    
+    //add 2 ships size 3
+    Ship c = new Ship(3);
+    c.setXY(1300,50);
+    ships[2] = c;
+    
+    Ship d = new Ship(3);
+    d.setXY(1300,310);
+    ships[3] = d;
+    
+    //add ship size 2
+    Ship e = new Ship(2);
+    e.setXY(1300,620);
+    ships[4] = e; 
+    
     
   }
 
