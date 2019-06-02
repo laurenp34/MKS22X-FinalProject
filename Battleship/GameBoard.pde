@@ -309,24 +309,24 @@ class GameBoard {
   public int shipClicked() {
     if (mousePressed) {
       //if clicking ship size 5
-      if (ships[0].dir == 0 && mouseX >= 900 && mouseX <= 970 && mouseY >= 50 && mouseY <= 400) return 0;
-      if (ships[0].dir == 1 && mouseX >= 900 && mouseX <= 1250 && mouseY >= 50 && mouseY <= 120) return 0;
+      if (ships[0].dir == 1 && mouseX >= 900 && mouseX <= 970 && mouseY >= 50 && mouseY <= 400) return 0;
+      if (ships[0].dir == 0 && mouseX >= 900 && mouseX <= 1250 && mouseY >= 50 && mouseY <= 120) return 0;
       
       //if clicking ship size 4
-      if (ships[1].dir == 0 && mouseX >= 900 && mouseX <= 970 && mouseY >= 450 && mouseY <= 730) return 1;
-      if (ships[1].dir == 1 && mouseX >= 900 && mouseX <= 1180 && mouseY >= 450 && mouseY <= 520) return 1;
+      if (ships[1].dir == 1 && mouseX >= 900 && mouseX <= 970 && mouseY >= 450 && mouseY <= 730) return 1;
+      if (ships[1].dir == 0 && mouseX >= 900 && mouseX <= 1180 && mouseY >= 450 && mouseY <= 520) return 1;
       
       //if clicking 1st ship size 3
-      if (ships[2].dir == 0 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 50 && mouseY <= 260) return 2;
-      if (ships[2].dir == 1 && mouseX >= 1300 && mouseX <= 1510 && mouseY >= 50 && mouseY <= 120) return 2;
+      if (ships[2].dir == 1 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 50 && mouseY <= 260) return 2;
+      if (ships[2].dir == 0 && mouseX >= 1300 && mouseX <= 1510 && mouseY >= 50 && mouseY <= 120) return 2;
       
       //if clicking 2nd ship size 3
-      if (ships[3].dir == 0 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 310 && mouseY <= 520) return 3;
-      if (ships[3].dir == 1 && mouseX >= 1300 && mouseX <= 1510 && mouseY >= 310 && mouseY <= 380) return 3;
+      if (ships[3].dir == 1 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 310 && mouseY <= 520) return 3;
+      if (ships[3].dir == 0 && mouseX >= 1300 && mouseX <= 1510 && mouseY >= 310 && mouseY <= 380) return 3;
       
       //if clicking ship size 2
-      if (ships[4].dir == 0 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 570 && mouseY <= 710) return 4;
-      if (ships[4].dir == 1 && mouseX >= 1300 && mouseX <= 1440 && mouseY >= 570 && mouseY <= 640) return 4;
+      if (ships[4].dir == 1 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 570 && mouseY <= 710) return 4;
+      if (ships[4].dir == 0 && mouseX >= 1300 && mouseX <= 1440 && mouseY >= 570 && mouseY <= 640) return 4;
       
       //if click is not in range:
       return -1;
