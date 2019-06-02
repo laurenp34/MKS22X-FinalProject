@@ -49,7 +49,7 @@ class Ship {
       //int y1 = squares[0].getY();
       if (size == 3) {
         //horizontal ship
-        if (dir == 0) {
+        if (dir == 1) {
           if (alive) {
             p = loadImage("ship3.png");
             //else p = loadImage("ship3.png");
@@ -65,7 +65,7 @@ class Ship {
       }
       if (size == 2) {
         //horizontal ship
-        if (dir == 0) {
+        if (dir == 1) {
           if (alive) p = loadImage("ship2.png");
           else p = loadImage("ship3.png");
           image(p, x1, y1, 140, 70);
@@ -77,7 +77,7 @@ class Ship {
       }
       if (size == 4) {
         //horizontal ship
-        if (dir == 0) {
+        if (dir == 1) {
           if (alive) p = loadImage("ship4.png");
           else p = loadImage("ship3.png");
           image(p, x1, y1, 280, 70);
@@ -89,7 +89,7 @@ class Ship {
       }
       if (size == 5) {
         //horizontal ship
-        if (dir == 0) {
+        if (dir == 1) {
           if (alive) p = loadImage("ship5.png");
           else p = loadImage("ship3.png");
           image(p, x1, y1, 350, 70);
