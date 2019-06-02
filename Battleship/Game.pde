@@ -139,10 +139,12 @@ class Game {
   public void displayTurns(int t, PFont f) {
     fill(0,255,0);
     rect(width/2-10,0,60,20);
+    rect(width/2-50,20,200,20);
     
     textFont(f,15);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
     text(""+t,width/2,15);   // STEP 5 Display Text
+    text("ship: "+userBoard.shipClicked(),width/2,30);
   }
   
   
