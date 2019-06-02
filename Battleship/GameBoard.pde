@@ -50,7 +50,7 @@ class GameBoard {
   //prints ship images -- PRINTS ALL SHIPS
   public void printShips() {
     for (int i=0; i<ships.length; i++) {
-       ships[i].display();
+      ships[i].display();
     }
   }
 
@@ -254,34 +254,32 @@ class GameBoard {
       }
     }
   }
-  
+
   //puts ships on side, ready to be dragged by user
   public void setupShips() {
     //add ship size 5
     Ship a = new Ship(5);
-    a.setXY(900,50);
+    a.setXY(900, 50);
     ships[0] = a;
-    
+
     //add ship size 4
     Ship b = new Ship(4);
-    b.setXY(900,450);
+    b.setXY(900, 450);
     ships[1] = b;
-    
+
     //add 2 ships size 3
     Ship c = new Ship(3);
-    c.setXY(1300,50);
+    c.setXY(1300, 50);
     ships[2] = c;
-    
+
     Ship d = new Ship(3);
-    d.setXY(1300,310);
+    d.setXY(1300, 310);
     ships[3] = d;
-    
+
     //add ship size 2
     Ship e = new Ship(2);
-    e.setXY(1300,570);
-    ships[4] = e; 
-    
-    
+    e.setXY(1300, 570);
+    ships[4] = e;
   }
 
   /*
@@ -304,34 +302,35 @@ class GameBoard {
   public int getHits() {
     return hits;
   }
-  
+
   //if no ship is clicked, return -1, else return the index of ships that the ship is
   public int shipClicked() {
     if (mousePressed) {
       //if clicking ship size 5
-      if (ships[0].dir == 0 && mouseX >= 900 && mouseX <= 970 && mouseY >= 50 && mouseY <= 400) return 0;
-      if (ships[0].dir == 1 && mouseX >= 900 && mouseX <= 1250 && mouseY >= 50 && mouseY <= 120) return 0;
-      
+      for (int i=0; i<ships.length; i++) {
+        if (ships[i].dir == 0 && mouseX - ships[i].x1 <= 70 && mouseY - ships[i].y1 <= (70 * ships[i].size)) return i;
+        if (ships[i].dir == 1 && mouseX - ships[i].x1 <= (70 * ships[i].size) && mouseY - ships[i].y1 <= 70) return i;
+
+        /*
       //if clicking ship size 4
-      if (ships[1].dir == 0 && mouseX >= 900 && mouseX <= 970 && mouseY >= 450 && mouseY <= 730) return 1;
-      if (ships[1].dir == 1 && mouseX >= 900 && mouseX <= 1180 && mouseY >= 450 && mouseY <= 520) return 1;
-      
-      //if clicking 1st ship size 3
-      if (ships[2].dir == 0 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 50 && mouseY <= 260) return 2;
-      if (ships[2].dir == 1 && mouseX >= 1300 && mouseX <= 1510 && mouseY >= 50 && mouseY <= 120) return 2;
-      
-      //if clicking 2nd ship size 3
-      if (ships[3].dir == 0 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 310 && mouseY <= 520) return 3;
-      if (ships[3].dir == 1 && mouseX >= 1300 && mouseX <= 1510 && mouseY >= 310 && mouseY <= 380) return 3;
-      
-      //if clicking ship size 2
-      if (ships[4].dir == 0 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 570 && mouseY <= 710) return 4;
-      if (ships[4].dir == 1 && mouseX >= 1300 && mouseX <= 1440 && mouseY >= 570 && mouseY <= 640) return 4;
-      
-      //if click is not in range:
+         if (ships[1].dir == 0 && mouseX >= 900 && mouseX <= 970 && mouseY >= 450 && mouseY <= 730) return 1;
+         if (ships[1].dir == 1 && mouseX >= 900 && mouseX <= 1180 && mouseY >= 450 && mouseY <= 520) return 1;
+         
+         //if clicking 1st ship size 3
+         if (ships[2].dir == 0 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 50 && mouseY <= 260) return 2;
+         if (ships[2].dir == 1 && mouseX >= 1300 && mouseX <= 1510 && mouseY >= 50 && mouseY <= 120) return 2;
+         
+         //if clicking 2nd ship size 3
+         if (ships[3].dir == 0 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 310 && mouseY <= 520) return 3;
+         if (ships[3].dir == 1 && mouseX >= 1300 && mouseX <= 1510 && mouseY >= 310 && mouseY <= 380) return 3;
+         
+         //if clicking ship size 2
+         if (ships[4].dir == 0 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 570 && mouseY <= 710) return 4;
+         if (ships[4].dir == 1 && mouseX >= 1300 && mouseX <= 1440 && mouseY >= 570 && mouseY <= 640) return 4; */
+
+      }
       return -1;
-    } else{
-      return -1;
+    }
+    return -1;
   }
 }
-   }
