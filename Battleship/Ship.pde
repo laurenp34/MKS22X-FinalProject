@@ -9,8 +9,8 @@ class Ship {
   int r2;
   int c2;
   
-  int x1; //top-most, left-most coordinates
-  int y1; //useful before ship gets matched to a square w/ r,c
+  float x1; //top-most, left-most coordinates
+  float y1; //useful before ship gets matched to a square w/ r,c
   //later, ^^these coordinates are the same as squares[0]'s
   
   Square[] squares;
@@ -107,7 +107,7 @@ class Ship {
    squares[idx] = sq; 
   }
   
-  public void setXY(int x,int y) {
+  public void setXY(float x,float y) {
    x1 = x;
    y1 = y;
   }
