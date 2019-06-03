@@ -303,14 +303,20 @@ class GameBoard {
     return hits;
   }
 
-  //if no ship is clicked, return -1, else return the index of ships that the ship is
-  public int shipClicked() {
+  //returns an array: {index, xdist, ydist}
+  //index: if no ship is clicked, return -1, else return the index of ships that the ship is
+  //xdist: distance from mouse to x1 
+  //ydist: distance from mouse to y1
+  public float[] shipClicked() {
+    float[] out = new float[3];
     if (mousePressed) {
-      //if clicking ship size 5
       for (int i=0; i<ships.length; i++) {
-        if (ships[i].dir == 0 && mouseX - ships[i].x1 <= 70 && mouseY - ships[i].y1 <= (70 * ships[i].size)) return i;
-        if (ships[i].dir == 1 && mouseX - ships[i].x1 <= (70 * ships[i].size) && mouseY - ships[i].y1 <= 70) return i;
-
+        if ((ships[i].dir == 0 && mouseX - ships[i].x1 <= 70 && mouseY - ships[i].y1 <= (70 * ships[i].size)) || (ships[i].dir == 1 && mouseX - ships[i].x1 <= (70 * ships[i].size) && mouseY - ships[i].y1 <= 70)) {
+          out [0] = i;
+          out [1] = mouseX - ships[i].x1;
+          out [2] = mouseY - ships[i].y1;
+          return out;
+        }
         /*
       //if clicking ship size 4
          if (ships[1].dir == 0 && mouseX >= 900 && mouseX <= 970 && mouseY >= 450 && mouseY <= 730) return 1;
@@ -329,8 +335,27 @@ class GameBoard {
          if (ships[4].dir == 1 && mouseX >= 1300 && mouseX <= 1440 && mouseY >= 570 && mouseY <= 640) return 4; */
 
       }
-      return -1;
     }
-    return -1;
+    out[0] = -1;
+    return out;
+  }
+  
+  //input is the float[] returned from shipClicked^^
+  //output is whether or not the ship was moved
+  public boolean drag(float[] clickInfo) {
+    Ship ship = ships[(int) clickInfo[0]];
+    float xdist = clickInfo[1];
+    float ydist = clickInfo[2];
+    boolean  mouse = false;
+    while (mousePressed) {
+      mouse = true;
+      //System.out.println(mouseX+" "+mouseY);
+      ship.x1 = mouseX - xdist;
+      ship.y1 = mouseY - ydist;
+      //System.out.println(ship.x1+" "+ship.y1);
+      ship.display();
+    }
+    return mouse;
+    
   }
 }
