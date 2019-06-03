@@ -9,6 +9,7 @@ class GameBoard {
   int totalAttacks;
   int hitXcor;
   int hitYcor;
+  ArrayList<int[]> hitsList;
 
   public GameBoard() {
     squaresAttacked = 0;
@@ -16,6 +17,7 @@ class GameBoard {
     cols = 10;
     hits = 0;
     shipCount =0;
+    hitsList = new ArrayList<int[]>();
     ships = new Ship[6]; //6 ships total
     board = new Square[10][10]; //10x10 board.
     for (int i=0; i<10; i++) {
@@ -185,6 +187,8 @@ class GameBoard {
       hitXcor = r;
       hitYcor = c;
       hits++;
+      int[] coor = {r,c};
+      hitsList.add(coor);
     }
     //if this attack made the ship fully attacked:
     if (s.hasShip && s.shipHere.attacks == s.shipHere.size) {
@@ -280,6 +284,10 @@ class GameBoard {
   
   public int getHits(){
     return hits;
+  }
+  
+  public ArrayList<int[]> getHitsList(){
+    return hitsList;
   }
 
 }

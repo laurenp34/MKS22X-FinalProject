@@ -106,7 +106,7 @@ class Game {
   }*/
   
   public boolean compChooseSquare(){ 
-    if (userBoard.getHits() > 0){
+    if (userBoard.getHits() == 1){
       //textFont(f,16);                  // STEP 3 Specify font to be used
       //fill(0);                         // STEP 4 Specify font color 
       //text("hi",20,50);
@@ -130,14 +130,81 @@ class Game {
             coords.add(coor);
           }
           int target = (int)Math.random() * coords.size();
+          textFont(f,16);                  // STEP 3 Specify font to be used
+          fill(0);                         // STEP 4 Specify font color 
           int[] myCoor = coords.get(target);
           int myX = myCoor[0];
           int myY = myCoor[1];
+          text(myX + " " + myY,20,20);
           if (userBoard.attack(myY, myX)) {
-            System.out.println("hi");
+            //System.out.println("hi");
             userBoard.addAttacked();
             return true;
           }
+    }
+    else if (userBoard.getHits() > 1){
+      ArrayList<int[]> hitsList = userBoard.getHitsList();
+      int[] coor1 = hitsList.get(0);
+      int[] coor2 = hitsList.get(1);
+      if (coor1[0] == coor2[0]){
+        //it's vertical
+        //find max and min of y-vals
+        int max = 0;
+        int min = 10;
+        for (int i = 0; i < hitsList.size(); i++){
+          if (hitsList.get(i)[1] > max){
+            max = hitsList.get(i)[1];
+          }
+          if (hitsList.get(i)[1] < min){
+            min = hitsList.get(i)[1];
+          }
+          int ran = (int)Math.random() * 2;
+          if (ran == 0 && min > 0 && !userBoard.getSquare(coor1[0], min - 1).isAttacked()){
+            if (userBoard.attack(coor1[0], min - 1)) {
+                //System.out.println("hi");
+                userBoard.addAttacked();
+                return true;
+            }
+          }
+          if (ran == 1 && max < 9 && !userBoard.getSquare(coor1[0], max + 1).isAttacked()){
+            if (userBoard.attack(coor1[0], max + 1)) {
+                //System.out.println("hi");
+                userBoard.addAttacked();
+                return true;
+            }
+         }
+        }
+      }
+      else{
+        //it's horizontal
+        //find max and min of x-vals
+        int max = 0;
+        int min = 10;
+        for (int i = 0; i < hitsList.size(); i++){
+          if (hitsList.get(i)[0] > max){
+            max = hitsList.get(i)[0];
+          }
+          if (hitsList.get(i)[0] < min){
+            min = hitsList.get(i)[0];
+          }
+          int ran = (int)Math.random() * 2;
+          if (ran == 0 && min > 0 && !userBoard.getSquare(min - 1,coor1[1]).isAttacked()){
+            if (userBoard.attack(min - 1,coor1[1])) {
+                //System.out.println("hi");
+                userBoard.addAttacked();
+                return true;
+            }
+          }
+          if (ran == 1 && max < 9 && !userBoard.getSquare(max + 1,coor1[1]).isAttacked()){
+            if (userBoard.attack(max + 1,coor1[1])) {
+                //System.out.println("hi");
+                userBoard.addAttacked();
+                return true;
+            }
+         }
+        }
+      }
+        
     }
     else{
      ArrayList<Integer> spots = new ArrayList<Integer>();
