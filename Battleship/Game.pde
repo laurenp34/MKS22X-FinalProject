@@ -136,15 +136,18 @@ class Game {
    return false;
  }
 
-  public void displayTurns(int t, PFont f) {
+  public void displayTurns(int t, PFont f, int shipx, int shipy) {
     fill(0,255,0);
     rect(width/2-10,0,60,20);
     rect(width/2-50,20,200,20);
+    rect(width/2-50,40,200,40);
     
     textFont(f,15);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
     text(""+t,width/2,15);   // STEP 5 Display Text
     text("ship: "+userBoard.shipClicked(),width/2,30);
+    text("mouse: "+mouseX+" "+mouseY,width/2,20);
+    text("ship: "+shipx+" "+shipy,width/2,20);
   }
   
   
