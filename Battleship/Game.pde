@@ -167,11 +167,10 @@ class Game {
     }
     else if (userBoard.getHits() > 1){
       ArrayList<int[]> hitsList = userBoard.getHitsList();
-      int[] coor1 = hitsList.get(0);
-      int[] coor2 = hitsList.get(1);
-      if (coor1[0] == coor2[0]){
-        //it's vertical
+      if (hitsList.get(0)[0] == hitsList.get(1)[0]){
+        //it's horizontal
         //find max and min of y-vals
+        int ycor = hitsList.get(0)[0];
         int max = 0;
         int min = 10;
         for (int i = 0; i < hitsList.size(); i++){
@@ -181,26 +180,34 @@ class Game {
           if (hitsList.get(i)[1] < min){
             min = hitsList.get(i)[1];
           }
-          int ran = (int)Math.random() * 2;
-          if (ran == 0 && min > 0 && !userBoard.getSquare(coor1[0], min - 1).isAttacked()){
-            if (userBoard.attack(coor1[0], min - 1)) {
-                //System.out.println("hi");
-                userBoard.addAttacked();
-                return true;
-            }
-          }
-          if (ran == 1 && max < 9 && !userBoard.getSquare(coor1[0], max + 1).isAttacked()){
-            if (userBoard.attack(coor1[0], max + 1)) {
-                //System.out.println("hi");
-                userBoard.addAttacked();
-                return true;
-            }
-         }
         }
+          ArrayList<int[]> coords = new ArrayList<int[]>();
+          if (min > 0 && !userBoard.getSquare(ycor, min - 1).isAttacked()){
+            int[] coor = {ycor, min - 1};
+            coords.add(coor);
+          }
+          if (max < 9 && !userBoard.getSquare(ycor, max + 1).isAttacked()){
+            int[] coor = {ycor, max + 1};
+            coords.add(coor);
+         }
+         String coor = "";
+          for (int[] s : coords){
+              coor += "{" + s[0] + "," + s[1] + "} ";
+          }
+          textFont(f,16);                  // STEP 3 Specify font to be used
+          fill(0); 
+          text(coor,10,330);
+         Random ran = new Random();
+         int rand = ran.nextInt(coords.size());
+         if (userBoard.attack(ycor, coords.get(rand)[1])) {
+                userBoard.addAttacked();
+                return true;
+         }
       }
       else{
-        //it's horizontal
+        //it's vertical
         //find max and min of x-vals
+        int xcor = hitsList.get(0)[1];
         int max = 0;
         int min = 10;
         for (int i = 0; i < hitsList.size(); i++){
@@ -210,22 +217,29 @@ class Game {
           if (hitsList.get(i)[0] < min){
             min = hitsList.get(i)[0];
           }
-          int ran = (int)Math.random() * 2;
-          if (ran == 0 && min > 0 && !userBoard.getSquare(min - 1,coor1[1]).isAttacked()){
-            if (userBoard.attack(min - 1,coor1[1])) {
-                //System.out.println("hi");
-                userBoard.addAttacked();
-                return true;
-            }
-          }
-          if (ran == 1 && max < 9 && !userBoard.getSquare(max + 1,coor1[1]).isAttacked()){
-            if (userBoard.attack(max + 1,coor1[1])) {
-                //System.out.println("hi");
-                userBoard.addAttacked();
-                return true;
-            }
-         }
         }
+        ArrayList<int[]> coords = new ArrayList<int[]>();
+        if (min > 0 && !userBoard.getSquare(min - 1, xcor).isAttacked()){
+           int[] coor = {min - 1, xcor};
+            coords.add(coor);
+        }
+        if (max < 9 && !userBoard.getSquare(max + 1, xcor).isAttacked()){
+          int[] coor = {max + 1, xcor};
+          coords.add(coor);
+        }
+        String coor = "";
+          for (int[] s : coords){
+              coor += "{" + s[0] + "," + s[1] + "} ";
+          }
+          textFont(f,16);                  // STEP 3 Specify font to be used
+          fill(0); 
+          text(coor,10,330);
+        Random ran = new Random();
+         int rand = ran.nextInt(coords.size());
+         if (userBoard.attack(coords.get(rand)[0], xcor)) {
+                userBoard.addAttacked();
+                return true;
+         }
       }
         
     }
