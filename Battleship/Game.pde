@@ -50,9 +50,9 @@ class Game {
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
         userBoard.getBoard()[r][c].displaySquareUser();
-        //textFont(f,16);   
-        //fill(255);
-        //text("" + userBoard.getBoard()[r][c].isAttacked(), r*70 + 150,c*70 + 50 + 20);
+        textFont(f,16);   
+        fill(255);
+        text("" + userBoard.getBoard()[r][c].isAttacked(), r*70 + 150,c*70 + 50 + 20);
       }
    }
   }
@@ -128,30 +128,26 @@ class Game {
           int x = userBoard.lastHitX();
           int y = userBoard.lastHitY();
           ArrayList<int[]> coords = new ArrayList<int[]>();
-          if (x > 0 && !userBoard.getSquare(y,x-1).isAttacked()){
+          if (x > 0 && !userBoard.getSquare(x-1,y).isAttacked()){
             int[] coor = {y, x-1};
             coords.add(coor);
           }
-          if (x < 9 && !userBoard.getSquare(y,x+1).isAttacked()){
+          if (x < 9 && !userBoard.getSquare(x+1,y).isAttacked()){
             int[] coor = {y, x+1};
             coords.add(coor);
           }
-          if (y > 0 && !userBoard.getSquare(y-1, x).isAttacked()){
+          if (y > 0 && !userBoard.getSquare(x, y-1).isAttacked()){
             int[] coor = {y-1, x};
             coords.add(coor);
           }
-          if (y < 9 && !userBoard.getSquare(y+1,x).isAttacked()){
+          if (y < 9 && !userBoard.getSquare(x,y-1).isAttacked()){
             int[] coor = {y+1, x};
             coords.add(coor);
           }
-          Random ran = new Random();
-          int target = ran.nextInt(coords.size());
+          rect(0,120,40,40);
           textFont(f,16);                  // STEP 3 Specify font to be used
             fill(0);                         // STEP 4 Specify font color 
-            text("" +target, 20,50);
-          int[] myCoor = coords.get(target);
-          myX = myCoor[0];
-          myY = myCoor[1];
+            text("" +coords.size(), 20,140);
           fill(0,255,0);
           rect(0,300,150,40);
           String coor = "";
@@ -161,6 +157,11 @@ class Game {
           textFont(f,16);                  // STEP 3 Specify font to be used
           fill(0); 
           text(coor,10,330);
+          Random ran = new Random();
+          int target = ran.nextInt(coords.size());
+          int[] myCoor = coords.get(target);
+          myX = myCoor[0];
+          myY = myCoor[1];
           //text(myX + " " + myY,10,270);
           if (userBoard.attack(myY, myX)) {
             //System.out.println("hi");
@@ -185,14 +186,18 @@ class Game {
           }
         }
           ArrayList<int[]> coords = new ArrayList<int[]>();
-          if (min > 0 && !userBoard.getSquare(ycor, min - 1).isAttacked()){
+          if (min > 0 && !userBoard.getSquare(min - 1, ycor).isAttacked()){
             int[] coor = {ycor, min - 1};
             coords.add(coor);
           }
-          if (max < 9 && !userBoard.getSquare(ycor, max + 1).isAttacked()){
+          if (max < 9 && !userBoard.getSquare(max + 1, ycor).isAttacked()){
             int[] coor = {ycor, max + 1};
             coords.add(coor);
          }
+          rect(0,120,40,40);
+          textFont(f,16);                  // STEP 3 Specify font to be used
+            fill(0);                         // STEP 4 Specify font color 
+            text("" +coords.size(), 20,140);
          fill(0,255,0);
           rect(0,300,150,40);
          String coor = "";
@@ -202,6 +207,7 @@ class Game {
           textFont(f,16);                  // STEP 3 Specify font to be used
           fill(0); 
           text(coor,10,330);
+          text(coords.size(), 10, 300);
          Random ran = new Random();
          int rand = ran.nextInt(coords.size());
          if (userBoard.attack(ycor, coords.get(rand)[1])) {
@@ -224,14 +230,18 @@ class Game {
           }
         }
         ArrayList<int[]> coords = new ArrayList<int[]>();
-        if (min > 0 && !userBoard.getSquare(min - 1, xcor).isAttacked()){
+        if (min > 0 && !userBoard.getSquare(xcor, min-1).isAttacked()){
            int[] coor = {min - 1, xcor};
             coords.add(coor);
         }
-        if (max < 9 && !userBoard.getSquare(max + 1, xcor).isAttacked()){
+        if (max < 9 && !userBoard.getSquare(xcor, max+1).isAttacked()){
           int[] coor = {max + 1, xcor};
           coords.add(coor);
         }
+         rect(0,120,40,40);
+          textFont(f,16);                  // STEP 3 Specify font to be used
+            fill(0);                         // STEP 4 Specify font color 
+            text("" +coords.size(), 20,140);
         fill(0,255,0);
           rect(0,300,150,40);
         String coor = "";
