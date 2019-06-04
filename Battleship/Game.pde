@@ -50,6 +50,9 @@ class Game {
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
         userBoard.getBoard()[r][c].displaySquareUser();
+        //textFont(f,16);   
+        //fill(255);
+        //text("" + userBoard.getBoard()[r][c].isAttacked(), r*70 + 150,c*70 + 50 + 20);
       }
    }
   }
@@ -190,6 +193,8 @@ class Game {
             int[] coor = {ycor, max + 1};
             coords.add(coor);
          }
+         fill(0,255,0);
+          rect(0,300,150,40);
          String coor = "";
           for (int[] s : coords){
               coor += "{" + s[0] + "," + s[1] + "} ";
@@ -227,6 +232,8 @@ class Game {
           int[] coor = {max + 1, xcor};
           coords.add(coor);
         }
+        fill(0,255,0);
+          rect(0,300,150,40);
         String coor = "";
           for (int[] s : coords){
               coor += "{" + s[0] + "," + s[1] + "} ";

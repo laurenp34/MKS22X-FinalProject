@@ -62,6 +62,9 @@ class Square {
       fill(0, 0, 255);
       rect(x1, y1, 70, 70);
     }
+    //textFont(f,16);   
+  //fill(255);
+  //text("" +attacked, x1,y1 + 20);
   }
 
   public void displaySquareComp() {
