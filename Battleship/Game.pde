@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.lang.Math;
 
 class Game {
   GameBoard compBoard;
@@ -140,7 +141,8 @@ class Game {
             int[] coor = {y+1, x};
             coords.add(coor);
           }
-          int target = (int)Math.random() * coords.size();
+          Random ran = new Random();
+          int target = ran.nextInt(coords.size());
           textFont(f,16);                  // STEP 3 Specify font to be used
             fill(0);                         // STEP 4 Specify font color 
             text("" +target, 20,50);
