@@ -212,6 +212,7 @@ class Game {
             int[] coor = {ycor, max + 1};
             coords.add(coor);
          }
+         /*
          fill(0,255,0);
           rect(0,300,150,40);
          String coor = "";
@@ -222,6 +223,7 @@ class Game {
           fill(0); 
           text(coor,10,330);
           text(coords.size(), 10, 300);
+          */
          Random ran = new Random();
          int rand = ran.nextInt(coords.size());
          if (userBoard.attack(ycor, coords.get(rand)[1])) {
@@ -268,6 +270,7 @@ class Game {
           int[] coor = {max + 1, xcor};
           coords.add(coor);
         }
+        /*
         fill(0,255,0);
           rect(0,300,150,40);
         String coor = "";
@@ -277,6 +280,7 @@ class Game {
           textFont(f,16);                  // STEP 3 Specify font to be used
           fill(0); 
           text(coor,10,330);
+         */
         Random ran = new Random();
          int rand = ran.nextInt(coords.size());
          if (userBoard.attack(coords.get(rand)[0], xcor)) {
