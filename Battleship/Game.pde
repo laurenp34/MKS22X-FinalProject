@@ -140,11 +140,11 @@ class Game {
             int[] coor = {y-1, x};
             coords.add(coor);
           }
-          if (y < 9 && !userBoard.getSquare(x,y-1).isAttacked()){
+          if (y < 9 && !userBoard.getSquare(x,y+1).isAttacked()){
             int[] coor = {y+1, x};
             coords.add(coor);
           }
-          rect(0,120,40,40);
+          rect(0,120,80,40);
           textFont(f,16);                  // STEP 3 Specify font to be used
             fill(0);                         // STEP 4 Specify font color 
             text("" +coords.size(), 20,140);
@@ -172,7 +172,7 @@ class Game {
     else if (userBoard.getHits() > 1){
       ArrayList<int[]> hitsList = userBoard.getHitsList();
       if (hitsList.get(0)[0] == hitsList.get(1)[0]){
-        //it's horizontal
+        //it's vertical
         //find max and min of y-vals
         int ycor = hitsList.get(0)[0];
         int max = 0;
@@ -185,6 +185,20 @@ class Game {
             min = hitsList.get(i)[1];
           }
         }
+        fill(0,255,0);
+          rect(0,400,150,40);
+         String hitsL = "";
+          for (int[] s : hitsList){
+              hitsL += "{" + s[0] + "," + s[1] + "} ";
+          }
+          textFont(f,16);                  // STEP 3 Specify font to be used
+          fill(0); 
+          text(hitsL,10,420);
+          fill(0,255,0);
+        rect(0,120,80,40);
+          textFont(f,16);                  // STEP 3 Specify font to be used
+            fill(0);                         // STEP 4 Specify font color 
+            text(min + " " + max + " " + " " + ycor, 20,140);
           ArrayList<int[]> coords = new ArrayList<int[]>();
           if (min > 0 && !userBoard.getSquare(min - 1, ycor).isAttacked()){
             int[] coor = {ycor, min - 1};
@@ -194,10 +208,6 @@ class Game {
             int[] coor = {ycor, max + 1};
             coords.add(coor);
          }
-          rect(0,120,40,40);
-          textFont(f,16);                  // STEP 3 Specify font to be used
-            fill(0);                         // STEP 4 Specify font color 
-            text("" +coords.size(), 20,140);
          fill(0,255,0);
           rect(0,300,150,40);
          String coor = "";
@@ -216,7 +226,7 @@ class Game {
          }
       }
       else{
-        //it's vertical
+        //it's horizontal
         //find max and min of x-vals
         int xcor = hitsList.get(0)[1];
         int max = 0;
@@ -229,6 +239,20 @@ class Game {
             min = hitsList.get(i)[0];
           }
         }
+        fill(0,255,0);
+          rect(0,400,150,40);
+         String hitsL = "";
+          for (int[] s : hitsList){
+              hitsL += "{" + s[0] + "," + s[1] + "} ";
+          }
+          textFont(f,16);                  // STEP 3 Specify font to be used
+          fill(0); 
+          text(hitsL,10,420);
+          fill(0,255,0);
+        rect(0,120,80,40);
+          textFont(f,16);                  // STEP 3 Specify font to be used
+            fill(0);                         // STEP 4 Specify font color 
+            text(min + " " + max + " " + " " + xcor, 20,140);
         ArrayList<int[]> coords = new ArrayList<int[]>();
         if (min > 0 && !userBoard.getSquare(xcor, min-1).isAttacked()){
            int[] coor = {min - 1, xcor};
@@ -238,10 +262,6 @@ class Game {
           int[] coor = {max + 1, xcor};
           coords.add(coor);
         }
-         rect(0,120,40,40);
-          textFont(f,16);                  // STEP 3 Specify font to be used
-            fill(0);                         // STEP 4 Specify font color 
-            text("" +coords.size(), 20,140);
         fill(0,255,0);
           rect(0,300,150,40);
         String coor = "";
