@@ -42,7 +42,7 @@ class Game {
     text("User Board",10,100);   // STEP 5 Display Text
     text(userBoard.getHits(),10,170);
     text(userBoard.totalAttacks,10,200);
-    text(userBoard.lastHitX()+" "+userBoard.lastHitY(),10,230);
+    text(userBoard.lastHitY()+" "+userBoard.lastHitX(),10,230);
     text("" + userBoard.getHits(),20,20);
     text(myX + " " + myY,10,280);
 
@@ -118,9 +118,9 @@ class Game {
     //fill(0);  
     //text("" + userBoard.getHits(),20,20);
     if (userBoard.getHits() == 1){
-      textFont(f,16);                  // STEP 3 Specify font to be used
-      fill(0);                         // STEP 4 Specify font color 
-      text(""+turns,20,50);
+      //textFont(f,16);                  // STEP 3 Specify font to be used
+      //fill(0);                         // STEP 4 Specify font color 
+      //text("hi",20,50);
           int x = userBoard.lastHitX();
           int y = userBoard.lastHitY();
           ArrayList<int[]> coords = new ArrayList<int[]>();
@@ -141,8 +141,9 @@ class Game {
             coords.add(coor);
           }
           int target = (int)Math.random() * coords.size();
-          //textFont(f,16);                  // STEP 3 Specify font to be used
-          //fill(0);                         // STEP 4 Specify font color 
+          textFont(f,16);                  // STEP 3 Specify font to be used
+            fill(0);                         // STEP 4 Specify font color 
+            text("" +target, 20,50);
           int[] myCoor = coords.get(target);
           myX = myCoor[0];
           myY = myCoor[1];
