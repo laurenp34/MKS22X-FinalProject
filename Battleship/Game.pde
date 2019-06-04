@@ -35,8 +35,8 @@ class Game {
     fill(0,255,0);
     rect(0,80,150,30);
     rect(0,150,40,100);
-    rect(0, 0, 30, 60);
-    rect(0,260,40,40);
+    //rect(0, 0, 30, 60);
+    //rect(0,260,40,40);
     
     textFont(f,16);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
@@ -44,8 +44,8 @@ class Game {
     text(userBoard.getHits(),10,170);
     text(userBoard.totalAttacks,10,200);
     text(userBoard.lastHitY()+" "+userBoard.lastHitX(),10,230);
-    text("" + userBoard.getHits(),20,20);
-    text(myX + " " + myY,10,280);
+    //text("" + userBoard.getHits(),20,20);
+    //text(myX + " " + myY,10,280);
 
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
@@ -144,6 +144,7 @@ class Game {
             int[] coor = {y+1, x};
             coords.add(coor);
           }
+          /*
           rect(0,120,80,40);
           textFont(f,16);                  // STEP 3 Specify font to be used
             fill(0);                         // STEP 4 Specify font color 
@@ -157,6 +158,7 @@ class Game {
           textFont(f,16);                  // STEP 3 Specify font to be used
           fill(0); 
           text(coor,10,330);
+          */
           Random ran = new Random();
           int target = ran.nextInt(coords.size());
           int[] myCoor = coords.get(target);
@@ -185,6 +187,7 @@ class Game {
             min = hitsList.get(i)[1];
           }
         }
+        /*
         fill(0,255,0);
           rect(0,400,150,40);
          String hitsL = "";
@@ -199,6 +202,7 @@ class Game {
           textFont(f,16);                  // STEP 3 Specify font to be used
             fill(0);                         // STEP 4 Specify font color 
             text(min + " " + max + " " + " " + ycor, 20,140);
+            */
           ArrayList<int[]> coords = new ArrayList<int[]>();
           if (min > 0 && !userBoard.getSquare(min - 1, ycor).isAttacked()){
             int[] coor = {ycor, min - 1};
@@ -239,6 +243,7 @@ class Game {
             min = hitsList.get(i)[0];
           }
         }
+        /*
         fill(0,255,0);
           rect(0,400,150,40);
          String hitsL = "";
@@ -253,6 +258,7 @@ class Game {
           textFont(f,16);                  // STEP 3 Specify font to be used
             fill(0);                         // STEP 4 Specify font color 
             text(min + " " + max + " " + " " + xcor, 20,140);
+            */
         ArrayList<int[]> coords = new ArrayList<int[]>();
         if (min > 0 && !userBoard.getSquare(xcor, min-1).isAttacked()){
            int[] coor = {min - 1, xcor};

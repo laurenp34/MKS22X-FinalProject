@@ -193,6 +193,7 @@ class GameBoard {
     //if this attack made the ship fully attacked:
     if (s.hasShip && s.shipHere.attacks == s.shipHere.size) {
       //kill the ship
+      hitsList.clear();
       s.shipHere.alive = false;
       //iterate through squares covered by ship and change fullyAttacked variable
       for (int i=0; i<s.shipHere.size; i++) {
