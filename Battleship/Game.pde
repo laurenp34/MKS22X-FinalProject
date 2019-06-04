@@ -5,12 +5,16 @@ class Game {
   GameBoard userBoard;
   int turns;
   //PFont f; 
+  int myX;
+  int myY;
   
   public Game(){
     //f = createFont("Arial",16,true); // STEP 2 Create Font
    turns = 0; 
    compBoard = new GameBoard();
    userBoard = new GameBoard();
+   myX = 0;
+   myY = 0;
   }
   public void setupShips(){
      userBoard.placeShipsRandomly();
@@ -30,6 +34,8 @@ class Game {
     fill(0,255,0);
     rect(0,80,150,30);
     rect(0,150,40,100);
+    rect(0, 0, 30, 60);
+    rect(0,260,40,40);
     
     textFont(f,16);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
@@ -37,6 +43,8 @@ class Game {
     text(userBoard.getHits(),10,170);
     text(userBoard.totalAttacks,10,200);
     text(userBoard.lastHitX()+" "+userBoard.lastHitY(),10,230);
+    text("" + userBoard.getHits(),20,20);
+    text(myX + " " + myY,10,280);
 
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
@@ -105,11 +113,14 @@ class Game {
     return false;
   }*/
   
-  public boolean compChooseSquare(){ 
+  public boolean compChooseSquare(){
+    //textFont(f,16);                  // STEP 3 Specify font to be used
+    //fill(0);  
+    //text("" + userBoard.getHits(),20,20);
     if (userBoard.getHits() == 1){
-      //textFont(f,16);                  // STEP 3 Specify font to be used
-      //fill(0);                         // STEP 4 Specify font color 
-      //text("hi",20,50);
+      textFont(f,16);                  // STEP 3 Specify font to be used
+      fill(0);                         // STEP 4 Specify font color 
+      text(""+turns,20,50);
           int x = userBoard.lastHitX();
           int y = userBoard.lastHitY();
           ArrayList<int[]> coords = new ArrayList<int[]>();
@@ -130,12 +141,21 @@ class Game {
             coords.add(coor);
           }
           int target = (int)Math.random() * coords.size();
-          textFont(f,16);                  // STEP 3 Specify font to be used
-          fill(0);                         // STEP 4 Specify font color 
+          //textFont(f,16);                  // STEP 3 Specify font to be used
+          //fill(0);                         // STEP 4 Specify font color 
           int[] myCoor = coords.get(target);
-          int myX = myCoor[0];
-          int myY = myCoor[1];
-          text(myX + " " + myY,20,20);
+          myX = myCoor[0];
+          myY = myCoor[1];
+          fill(0,255,0);
+          rect(0,300,150,40);
+          String coor = "";
+          for (int[] s : coords){
+              coor += "{" + s[0] + "," + s[1] + "} ";
+          }
+          textFont(f,16);                  // STEP 3 Specify font to be used
+          fill(0); 
+          text(coor,10,330);
+          //text(myX + " " + myY,10,270);
           if (userBoard.attack(myY, myX)) {
             //System.out.println("hi");
             userBoard.addAttacked();
