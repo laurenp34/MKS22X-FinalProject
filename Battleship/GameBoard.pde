@@ -6,6 +6,7 @@ class GameBoard {
   Ship[] ships;
   int shipCount; //how many ships have been placed on the board
   int hits;
+  int shipDragged;
 
   public GameBoard() {
     squaresAttacked = 0;
@@ -307,15 +308,16 @@ class GameBoard {
   //index: if no ship is clicked, return -1, else return the index of ships that the ship is
   //xdist: distance from mouse to x1 
   //ydist: distance from mouse to y1
-  public float[] shipClicked() {
-    float[] out = new float[3];
+  public boolean shipClicked() {
     if (mousePressed) {
       for (int i=0; i<ships.length; i++) {
         if ((ships[i].dir == 0 && mouseX - ships[i].x1 <= 70 && mouseY - ships[i].y1 <= (70 * ships[i].size)) || (ships[i].dir == 1 && mouseX - ships[i].x1 <= (70 * ships[i].size) && mouseY - ships[i].y1 <= 70)) {
-          out [0] = i;
-          out [1] = mouseX - ships[i].x1;
-          out [2] = mouseY - ships[i].y1;
-          return out;
+
+          ships[i].xdist = mouseX - ships[i].x1;
+          ships[i].ydist = mouseY - ships[i].y1;
+          ships[i].dragged = true;
+          shipDragged = i;
+          return true;
         }
         /*
       //if clicking ship size 4
@@ -333,39 +335,45 @@ class GameBoard {
          //if clicking ship size 2
          if (ships[4].dir == 0 && mouseX >= 1300 && mouseX <= 1370 && mouseY >= 570 && mouseY <= 710) return 4;
          if (ships[4].dir == 1 && mouseX >= 1300 && mouseX <= 1440 && mouseY >= 570 && mouseY <= 640) return 4; */
-
       }
     }
-    out[0] = -1;
-    return out;
+    shipDragged = -1;
+    return false;
   }
-  
+
   //user selects a square 
   //return whether or not the ship can be placed there
-  public boolean selectSquare(Ship s){
+  public boolean selectSquare(Ship s) {
     return true;
   }
-  
+
+  public void noDrag() {
+    for (int i=0; i<ships.length; i++) {
+      ships[i].dragged = false;
+    }
+  }
+
   //input is the float[] returned from shipClicked^^
   //output is whether or not the ship was moved
   public boolean drag() {
-    float[] clickInfo = shipClicked();
-    if (clickInfo[0] == -1) return false;
-    Ship ship = ships[(int) clickInfo[0]];
-    float xdist = clickInfo[1];
-    float ydist = clickInfo[2];
-    System.out.println(xdist+" "+ydist);
-      System.out.println(mousePressed);
+    shipClicked();
+    System.out.println(shipDragged);
+    if (shipDragged != -1) {
+      Ship ship = ships[shipDragged];
+      float xdist = ship.xdist;
+      float ydist = ship.ydist;
+      //System.out.println(xdist+" "+ydist);
       //System.out.println(mouseX+" "+mouseY);
-      ship.setXY(mouseX-xdist, mouseY-ydist);
-      System.out.println(mouseX+" "+mouseY+" "+(mouseX-xdist)+" "+(mouseY-ydist));
+      ship.setXY(ship.x1+mouseX-pmouseX, ship.y1+mouseY-pmouseY);
+      //System.out.println(mouseX+" "+mouseY+" "+(mouseX-xdist)+" "+(mouseY-ydist));
       //ship.x1 = mouseX - xdist;
       //System.out.println(ship.x1);
       //ship.y1 = mouseY - ydist;
       //System.out.println(ship.y1);
       //System.out.println(ship.x1+" "+ship.y1);
       ship.display();
-      System.out.println("what");
-    return true;
+      return true;
+    }
+    return false;
   }
 }
