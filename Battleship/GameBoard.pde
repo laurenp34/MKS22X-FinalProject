@@ -85,9 +85,11 @@ class GameBoard {
     int size = newShip.getSize();
     int dir = newShip.getDir();
 
+    if (row >= 10 || col >= 10) return false;
+
     //vertical ship
     if (dir==1) {
-      if (row + size >= 10) return false;
+      if (row + size > 10) return false;
       for (int n=-1; n<=size; n++) {
         if (row>=0 && row < 10) {
           if (isShipHere(row+n, col)) return false;
@@ -97,7 +99,7 @@ class GameBoard {
       }
       //horizontal ship
     } else {
-      if (col + size >= 10) return false;
+      if (col + size > 10) return false;
       for (int n=-1; n<=size; n++) {
         if (col>=0 && col<10) {
           if (isShipHere(row, col+n)) return false;
@@ -321,7 +323,27 @@ class GameBoard {
   public boolean shipClicked() {
     if (mousePressed) {
       if (drag && shipDragged != -1) return true;
-      else if (!drag && shipDragged != -1) {
+      //if rotate button pressed:
+      if (mouseX <= 70 && mouseY <= 70 && shipDragged != -1) {
+        System.out.println("cl");
+        Ship ship = ships[shipDragged];
+        //test ship to see if it can fit there
+        Ship test = new Ship(ship.size);
+        //set dir to opposite
+        if (ship.dir == 1) test.dir = 0;
+        else test.dir = 1;
+        
+        ship.clearSquares();
+        System.out.println(canAddShipHere(test, ship.squares[0].r, ship.squares[0].c));
+        if (canAddShipHere(test, ship.squares[0].r, ship.squares[0].c)) {
+          System.out.println("ca");
+          ship.clearSquares();
+          ships[shipDragged].rot(); 
+          addShip(ship, ship.squares[0].r, ship.squares[0].c);
+          background(255);
+          printShips();
+        }
+      } else if (!drag && shipDragged != -1) {
         ships[shipDragged].deselect();
         shipDragged = -1;
         return false;
@@ -430,7 +452,7 @@ class GameBoard {
     ship.clearSquares();
     int r = (int) ((ship.y1 - 50) / 70);
     int c = (int) ((ship.x1 - 150) / 70);
-    System.out.println(ship.x1+" "+ship.y1+" "+c+" "+r);
+    //System.out.println(ship.x1+" "+ship.y1+" "+c+" "+r);
 
     //check to see if ship is in range: 
     if (canAddShipHere(ship, c, r)) {
