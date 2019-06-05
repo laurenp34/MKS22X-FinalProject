@@ -4,6 +4,7 @@ class Game {
   GameBoard compBoard;
   GameBoard userBoard;
   int turns;
+  boolean setup; //is it in setup mode?
   
 
   //PFont f; 
@@ -13,6 +14,7 @@ class Game {
    turns = 0; 
    compBoard = new GameBoard();
    userBoard = new GameBoard();
+   setup = true;
    
   }
   public void setupShips(){
@@ -22,6 +24,11 @@ class Game {
   
   public void displayBoard(PFont f){
     //first, set up ocean
+    background(255);
+    if (setup){
+     checkButton();
+     rotateButton();
+    }
     userBoard.printOcean();
     userBoard.printGrid();
 
@@ -37,7 +44,7 @@ class Game {
 
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
-        userBoard.getBoard()[r][c].displaySquareUser();
+        userBoard.getBoard()[r][c].displayUserSquareTest();
       }
    }
   }
@@ -156,18 +163,11 @@ class Game {
   public void rotateButton(){
     PImage rotate = loadImage("rotatebutton.png");
     image(rotate,0,0,70,70);
-    
-    if (mousePressed && userBoard.shipDragged != -1 && mouseX <= 70 && mouseY <= 70) {
-      Ship ship = userBoard.ships[userBoard.shipDragged];
-      //test ship to see if it can fit there
-      Ship test = new Ship(ship.size);
-      test.dir = ship.dir;
-      if (userBoard.canAddShipHere(test, ship.squares[0].r, ship.squares[0].c)) {
-        ship.clearSquares();
-        userBoard.ships[userBoard.shipDragged].rot(); 
-        userBoard.addShip(ship,ship.squares[0].r, ship.squares[0].c);
-      }
-    }
+  }
+  
+  public void checkButton(){
+    PImage check = loadImage("check.png");
+    image(check,0,80,70,70);
   }
   
   
