@@ -142,6 +142,7 @@ class GameBoard {
       }
     }
     newShip.updateXY();
+    newShip.placed = true;
     //ships[shipCount] = newShip;
     //shipCount++;
     return true;
@@ -320,7 +321,7 @@ class GameBoard {
     if (mousePressed) {
       if (shipDragged != -1) return true; //a ship is already selected, keep the same one.
       for (int i=0; i<ships.length; i++) {
-        if ((ships[i].dir == 0 && mouseX - ships[i].x1 <= 70 && mouseY - ships[i].y1 <= (70 * ships[i].size)) || (ships[i].dir == 1 && mouseX - ships[i].x1 <= (70 * ships[i].size) && mouseY - ships[i].y1 <= 70)) {
+        if ((mouseX >= ships[i].x1 && mouseY >= ships[i].y1) && (ships[i].dir == 0 && mouseX - ships[i].x1 <= 70 && mouseY - ships[i].y1 <= (70 * ships[i].size)) || (ships[i].dir == 1 && mouseX - ships[i].x1 <= (70 * ships[i].size) && mouseY - ships[i].y1 <= 70)) {
 
           ships[i].xdist = mouseX - ships[i].x1;
           ships[i].ydist = mouseY - ships[i].y1;
