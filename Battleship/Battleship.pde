@@ -14,89 +14,71 @@ void setup() {
   g.displayTurns(0, f, 0, 0);
   //g.displayBoard(f);
   boolean found = false;
-  
- // while (!found) {
-   // while (mousePressed) {
-      //float[] d = g.userBoard.shipClicked();
-      //for (int i=0; i<d.length; i++) System.out.println(d[i]);
-      //if (d[0] != -1) {
-        //g.displayTurns(0, f, (int)g.userBoard.ships[(int)d[0]].x1, (int)g.userBoard.ships[(int)d[0]].y1);
-        //System.out.println(true);
-        //g.userBoard.drag(d);
-        //found = true;
-        //g.displayTurns(0, f, (int)g.userBoard.ships[(int)d[0]].x1, (int)g.userBoard.ships[(int)d[0]].y1);
-      //}
-   // }
+
+  // while (!found) {
+  // while (mousePressed) {
+  //float[] d = g.userBoard.shipClicked();
+  //for (int i=0; i<d.length; i++) System.out.println(d[i]);
+  //if (d[0] != -1) {
+  //g.displayTurns(0, f, (int)g.userBoard.ships[(int)d[0]].x1, (int)g.userBoard.ships[(int)d[0]].y1);
+  //System.out.println(true);
+  //g.userBoard.drag(d);
+  //found = true;
+  //g.displayTurns(0, f, (int)g.userBoard.ships[(int)d[0]].x1, (int)g.userBoard.ships[(int)d[0]].y1);
+  //}
+  // }
   //}
 }
 
+private int turns = 0;
+int c = 0;
+
 void draw() {
   //System.out.println(mousePressed);
-  g.displayBoard(f);
-  g.userBoard.drag();
-  g.rotateButton();
-  g.checkButton();
-  //System.out.println(mousePressed);
-  //g.userBoard.drag();
-  
+  if (g.setup) {
+    g.displayBoard(f);
+    if (g.userBoard.drag()) {
+      g.setup = false;
+      g.compBoard.placeShipsRandomly();
+      g.displayCompBoard(f);
+    }
+  } /*else {
+    g.displayCompBoard(f);
+    //g.displayTurns(turns, f);
+    int gmo = g.isGameOver();
+    if (gmo != 0) {
+      g.gameOver(gmo, f);
+      noLoop();
+    }
+
+    if (turns % 2 == 0) {
+      g.displayCompBoard(f);
+      if (g.userChooseSquare()) {
+        turns++;
+        c = frameCount;
+        g.displayCompBoard(f);
+
+        gmo = g.isGameOver();
+        if (gmo != 0) {
+          g.gameOver(gmo, f);
+          noLoop();
+        }
+      }
+    } else {
+      if (frameCount-c > 30) {
+        g.displayBoard(f);
+      }
+      if (frameCount-c == 35) {
+        //if for some reason a square isn't attacked, don't increment framecount (keep trying)
+        //if (!g.compChoose()) c++;
+        g.compChoose();
+      }
+      if (frameCount-c > 40) {
+        turns++;
+      }
+    }
+  }*/
 }
-
-    private int turns = 0;
-    int c = 0;
-    /*
-void draw() {
-     while (mousePressed) {
-     float[] d = g.userBoard.shipClicked();
-     for (int i=0;i<d.length;i++) System.out.println(d[i]);
-     if (d[0] != -1) {
-     g.displayTurns(0, f, (int)g.userBoard.ships[(int)d[0]].x1, (int)g.userBoard.ships[(int)d[0]].y1);
-     System.out.println(true);
-     g.userBoard.drag(d);
-     g.displayTurns(0, f, (int)g.userBoard.ships[(int)d[0]].x1, (int)g.userBoard.ships[(int)d[0]].y1);
-     }
-     
-     
-     //System.out.println(g.userBoard.ships[(int) d[0]].x1);
-     }
-     g.displayBoard(f);
-     }*/
-
-
-    /*
-void draw() {
-     g.displayTurns(turns, f);
-     int gmo = g.isGameOver();
-     if (gmo != 0) {
-     g.gameOver(gmo, f);
-     noLoop();
-     }
-     
-     if (turns % 2 == 0) {
-     g.displayCompBoard(f);
-     if (g.userChooseSquare()) {
-     turns++;
-     c = frameCount;
-     g.displayCompBoard(f);
-     
-     gmo = g.isGameOver();
-     if (gmo != 0) {
-     g.gameOver(gmo, f);
-     noLoop();
-     }
-     }
-     } else {
-     if (frameCount-c > 30) {
-     g.displayBoard(f);
-     }
-     if (frameCount-c == 35) {
-     //if for some reason a square isn't attacked, don't increment framecount (keep trying)
-     //if (!g.compChoose()) c++;
-     g.compChoose();
-     }
-     if (frameCount-c > 40) {
-     turns++;
-     }
-     }
     /*if (turns%2 == 0) {
      g.displayCompBoard(f);
      //first turn: user choose square
@@ -153,4 +135,32 @@ void draw() {
     //}
     //prevTurns = turns;
     //}
-    // }
+  //}
+  //System.out.println(mousePressed);
+  //g.userBoard.drag();
+
+
+
+/*
+void draw() {
+ while (mousePressed) {
+ float[] d = g.userBoard.shipClicked();
+ for (int i=0;i<d.length;i++) System.out.println(d[i]);
+ if (d[0] != -1) {
+ g.displayTurns(0, f, (int)g.userBoard.ships[(int)d[0]].x1, (int)g.userBoard.ships[(int)d[0]].y1);
+ System.out.println(true);
+ g.userBoard.drag(d);
+ g.displayTurns(0, f, (int)g.userBoard.ships[(int)d[0]].x1, (int)g.userBoard.ships[(int)d[0]].y1);
+ }
+ 
+ 
+ //System.out.println(g.userBoard.ships[(int) d[0]].x1);
+ }
+ g.displayBoard(f);
+ }*/
+
+
+/*
+void draw() {
+ 
+ // }*/
