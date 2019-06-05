@@ -316,13 +316,23 @@ class GameBoard {
     return hits;
   }
 
+  public void rotateButton() {
+    PImage rotate = loadImage("rotatebutton.png");
+    image(rotate, 0, 0, 70, 70);
+  }
+
+  public void checkButton() {
+    PImage check = loadImage("check.png");
+    image(check, 0, 80, 70, 70);
+  }
+
   //returns an array: {index, xdist, ydist}
   //index: if no ship is clicked, return -1, else return the index of ships that the ship is
   //xdist: distance from mouse to x1 
   //ydist: distance from mouse to y1
   public boolean shipClicked() {
     if (mousePressed) {
-      if (drag && shipDragged != -1) return true;
+      if (drag && shipDragged != -1) return false; //continue dragging, nothing changes.
       //if rotate button pressed:
       if (mouseX <= 70 && mouseY <= 70 && shipDragged != -1) {
         //System.out.println("cl");
@@ -332,17 +342,29 @@ class GameBoard {
         //set dir to opposite
         if (ship.dir == 1) test.dir = 0;
         else test.dir = 1;
-        
+
         ship.clearSquares();
-        System.out.println(canAddShipHere(test, ship.squares[0].r, ship.squares[0].c));
+
         if (canAddShipHere(test, ship.squares[0].r, ship.squares[0].c)) {
-          System.out.println("ca");
           ship.clearSquares();
           ships[shipDragged].rot(); 
           addShip(ship, ship.squares[0].r, ship.squares[0].c);
           background(255);
           printShips();
+          rotateButton();
+          checkButton();
         }
+      } else if (mouseX <= 140 && mouseY <= 140) {
+        System.out.println("Pres");
+        for (int i=0; i<ships.length; i++) {
+          if (!ships[i].placed) {
+            System.out.println(i);
+            return false;
+          }
+        }
+        //ONLY RETURN TRUE ONCE SETUP MODE IS OCMPLETED
+        System.out.println("done");
+        return true;
       } else if (!drag && shipDragged != -1) {
         ships[shipDragged].deselect();
         shipDragged = -1;
@@ -356,7 +378,7 @@ class GameBoard {
           ships[i].select();
           shipDragged = i;
           drag = true;
-          return true;
+          return false;
         } else {
           //ships[shipDragged].deselect();
           drag = false;
@@ -369,6 +391,8 @@ class GameBoard {
           }
           printGrid();
           printShips();
+          rotateButton();
+          checkButton();
         }
         /*
       //if clicking ship size 4
@@ -401,6 +425,8 @@ class GameBoard {
       }
       printGrid();
       printShips();
+      rotateButton();
+      checkButton();
     } 
     //no ship found or mouse not clicked:
 
@@ -418,7 +444,7 @@ class GameBoard {
   //input is the float[] returned from shipClicked^^
   //output is whether or not the ship was moved
   public boolean drag() {
-    shipClicked();
+    if (shipClicked()) return true;
     //System.out.println(shipDragged);
     if (shipDragged != -1) {
       Ship ship = ships[shipDragged];
@@ -441,7 +467,9 @@ class GameBoard {
       }
       printGrid();
       printShips();
-      return true;
+      rotateButton();
+      checkButton();
+      return false;
     }
     return false;
   }
