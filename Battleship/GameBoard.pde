@@ -309,7 +309,7 @@ class GameBoard {
   //xdist: distance from mouse to x1 
   //ydist: distance from mouse to y1
   public boolean shipClicked() {
-    if (mousePressed) {
+    if (mousePressed && shipDragged == -1) {
       for (int i=0; i<ships.length; i++) {
         if ((ships[i].dir == 0 && mouseX - ships[i].x1 <= 70 && mouseY - ships[i].y1 <= (70 * ships[i].size)) || (ships[i].dir == 1 && mouseX - ships[i].x1 <= (70 * ships[i].size) && mouseY - ships[i].y1 <= 70)) {
 
@@ -371,7 +371,10 @@ class GameBoard {
       //ship.y1 = mouseY - ydist;
       //System.out.println(ship.y1);
       //System.out.println(ship.x1+" "+ship.y1);
-      ship.display();
+      background(255);
+      printOcean();
+      printGrid();
+      printShips();
       return true;
     }
     return false;
