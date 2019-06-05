@@ -58,7 +58,7 @@
       PImage p;
       p = loadImage("fire.png");
       image(p, x1, y1, 70, 70);
-    } else if (attacked) {
+    } else if (attacked && !fullShipFound) {
       fill(0, 0, 255);
       rect(x1, y1, 70, 70);
     }
