@@ -10,7 +10,7 @@ void setup() {
   //g.displayBoard(f);
   g.userBoard.printShips();
   g.displayTurns(0, f, 0, 0);
-  g.displayBoard(f);
+  //g.displayBoard(f);
   boolean found = false;
   
  // while (!found) {
