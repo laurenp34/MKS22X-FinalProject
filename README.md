@@ -1,5 +1,6 @@
 # MKS22X-FinalProject
 Single player Battleship against the computer, where the computer has a strategy.
+<b>Instructions:</b> First, the user drags their ships to the board. None of the ships can be off the board or directly adjacent. The user can also rotate the ships. Then, the user confirms and the screen switches to the computer's board (the computer's ships are placed randomly), displaying the squares that the user has attacked so far. The user selects squares and the screen toggles from user to computer's board. The game is over when either the computer or the user has sunken all of their opponent's ships.
 
 <b>Saturday, May 18th</b>
 <br>
