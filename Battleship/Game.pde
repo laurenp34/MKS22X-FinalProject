@@ -150,6 +150,10 @@ class Game {
     text("ship: "+shipx+" "+shipy,width/2,70);
   }
   
+  public void rotateButton(){
+    
+  }
+  
   
   //returns 0 if game is not over, 1 if user wins, 2 if computer won
   public int isGameOver() {
