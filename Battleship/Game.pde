@@ -36,35 +36,36 @@ class Game {
     
     
     fill(0,255,0);
-    rect(0,80,150,30);
+    rect(width/2 - 80,0,160,30);
     
     textFont(f,16);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
-    text("User Board",10,100);   // STEP 5 Display Text
+    text("User's Board",width/2 - 50,20);   // STEP 5 Display Text
 
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
-        userBoard.getBoard()[r][c].displayUserSquareTest();
+        userBoard.getBoard()[r][c].displaySquareUser();
       }
    }
-   userBoard.printShips();
+   if (setup) userBoard.printShips();
   }
   
   public void displayCompBoard(PFont f){
+    background(255);
     compBoard.printOcean();
-    //compBoard.printShipsDead();
+    compBoard.printShipsDead();
     compBoard.printGrid();
     
     fill(0,255,0);
-    rect(0,80,150,30);
+    rect(width/2 - 100,0,200,30);
     
     textFont(f,16);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
-    text("Comp Board",10,100);   // STEP 5 Display Text
+    text("Computer's Board",width/2 - 90,10);   // STEP 5 Display Text
     
     for (int r = 0; r < 10; r++) {
       for (int c = 0; c < 10; c++) {
-        compBoard.board[r][c].displayCompSquareTest();
+        compBoard.board[r][c].displaySquareComp();
       }
    }
   }
