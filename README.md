@@ -100,8 +100,12 @@ Sophie:
 * started the computer strategy so that if the computer finds a hit on the board, instead of choosing randomly it will randomly choose one of the squares around it to attack. I started tracking the hits and updating them whenever attack() is called
 <br>
 Lauren:
+* Imported photos of ocean and ship, edited to fit the right size. 
+* Added print methods to display these pictures on screen for the board.
+* Tested rotate to print ships of both directions- didn't work.
+* Updated display methods for user and comp to print dead or alive ships.
 
-<b>Thursday, May 29th</b>
+<b>Thursday, May 30th</b>
 <br>
 Sophie:
 * I made a lastHit variable in the Game class and accessors to use in the computer strategy so that I won't have to loop to find hits.
@@ -110,17 +114,27 @@ Sophie:
 * integrated the code for computer choosing square, fixed a problem because part of the code wasn't being called
 <br>
 Lauren:
+* Edited methods to place ships to extend to ships of all sizes 
+* Found and edited pictures of ships of all sizes 
+* Updated numbers of diff sized ships according to real game rules, it worked to place ships randomly.
+* Updated display methods to print different sized ships.
 
-<b>Friday, May 30th</b>
+<b>Friday, May 31th</b>
 <br>
 Both:
 * debugged compChooseSquare. We figured out why getHits() wasn't working and changed code in the attack() method to fix it
-* tried to figure out why the computer stops attacking after it gets 2 hits sometimes by printing relevant information onto the board
+* tried to figure out why the computer stops attacking after it gets 2 hits sometimes by printing relevant information onto the board.
 
 <b>Saturday, June 1st</b>
 <br>
 Sophie:
 * fixed getHits() in attack again so its doesn't become negative after a whole ship is found and the methid also attacks all of the surrounding ships
+<br>
+Lauren:
+* Began settup up the board for drag- widened board and figured out coordinates for ships to placed there without touching.
+* Created setupShips method that places ships on the side before they are placed.
+* Moved display method to ship class, for abstraction. 
+* Began code to return which ship is being clicked based on coordinates.
 
 <b>Sunday, June 2nd</b>
 <br>
@@ -128,6 +142,10 @@ Sophie:
 * Added to computer strategy so that if there is more than one hit in a row, the computer will only choose the adjacent squares in the row or column of the ship's direction. Essentially, now there are only two possibilities if there are already two hits in a row.
 <br>
 Lauren:
+* Spent a long time debugging ShipClicked, because direction didn't work. Finally got it to work. 
+* Converted hardcoded part of shipClicked to a generalized statement.
+
+
 
 <b>Monday, June 3rd</b>
 <br>
@@ -136,6 +154,9 @@ Sophie:
 * Fixed the comp strategy with 2 hits so that it makes an array of possible coordinates and chooses randomly from those in case the first coordinate it chooses fails
 <br>
 Lauren:
+* Made a drag method that had a loop for mousePressed and moves ship based on shipClicked.
+* Spent a long time debugging again because mousePressed only updates every frame, but I had a loop within draw.
+* Basically spent the whole day debugging :(
 
 <b>Tuesday, June 4th</b>
 <br>
@@ -143,3 +164,14 @@ Sophie:
 * I was trying to fix 2 problems with the computer strategy for so long! I printed out all of the variables and arrays that the method used onto the screen to try to figure out why the method didn't always print out the right coordinates. It turned out to me that one of the variables in another class wasn't properly updated and that part of the method wasn't looking at the right square when it checked if the surrounding squares were attacked
 <br>
 Lauren:
+* Finally figured out how to drag ships without a loop in draw - used instance variables and conditionals.
+* Also created a placeShip method that snaps the ship to the right squares
+* Debugged direction for finding the right square- had to edit canAddShipHere method 
+* drag and placeShip methods work when mouse is clicked!
+* Added a rotate button, to rotate selected ship. Imported image
+* Edited photos of each ship to be selected, then edited shipClicked method to differentiate between drag and selected.
+* Incorporated rotate into selected ship, after drag is done you can rotate selected ship.
+* Added done button to start playing after all ships are placed.
+* Add setIMg method for ships so that image doesn't have to be loaded each time- saves time.
+* Fixed all display methods 
+* Re-incorporated turns and game over into the draw loop.
