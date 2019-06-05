@@ -8,6 +8,10 @@ class Ship {
   //(r2,c2) is bottom-most, right-most coordinate
   int r2;
   int c2;
+  
+  //setup positions:
+  float startx;
+  float starty;
 
   float x1; //top-most, left-most coordinates
   float y1; //useful before ship gets matched to a square w/ r,c
@@ -108,6 +112,11 @@ class Ship {
   public void setXY(float x, float y) {
     x1 = x;
     y1 = y;
+  }
+  
+  public void setStartXY(float x, float y) {
+   startx = x;
+   starty = y;
   }
 
   //update x and y coordinates after ship is placed on a square
