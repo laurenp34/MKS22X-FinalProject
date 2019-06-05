@@ -7,6 +7,7 @@ class GameBoard {
   int shipCount; //how many ships have been placed on the board
   int hits;
   int shipDragged;
+  boolean drag;
 
   public GameBoard() {
     squaresAttacked = 0;
@@ -319,15 +320,33 @@ class GameBoard {
   //ydist: distance from mouse to y1
   public boolean shipClicked() {
     if (mousePressed) {
-      if (shipDragged != -1) return true; //a ship is already selected, keep the same one.
+      if (drag && shipDragged != -1) return true;
+      else if (!drag && shipDragged != -1) {
+        ships[shipDragged].deselect();
+        shipDragged = -1;
+        return false;
+      }
       for (int i=0; i<ships.length; i++) {
-        if ((mouseX >= ships[i].x1 && mouseY >= ships[i].y1) && (ships[i].dir == 0 && mouseX - ships[i].x1 <= 70 && mouseY - ships[i].y1 <= (70 * ships[i].size)) || (ships[i].dir == 1 && mouseX - ships[i].x1 <= (70 * ships[i].size) && mouseY - ships[i].y1 <= 70)) {
+        if ((mouseX >= ships[i].x1 && mouseY >= ships[i].y1) && ((ships[i].dir == 0 && mouseX - ships[i].x1 <= 70 && mouseY - ships[i].y1 <= (70 * ships[i].size)) || (ships[i].dir == 1 && mouseX - ships[i].x1 <= (70 * ships[i].size) && mouseY - ships[i].y1 <= 70))) {
 
           ships[i].xdist = mouseX - ships[i].x1;
           ships[i].ydist = mouseY - ships[i].y1;
           ships[i].select();
           shipDragged = i;
+          drag = true;
           return true;
+        } else {
+          //ships[shipDragged].deselect();
+          drag = false;
+          //placeShip(); 
+          //background(255);
+          for (Square[] row : board) {
+            for (Square sq : row) {
+              sq.displayUserSquareTest();
+            }
+          }
+          printGrid();
+          printShips();
         }
         /*
       //if clicking ship size 4
@@ -348,20 +367,23 @@ class GameBoard {
       }
     }
     //the ship was just unclicked (shipDragged hasn't been updated)
+
     else if (shipDragged != -1) {
-      ships[shipDragged].deselect();
+      drag = false;
       placeShip(); 
       background(255);
-      for (Square[] row: board) {
-       for (Square sq: row) {
-        sq.displayUserSquareTest(); 
-       }
+      for (Square[] row : board) {
+        for (Square sq : row) {
+          sq.displayUserSquareTest();
+        }
       }
       printGrid();
       printShips();
-    }
+    } 
     //no ship found or mouse not clicked:
-    shipDragged = -1;
+
+    //shipDragged = -1;
+    //drag = false;
     return false;
   }
 
@@ -382,7 +404,7 @@ class GameBoard {
       //float ydist = ship.ydist;
       //System.out.println(xdist+" "+ydist);
       //System.out.println(mouseX+" "+mouseY);
-      ship.setXY(ship.x1+mouseX-pmouseX, ship.y1+mouseY-pmouseY);
+      if (drag) ship.setXY(ship.x1+mouseX-pmouseX, ship.y1+mouseY-pmouseY);
       //System.out.println(mouseX+" "+mouseY+" "+(mouseX-xdist)+" "+(mouseY-ydist));
       //ship.x1 = mouseX - xdist;
       //System.out.println(ship.x1);
@@ -390,10 +412,10 @@ class GameBoard {
       //System.out.println(ship.y1);
       //System.out.println(ship.x1+" "+ship.y1);
       background(255);
-      for (Square[] row: board) {
-       for (Square sq: row) {
-        sq.displayUserSquareTest(); 
-       }
+      for (Square[] row : board) {
+        for (Square sq : row) {
+          sq.displayUserSquareTest();
+        }
       }
       printGrid();
       printShips();
@@ -403,7 +425,7 @@ class GameBoard {
   }
 
   public void placeShip() {
-    
+
     Ship ship = ships[shipDragged];
     ship.clearSquares();
     int r = (int) ((ship.y1 - 50) / 70);
@@ -411,10 +433,9 @@ class GameBoard {
     System.out.println(ship.x1+" "+ship.y1+" "+c+" "+r);
 
     //check to see if ship is in range: 
-    if (canAddShipHere(ship,c,r)) {
-      addShip(ship,c,r); 
-    }
-    else {
+    if (canAddShipHere(ship, c, r)) {
+      addShip(ship, c, r);
+    } else {
       ship.setXY(ship.startx, ship.starty);
     }
   }
