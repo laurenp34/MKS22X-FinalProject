@@ -10,6 +10,7 @@ class GameBoard {
 
   public GameBoard() {
     squaresAttacked = 0;
+    shipDragged = -1;
     rows = 10; 
     cols = 10;
     hits = 0;
@@ -84,22 +85,24 @@ class GameBoard {
     int dir = newShip.getDir();
 
     //vertical ship
-    if (dir==0) {
+    if (dir==1) {
+      if (row + size >= 10) return false;
       for (int n=-1; n<=size; n++) {
         if (row>=0 && row < 10) {
           if (isShipHere(row+n, col)) return false;
           if (col>0 && isShipHere(row+n, col-1)) return false;
           if (col<9 && isShipHere(row+n, col+1)) return false;
-        }
+        } else return false;
       }
       //horizontal ship
     } else {
+      if (col + size >= 10) return false;
       for (int n=-1; n<=size; n++) {
         if (col>=0 && col<10) {
           if (isShipHere(row, col+n)) return false;
           if (row>0 && isShipHere(row-1, col+n)) return false;
           if (row<9 && isShipHere(row+1, col+n)) return false;
-        }
+        } else return false;
       }
     }
     return true;
@@ -124,7 +127,7 @@ class GameBoard {
     newShip.setLocation(row, col);
 
     //vertical ship
-    if (dir==0) {
+    if (dir==1) {
       for (int n=0; n<size; n++) {
         Square s = board[row+n][col];
         s.addShipHere(newShip);
@@ -139,8 +142,8 @@ class GameBoard {
       }
     }
     newShip.updateXY();
-    ships[shipCount] = newShip;
-    shipCount++;
+    //ships[shipCount] = newShip;
+    //shipCount++;
     return true;
   }
 
@@ -347,7 +350,11 @@ class GameBoard {
     else if (shipDragged != -1) {
       placeShip(); 
       background(255);
-      printOcean();
+      for (Square[] row: board) {
+       for (Square sq: row) {
+        sq.displayUserSquareTest(); 
+       }
+      }
       printGrid();
       printShips();
     }
@@ -381,7 +388,11 @@ class GameBoard {
       //System.out.println(ship.y1);
       //System.out.println(ship.x1+" "+ship.y1);
       background(255);
-      printOcean();
+      for (Square[] row: board) {
+       for (Square sq: row) {
+        sq.displayUserSquareTest(); 
+       }
+      }
       printGrid();
       printShips();
       return true;
@@ -390,15 +401,18 @@ class GameBoard {
   }
 
   public void placeShip() {
+    
     Ship ship = ships[shipDragged];
-    int c = (int) ((ship.x1 - 50) / 70);
-    int r = (int) ((ship.y1 - 150) / 70);
-    System.out.println(ship.x1+" "+ship.y1+" "+r+" "+c);
+    ship.clearSquares();
+    int r = (int) ((ship.y1 - 50) / 70);
+    int c = (int) ((ship.x1 - 150) / 70);
+    System.out.println(ship.x1+" "+ship.y1+" "+c+" "+r);
 
     //check to see if ship is in range: 
-    if ((!(r < 0 || c < 0 || r > 10 || c > 10))&&((ship.dir == 0 && c + ship.size < 10) || (ship.dir == 1 && r + ship.size < 10))) {
-      addShip(ship, r, c);
-    } else {
+    if (canAddShipHere(ship,c,r)) {
+      addShip(ship,c,r); 
+    }
+    else {
       ship.setXY(ship.startx, ship.starty);
     }
   }
