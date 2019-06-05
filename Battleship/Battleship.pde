@@ -1,10 +1,11 @@
 
 import java.util.Random;
-Game g = new Game();
 PFont f;
+Game g = new Game();
 
 void setup() {
   size(1600, 800);
+
   f = createFont("Arial", 16, true);
   g.userBoard.setupShips();
   //g.displayBoard(f);
@@ -29,8 +30,10 @@ void setup() {
 }
 
 void draw() {
+  g.rotateButton();
   //System.out.println(mousePressed);
   g.userBoard.drag();
+  g.rotateButton();
   //System.out.println(mousePressed);
   //g.userBoard.drag();
   
