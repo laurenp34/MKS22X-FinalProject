@@ -225,6 +225,7 @@ class GameBoard {
       Ship s;
       if (i < 1) {
         s = new Ship(5); //add 1 ship size 5
+        ships[i] = s;
         //coordinates can be btn (0-5) b/c size 5
         int r = (int) (Math.random() * 6);
         int c = (int) (Math.random() * 6);
@@ -234,6 +235,7 @@ class GameBoard {
         }
       } else if (i < 2) {
         s = new Ship(4); //add 1 ship size 4
+        ships[i] = s;
         //coordinates can be btn (0-6) b/c size 4
         int r = (int) (Math.random() * 7);
         int c = (int) (Math.random() * 7);
@@ -243,6 +245,7 @@ class GameBoard {
         }
       } else if (i < 4) {
         s = new Ship(3); //add 2 ships size 3
+        ships[i] = s;
         //coordinates can be btn (0-7) b/c size 3
         int r = (int) (Math.random() * 8);
         int c = (int) (Math.random() * 8);
@@ -252,6 +255,7 @@ class GameBoard {
         }
       } else {
         s = new Ship(2); //add 1 ship size 2
+        ships[i] = s;
         //coordinates can be btn (0-8) b/c size 2
         int r = (int) (Math.random() * 9);
         int c = (int) (Math.random() * 9);
