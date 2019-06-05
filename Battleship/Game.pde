@@ -56,7 +56,6 @@ class Game {
     //rect(0,150,40,100);
     //rect(0, 0, 30, 60);
     //rect(0,260,40,40);
-
     textFont(f, 16);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
     text("User Board", 10, 100);   // STEP 5 Display Text
@@ -208,7 +207,6 @@ class Game {
       }
 
       /*
-
        rect(0,120,80,40);
        
        textFont(f,16);                  // STEP 3 Specify font to be used
@@ -269,9 +267,9 @@ class Game {
 
         int ycor = hitsList.get(0)[0];
 
-        int max = 0;
+        int max = -1;
 
-        int min = 10;
+        int min = 11;
 
         for (int i = 0; i < hitsList.size(); i++) {
 
@@ -287,7 +285,6 @@ class Game {
         }
 
         /*
-
          fill(0,255,0);
          
          rect(0,400,150,40);
@@ -320,14 +317,14 @@ class Game {
 
         ArrayList<int[]> coords = new ArrayList<int[]>();
 
-        if (min > 0 && !userBoard.getSquare(min - 1, ycor).isAttacked()) {
+        if (min > 0 && min <= 9 && !userBoard.getSquare(ycor, min - 1).isAttacked()) {
 
           int[] coor = {ycor, min - 1};
 
           coords.add(coor);
         }
 
-        if (max < 9 && !userBoard.getSquare(max + 1, ycor).isAttacked()) {
+        if (max < 9 && max >= 0 && !userBoard.getSquare(ycor, max + 1).isAttacked()) {
 
           int[] coor = {ycor, max + 1};
 
@@ -335,7 +332,6 @@ class Game {
         }
 
         /*
-
          fill(0,255,0);
          
          rect(0,300,150,40);
@@ -376,9 +372,9 @@ class Game {
 
         int xcor = hitsList.get(0)[1];
 
-        int max = 0;
+        int max = -1;
 
-        int min = 10;
+        int min = 11;
 
         for (int i = 0; i < hitsList.size(); i++) {
 
@@ -394,7 +390,6 @@ class Game {
         }
 
         /*
-
          fill(0,255,0);
          
          rect(0,400,150,40);
@@ -427,22 +422,21 @@ class Game {
 
         ArrayList<int[]> coords = new ArrayList<int[]>();
 
-        if (min > 0 && !userBoard.getSquare(xcor, min-1).isAttacked()) {
+        if (min > 0 && min <= 9 && !userBoard.getSquare(min-1, xcor).isAttacked()) {
 
           int[] coor = {min - 1, xcor};
 
           coords.add(coor);
         }
 
-        if (max < 9 && !userBoard.getSquare(xcor, max+1).isAttacked()) {
+        if (max < 9 && max >= 0 && !userBoard.getSquare(max + 1,xcor).isAttacked()) {
 
           int[] coor = {max + 1, xcor};
 
           coords.add(coor);
         }
-
-        /*
-
+/*
+        
          fill(0,255,0);
          
          rect(0,300,150,40);
@@ -460,8 +454,8 @@ class Game {
          fill(0); 
          
          text(coor,10,330);
-         
          */
+         
 
         Random ran = new Random();
 
