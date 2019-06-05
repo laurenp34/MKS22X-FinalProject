@@ -20,6 +20,12 @@ class Ship {
   boolean alive; 
   boolean placed;
   
+  //drag info:
+  boolean dragged;
+  float xdist;
+  float ydist;
+  
+  
   public Ship(int newSize) {
     alive = true;
     size = newSize; 
