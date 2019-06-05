@@ -4,6 +4,8 @@ class Game {
   GameBoard compBoard;
   GameBoard userBoard;
   int turns;
+  
+
   //PFont f; 
   
   public Game(){
@@ -11,6 +13,7 @@ class Game {
    turns = 0; 
    compBoard = new GameBoard();
    userBoard = new GameBoard();
+   
   }
   public void setupShips(){
      userBoard.placeShipsRandomly();
@@ -151,7 +154,20 @@ class Game {
   }
   
   public void rotateButton(){
+    PImage rotate = loadImage("rotatebutton.png");
+    image(rotate,0,0,70,70);
     
+    if (mousePressed && userBoard.shipDragged != -1 && mouseX <= 70 && mouseY <= 70) {
+      Ship ship = userBoard.ships[userBoard.shipDragged];
+      //test ship to see if it can fit there
+      Ship test = new Ship(ship.size);
+      test.dir = ship.dir;
+      if (userBoard.canAddShipHere(test, ship.squares[0].r, ship.squares[0].c)) {
+        ship.clearSquares();
+        userBoard.ships[userBoard.shipDragged].rot(); 
+        userBoard.addShip(ship,ship.squares[0].r, ship.squares[0].c);
+      }
+    }
   }
   
   
