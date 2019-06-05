@@ -52,7 +52,7 @@ class Game {
         userBoard.getBoard()[r][c].displaySquareUser();
         textFont(f,16);   
         fill(255);
-        text("" + userBoard.getBoard()[r][c].isAttacked(), r*70 + 150,c*70 + 50 + 20);
+        //text("" + userBoard.getBoard()[r][c].isAttacked(), r*70 + 150,c*70 + 50 + 20);
       }
    }
   }
