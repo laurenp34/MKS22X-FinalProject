@@ -44,6 +44,7 @@ void setup() {
 
 private int turns = 0;
 int c = 0;
+int cg = 0;
   boolean start = false;
 
 void draw() {
@@ -65,9 +66,12 @@ void draw() {
     //g.displayTurns(turns, f);
     int gmo = g.isGameOver();
     if (gmo != 0) {
-      g.gameOver(gmo, f);
-      noLoop();
-    }
+      cg ++;
+      if (cg == 30) {
+        g.gameOver(gmo, f);
+        noLoop();
+      }
+    } else cg = 0;
 
     if (turns % 2 == 0) {
       g.displayCompBoard(f);
