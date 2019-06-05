@@ -42,7 +42,7 @@ void draw() {
       g.compBoard.placeShipsRandomly();
       g.displayCompBoard(f);
     }
-  } /*else {
+  } else {
     g.displayCompBoard(f);
     //g.displayTurns(turns, f);
     int gmo = g.isGameOver();
@@ -68,16 +68,16 @@ void draw() {
       if (frameCount-c > 30) {
         g.displayBoard(f);
       }
-      if (frameCount-c == 35) {
+      if (frameCount-c == 50) {
         //if for some reason a square isn't attacked, don't increment framecount (keep trying)
         //if (!g.compChoose()) c++;
         g.compChoose();
       }
-      if (frameCount-c > 40) {
+      if (frameCount-c > 70) {
         turns++;
       }
     }
-  }*/
+  }
 }
     /*if (turns%2 == 0) {
      g.displayCompBoard(f);
