@@ -67,7 +67,7 @@ class Ship {
         if (selected) p = loadImage("ship3upselect.png");
         else if (alive) {
           p = loadImage("ship3up.png");
-        } else p = loadImage("ship3upde.png");
+        } else p = loadImage("ship3updead.png");
       }
     }
     if (size == 2) {
@@ -75,9 +75,11 @@ class Ship {
       if (dir == 1) {
         if (selected) p = loadImage("ship2select.png");
         else if (alive) p = loadImage("ship2.png");
+        else p = loadImage("ship2dead.png");
       } else {
         if (selected) p = loadImage("ship2upselect.png");
         else if (alive) p = loadImage("ship2up.png");
+        else p = loadImage("ship2updead.png");
       }
     }
     if (size == 4) {
@@ -85,9 +87,11 @@ class Ship {
       if (dir == 1) {
         if (selected) p = loadImage("ship4select.png");
         else if (alive) p = loadImage("ship4.png");
+        else p = loadImage("ship4dead.png");
       } else {
         if (selected) p = loadImage("ship4upselect.png");
         else if (alive) p = loadImage("ship4up.png");
+        else p = loadImage("ship4updead.png");
       }
     }
     if (size == 5) {
@@ -95,9 +99,11 @@ class Ship {
       if (dir == 1) {
         if (selected) p = loadImage("ship5select.png");
         else if (alive) p = loadImage("ship5.png");
+        else p = loadImage("ship5dead.png");
       } else {
         if (selected) p = loadImage("ship5upselect.png");
         else if (alive) p = loadImage("ship5up.png");
+        else p = loadImage("ship5updead.png");
       }
     }
   }
