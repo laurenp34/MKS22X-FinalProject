@@ -81,16 +81,9 @@
   }
   
   public void displayUserSquareTest(){
-    if (hasShip && attacked) {
-     fill(255,0,0);
-     rect(x1,y1,70,70);
-    } else if (hasShip) {
-      fill(0,255,0);
-      rect(x1,y1,70,70);
-    } else if (attacked) {
-      fill(0,0,255);
-      rect(x1,y1,70,70);
-    }
+    fill(0,0,255);
+    if (hasShip) fill(255,0,0);
+    rect(x1,y1,70,70);
   }
   
   public void displayCompSquareTest() {
