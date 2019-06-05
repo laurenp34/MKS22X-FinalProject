@@ -309,7 +309,8 @@ class GameBoard {
   //xdist: distance from mouse to x1 
   //ydist: distance from mouse to y1
   public boolean shipClicked() {
-    if (mousePressed && shipDragged == -1) {
+    if (mousePressed) {
+      if (shipDragged != -1) return true; //a ship is already selected, keep the same one.
       for (int i=0; i<ships.length; i++) {
         if ((ships[i].dir == 0 && mouseX - ships[i].x1 <= 70 && mouseY - ships[i].y1 <= (70 * ships[i].size)) || (ships[i].dir == 1 && mouseX - ships[i].x1 <= (70 * ships[i].size) && mouseY - ships[i].y1 <= 70)) {
 
@@ -337,6 +338,7 @@ class GameBoard {
          if (ships[4].dir == 1 && mouseX >= 1300 && mouseX <= 1440 && mouseY >= 570 && mouseY <= 640) return 4; */
       }
     }
+    //no ship found or mouse not clicked:
     shipDragged = -1;
     return false;
   }
@@ -360,8 +362,8 @@ class GameBoard {
     System.out.println(shipDragged);
     if (shipDragged != -1) {
       Ship ship = ships[shipDragged];
-      float xdist = ship.xdist;
-      float ydist = ship.ydist;
+      //float xdist = ship.xdist;
+      //float ydist = ship.ydist;
       //System.out.println(xdist+" "+ydist);
       //System.out.println(mouseX+" "+mouseY);
       ship.setXY(ship.x1+mouseX-pmouseX, ship.y1+mouseY-pmouseY);
