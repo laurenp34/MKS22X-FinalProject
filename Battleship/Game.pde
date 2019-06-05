@@ -146,8 +146,8 @@ class Game {
     fill(0);                         // STEP 4 Specify font color 
     text(""+t,width/2,15);   // STEP 5 Display Text
     text("ship: "+userBoard.shipClicked(),width/2,30);
-    text("mouse: "+mouseX+" "+mouseY,width/2,20);
-    text("ship: "+shipx+" "+shipy,width/2,20);
+    text("mouse: "+mouseX+" "+mouseY,width/2,50);
+    text("ship: "+shipx+" "+shipy,width/2,70);
   }
   
   
