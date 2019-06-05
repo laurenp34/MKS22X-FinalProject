@@ -77,7 +77,7 @@ class Ship {
         else if (alive) p = loadImage("ship2.png");
       } else {
         if (selected) p = loadImage("ship2upselect.png");
-        if (alive) p = loadImage("ship2up.png");
+        else if (alive) p = loadImage("ship2up.png");
       }
     }
     if (size == 4) {
@@ -103,6 +103,9 @@ class Ship {
   }
 
   public void rot() {
+    if (dir == 1) dir = 0;
+    else dir = 1;
+    setImg();
   }
   
   public void select() {
