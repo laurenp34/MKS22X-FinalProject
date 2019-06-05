@@ -8,7 +8,7 @@ class Ship {
   //(r2,c2) is bottom-most, right-most coordinate
   int r2;
   int c2;
-  
+
   //setup positions:
   float startx;
   float starty;
@@ -97,6 +97,14 @@ class Ship {
   public void rot() {
   }
 
+  public void clearSquares() {
+    if (placed) {
+      for (int i=0; i<squares.length; i++) {
+        squares[i].hasShip = false;
+      }
+    }
+  }
+
   public void display() {
     //get top-most, left-most x and y coordinates (use ship's square array)
     //int x1 = squares[0].getX();
@@ -113,10 +121,10 @@ class Ship {
     x1 = x;
     y1 = y;
   }
-  
+
   public void setStartXY(float x, float y) {
-   startx = x;
-   starty = y;
+    startx = x;
+    starty = y;
   }
 
   //update x and y coordinates after ship is placed on a square
