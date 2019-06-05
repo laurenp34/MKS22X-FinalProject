@@ -8,32 +8,34 @@ class Ship {
   //(r2,c2) is bottom-most, right-most coordinate
   int r2;
   int c2;
-  
+
   float x1; //top-most, left-most coordinates
   float y1; //useful before ship gets matched to a square w/ r,c
   //later, ^^these coordinates are the same as squares[0]'s
-  
+
   Square[] squares;
-  
+
   int dir; //vertical is 0, horizontal is 1. 
-  
+
   boolean alive; 
   boolean placed;
-  
+
   //drag info:
   boolean dragged;
   float xdist;
   float ydist;
-  
-  
+  PImage p;
+
+
   public Ship(int newSize) {
     alive = true;
     size = newSize; 
     squares = new Square[size];
     dir = (int) (Math.random() * 2); // choose 1 or 0 randomly.
+    setImg();
   }
-  
-  public Ship(int newSize, int r, int c){ 
+
+  public Ship(int newSize, int r, int c) { 
     r1=r;
     c1=c;
     size = newSize; 
@@ -44,92 +46,82 @@ class Ship {
       c2=c1+size-1;
     } else { //horizontal
       r2=r1+size-1;
-      c2=c; 
+      c2=c;
+    }
+    setImg();
+  }
+
+  public void setImg() {
+    if (size == 3) {
+      //horizontal ship
+      if (dir == 1) {
+        if (alive) {
+          p = loadImage("ship3.png");
+        } else p = loadImage("ship3dead.png");
+      } else {
+        if (alive) {
+          p = loadImage("ship3up.png");
+        } else p = loadImage("ship3updead.png");
+      }
+    }
+    if (size == 2) {
+      //horizontal ship
+      if (dir == 1) {
+        if (alive) p = loadImage("ship2.png");
+      } else {
+        if (alive) p = loadImage("ship2up.png");
+      }
+    }
+    if (size == 4) {
+      //horizontal ship
+      if (dir == 1) {
+        if (alive) p = loadImage("ship4.png");
+      } else {
+        if (alive) p = loadImage("ship4up.png");
+      }
+    }
+    if (size == 5) {
+      //horizontal ship
+      if (dir == 1) {
+        if (alive) p = loadImage("ship5.png");
+      } else {
+        if (alive) p = loadImage("ship5up.png");
+      }
     }
   }
-  
+
+  public void rot() {
+  }
+
   public void display() {
-    PImage p;
-      //get top-most, left-most x and y coordinates (use ship's square array)
-      //int x1 = squares[0].getX();
-      //int y1 = squares[0].getY();
-      if (size == 3) {
-        //horizontal ship
-        if (dir == 1) {
-          if (alive) {
-            p = loadImage("ship3.png");
-            //else p = loadImage("ship3.png");
-            image(p, x1, y1, 210, 70);
-          }
-        } else {
-          if (alive) {
-            p = loadImage("ship3up.png");
-            // else p = loadImage("ship3up.png");
-            image(p, x1, y1, 70, 210);
-          }
-        }
-      }
-      if (size == 2) {
-        //horizontal ship
-        if (dir == 1) {
-          if (alive) p = loadImage("ship2.png");
-          else p = loadImage("ship3.png");
-          image(p, x1, y1, 140, 70);
-        } else {
-          if (alive) p = loadImage("ship2up.png");
-          else p = loadImage("ship3up.png");
-          image(p, x1, y1, 70, 140);
-        }
-      }
-      if (size == 4) {
-        //horizontal ship
-        if (dir == 1) {
-          if (alive) p = loadImage("ship4.png");
-          else p = loadImage("ship3.png");
-          image(p, x1, y1, 280, 70);
-        } else {
-          if (alive) p = loadImage("ship4up.png");
-          else p = loadImage("ship3up.png");
-          image(p, x1, y1, 70, 280);
-        }
-      }
-      if (size == 5) {
-        //horizontal ship
-        if (dir == 1) {
-          if (alive) p = loadImage("ship5.png");
-          else p = loadImage("ship3.png");
-          image(p, x1, y1, 350, 70);
-        } else {
-          if (alive) p = loadImage("ship5up.png");
-          else p = loadImage("ship3up.png");
-          image(p, x1, y1, 70, 350);
-        }
-      } 
-    
-    
+    //get top-most, left-most x and y coordinates (use ship's square array)
+    //int x1 = squares[0].getX();
+    //int y1 = squares[0].getY();
+    if (dir == 1) image(p, x1, y1, (70 * size), 70);  
+    else image(p, x1, y1, 70, (70 * size));
   }
-  
+
   public void addSquare(int idx, Square sq) {
-   squares[idx] = sq; 
+    squares[idx] = sq;
   }
-  
-  public void setXY(float x,float y) {
-   x1 = x;
-   y1 = y;
+
+  public void setXY(float x, float y) {
+    x1 = x;
+    y1 = y;
   }
-  
+
   //update x and y coordinates after ship is placed on a square
   //matched to squares[0]
   public void updateXY() {
     x1 = squares[0].getX();
     y1 = squares[0].getY();
   }
-  
+
   public void setLocation(int r, int c) {
     r1 = r;
     c1 = c;
   }
-  
+
   public int getSize() {
     return size;
   }
@@ -148,12 +140,11 @@ class Ship {
   public int getC2() {
     return c2;
   }
-  
+
   public int getAttacks() {
     return attacks;
   }
   public void attack() {
     attacks++;
   }
-  
 }
