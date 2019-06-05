@@ -54,7 +54,7 @@
 
   //continuous method to be run in draw()
   public void displaySquareUser() {
-    if (hasShip && attacked) {
+    if (hasShip && attacked && !fullShipFound) {
       PImage p;
       p = loadImage("fire.png");
       image(p, x1, y1, 70, 70);
@@ -62,6 +62,9 @@
       fill(0, 0, 255);
       rect(x1, y1, 70, 70);
     }
+    //textFont(f,16);   
+  //fill(255);
+  //text("" +attacked, x1,y1 + 20);
   }
 
   public void displaySquareComp() {

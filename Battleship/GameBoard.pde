@@ -6,8 +6,14 @@ class GameBoard {
   Ship[] ships;
   int shipCount; //how many ships have been placed on the board
   int hits;
+
   int shipDragged;
   boolean drag;
+
+  int totalAttacks;
+  int hitXcor;
+  int hitYcor;
+  ArrayList<int[]> hitsList;
 
   public GameBoard() {
     squaresAttacked = 0;
@@ -16,7 +22,11 @@ class GameBoard {
     cols = 10;
     hits = 0;
     shipCount =0;
+
     ships = new Ship[5]; //5 ships total
+
+    hitsList = new ArrayList<int[]>();
+
     board = new Square[10][10]; //10x10 board.
     for (int i=0; i<10; i++) {
       for (int i2=0; i2<10; i2++) {
@@ -102,6 +112,10 @@ class GameBoard {
   public void addAttacked() {
     squaresAttacked++;
   }
+  
+  public Square getSquare(int r, int c){
+    return board[r][c];
+  }
 
 
   //adds a ship to the board, as well as to the ships array.
@@ -137,23 +151,43 @@ class GameBoard {
     //shipCount++;
     return true;
   }
+  
+  public int lastHitX(){
+    return hitXcor;
+  }
+  
+  public int lastHitY(){
+    return hitYcor;
+  }
 
   public boolean attack(int r, int c) {
+//hits ++;
+    //textFont(f,16);                  // STEP 3 Specify font to be used
+    //fill(0);                         // STEP 4 Specify font color 
+    //text("" + hits,20,20); 
     Square s = board[r][c];
     boolean out = s.attack();
     //if attack doens't work, return false immediately
     if (!out) return out;
-    hits++;
+    totalAttacks++;
+    if (s.hasShip) {
+      hitXcor = r;
+      hitYcor = c;
+      hits++;
+      int[] coor = {r,c};
+      hitsList.add(coor);
+    }
     //if this attack made the ship fully attacked:
     if (s.hasShip && s.shipHere.attacks == s.shipHere.size) {
       //kill the ship
+      hitsList.clear();
       s.shipHere.alive = false;
       s.shipHere.setImg();
       //iterate through squares covered by ship and change fullyAttacked variable
       for (int i=0; i<s.shipHere.size; i++) {
         Square sq = s.shipHere.squares[i];
         sq.fullShipFound = true;
-        //hits -= s.shipHere.size();
+        hits = 0;
 
         //also ask adjacent squares to be attacked (eliminate)
         int row = sq.r;
@@ -255,6 +289,7 @@ class GameBoard {
     }
   }
 
+
   //puts ships on side, ready to be dragged by user
   public void setupShips() {
     //add ship size 5
@@ -298,6 +333,18 @@ class GameBoard {
    if (posorneg == 0){
    if (board[x-1][y] */
 
+/*
+  public Square compStrategize(){
+    for (int y = 0; y < board.length; y++){
+      for (int x = 0; x < board[0].length; x++){
+        if (board[y][x].isAttacked()){
+          int xory = Math.random() * 2;
+          int posorneg = Math.random() * 2;
+          if (xory == 0){
+            if (posorneg == 0){
+              if (board[x-1][y]*/
+
+
   public boolean isShipHere(int row, int col) {
     if (row > 9 || row < 0 || col < 0 || col > 9) return false;
     return board[row][col].isShipHere();
@@ -307,6 +354,7 @@ class GameBoard {
   public int getHits() {
     return hits;
   }
+
 
   public void rotateButton() {
     PImage rotate = loadImage("rotatebutton.png");
@@ -453,4 +501,11 @@ class GameBoard {
       ship.setXY(ship.startx, ship.starty);
     }
   }
+
+  
+  public ArrayList<int[]> getHitsList(){
+    return hitsList;
+  }
+
+
 }
