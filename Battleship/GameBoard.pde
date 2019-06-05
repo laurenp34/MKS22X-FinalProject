@@ -340,22 +340,32 @@ class GameBoard {
     return out;
   }
   
+  //user selects a square 
+  //return whether or not the ship can be placed there
+  public boolean selectSquare(Ship s){
+    return true;
+  }
+  
   //input is the float[] returned from shipClicked^^
   //output is whether or not the ship was moved
-  public boolean drag(float[] clickInfo) {
+  public boolean drag() {
+    float[] clickInfo = shipClicked();
+    if (clickInfo[0] == -1) return false;
     Ship ship = ships[(int) clickInfo[0]];
     float xdist = clickInfo[1];
     float ydist = clickInfo[2];
-    boolean  mouse = false;
-    while (mousePressed) {
-      mouse = true;
+    System.out.println(xdist+" "+ydist);
+      System.out.println(mousePressed);
       //System.out.println(mouseX+" "+mouseY);
-      ship.x1 = mouseX - xdist;
-      ship.y1 = mouseY - ydist;
+      ship.setXY(mouseX-xdist, mouseY-ydist);
+      System.out.println(mouseX+" "+mouseY+" "+(mouseX-xdist)+" "+(mouseY-ydist));
+      //ship.x1 = mouseX - xdist;
+      //System.out.println(ship.x1);
+      //ship.y1 = mouseY - ydist;
+      //System.out.println(ship.y1);
       //System.out.println(ship.x1+" "+ship.y1);
       ship.display();
-    }
-    return mouse;
-    
+      System.out.println("what");
+    return true;
   }
 }
