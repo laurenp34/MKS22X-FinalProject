@@ -62,23 +62,10 @@ class GameBoard {
   public void printShipsDead() {
     for (int i=0; i<ships.length; i++) {
       PImage p;
-      if (!ships[i].alive) {
-        if (ships[i].size == 3) {
-          //get top-most, left-most x and y coordinates (use ship's square array)
-          int x1 = ships[i].squares[0].getX();
-          int y1 = ships[i].squares[0].getY();
-          //horizontal ship
-          if (ships[i].dir == 0) {
-            p = loadImage("ship3dead.png");
-            image(p, x1, y1, 210, 70);
-          } else {
-            p = loadImage("ship3updead.png");
-            image(p, x1, y1, 70, 210);
-          }
-        }
-      }
+      if (!ships[i].alive) ships[i].display();
     }
   }
+
 
   //check to see if a ship (with no location yet) can be placed at row,col
   public boolean canAddShipHere(Ship newShip, int row, int col) {
@@ -161,6 +148,7 @@ class GameBoard {
     if (s.hasShip && s.shipHere.attacks == s.shipHere.size) {
       //kill the ship
       s.shipHere.alive = false;
+      s.shipHere.setImg();
       //iterate through squares covered by ship and change fullyAttacked variable
       for (int i=0; i<s.shipHere.size; i++) {
         Square sq = s.shipHere.squares[i];
@@ -174,26 +162,26 @@ class GameBoard {
         //only execute this part once
         if (i==0) {
           //vertical ship
-          if (s.shipHere.dir == 0 && row > 0) {
+          if (s.shipHere.dir == 1 && row > 0) {
             if (col > 0) board[row-1][col-1].attack();
             board[row-1][col].attack();
             if (col < 9) board[row-1][col+1].attack();
           }
           //horizontal ship
-          if (s.shipHere.dir == 1 && col > 0) {
+          if (s.shipHere.dir == 0 && col > 0) {
             if (row > 0) board[row-1][col-1].attack();
             board[row][col-1].attack();
             if (row < 9) board[row+1][col-1].attack();
           }
         } 
 
-        if (s.shipHere.dir == 0) {
+        if (s.shipHere.dir == 1) {
           if (col > 0) board[row][col-1].attack();
           board[row][col].attack();
           if (col < 9) board[row][col+1].attack();
         }
         //horizontal ship
-        if (s.shipHere.dir == 1) {
+        if (s.shipHere.dir == 0) {
           if (row > 0) board[row-1][col].attack();
           board[row][col].attack();
           if (row < 9) board[row+1][col].attack();
@@ -202,13 +190,13 @@ class GameBoard {
         if (i+1 == s.shipHere.size) {
           //only execute this once:
           //now attack the row/column after the last row/column
-          if (s.shipHere.dir == 0 && row < 9) {
+          if (s.shipHere.dir == 1 && row < 9) {
             if (col > 0) board[row+1][col-1].attack();
             board[row+1][col].attack();
             if (col < 9) board[row+1][col+1].attack();
           }
           //horizontal ship
-          if (s.shipHere.dir == 1 && col < 9) {
+          if (s.shipHere.dir == 0 && col < 9) {
             if (row > 0) board[row-1][col+1].attack();
             board[row][col+1].attack();
             if (row < 9) board[row+1][col+1].attack();
@@ -359,6 +347,7 @@ class GameBoard {
           checkButton();
         }
       } else if (mouseX <= 140 && mouseY <= 140) {
+        if (shipDragged != -1) ships[shipDragged].deselect();
         System.out.println("Pres");
         for (int i=0; i<ships.length; i++) {
           if (!ships[i].placed) {
@@ -387,16 +376,7 @@ class GameBoard {
           //ships[shipDragged].deselect();
           drag = false;
           //placeShip(); 
-          //background(255);
-          for (Square[] row : board) {
-            for (Square sq : row) {
-              sq.displayUserSquareTest();
-            }
-          }
-          printGrid();
-          printShips();
-          rotateButton();
-          checkButton();
+          //background(255)
         }
         /*
       //if clicking ship size 4
@@ -420,17 +400,7 @@ class GameBoard {
 
     else if (shipDragged != -1) {
       drag = false;
-      placeShip(); 
-      background(255);
-      for (Square[] row : board) {
-        for (Square sq : row) {
-          sq.displayUserSquareTest();
-        }
-      }
-      printGrid();
-      printShips();
-      rotateButton();
-      checkButton();
+      placeShip();
     } 
     //no ship found or mouse not clicked:
 
@@ -463,16 +433,6 @@ class GameBoard {
       //ship.y1 = mouseY - ydist;
       //System.out.println(ship.y1);
       //System.out.println(ship.x1+" "+ship.y1);
-      background(255);
-      for (Square[] row : board) {
-        for (Square sq : row) {
-          sq.displayUserSquareTest();
-        }
-      }
-      printGrid();
-      printShips();
-      rotateButton();
-      checkButton();
       return false;
     }
     return false;
