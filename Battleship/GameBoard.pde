@@ -325,7 +325,7 @@ class GameBoard {
       if (drag && shipDragged != -1) return true;
       //if rotate button pressed:
       if (mouseX <= 70 && mouseY <= 70 && shipDragged != -1) {
-        System.out.println("cl");
+        //System.out.println("cl");
         Ship ship = ships[shipDragged];
         //test ship to see if it can fit there
         Ship test = new Ship(ship.size);
