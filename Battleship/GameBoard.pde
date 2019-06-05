@@ -325,7 +325,7 @@ class GameBoard {
 
           ships[i].xdist = mouseX - ships[i].x1;
           ships[i].ydist = mouseY - ships[i].y1;
-          ships[i].dragged = true;
+          ships[i].select();
           shipDragged = i;
           return true;
         }
@@ -349,6 +349,7 @@ class GameBoard {
     }
     //the ship was just unclicked (shipDragged hasn't been updated)
     else if (shipDragged != -1) {
+      ships[shipDragged].deselect();
       placeShip(); 
       background(255);
       for (Square[] row: board) {
@@ -366,7 +367,7 @@ class GameBoard {
 
   public void noDrag() {
     for (int i=0; i<ships.length; i++) {
-      ships[i].dragged = false;
+      ships[i].selected = false;
     }
   }
 
