@@ -5,6 +5,11 @@ PFont f;
 void setup() {
   size(1000, 800);
   f = createFont("Arial", 16, true);
+  fill(255);
+  //rect(400,0,150,30); 
+  textFont(f,16);                  // STEP 3 Specify font to be used
+  fill(0);                         // STEP 4 Specify font color 
+  text("To Play: click a square to guess where a ship is located",300,25);
   //Game g = new Game();
   g.setupShips();
   //System.out.println(g.compBoard.ships.length);;
@@ -16,7 +21,7 @@ int c = 0;
 //private int prevTurns = 0;
 
 void draw() {
-  g.displayTurns(turns, f);
+  //g.displayTurns(turns, f);
   int gmo = g.isGameOver();
   if (gmo != 0) {
     g.gameOver(gmo, f);

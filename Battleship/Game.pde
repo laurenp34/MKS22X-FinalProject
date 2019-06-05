@@ -32,18 +32,18 @@ class Game {
     userBoard.printShips();
     
     
-    fill(0,255,0);
+    fill(255);
     rect(0,80,150,30);
-    rect(0,150,40,100);
+    //rect(0,150,40,100);
     //rect(0, 0, 30, 60);
     //rect(0,260,40,40);
     
     textFont(f,16);                  // STEP 3 Specify font to be used
     fill(0);                         // STEP 4 Specify font color 
     text("User Board",10,100);   // STEP 5 Display Text
-    text(userBoard.getHits(),10,170);
-    text(userBoard.totalAttacks,10,200);
-    text(userBoard.lastHitY()+" "+userBoard.lastHitX(),10,230);
+    //text(userBoard.getHits(),10,170);
+    //text(userBoard.totalAttacks,10,200);
+    //text(userBoard.lastHitY()+" "+userBoard.lastHitX(),10,230);
     //text("" + userBoard.getHits(),20,20);
     //text(myX + " " + myY,10,280);
 
@@ -62,7 +62,7 @@ class Game {
     compBoard.printShipsDead();
     compBoard.printGrid();
     
-    fill(0,255,0);
+    fill(255);
     rect(0,80,150,30);
     
     textFont(f,16);                  // STEP 3 Specify font to be used
