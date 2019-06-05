@@ -569,7 +569,7 @@ class Game {
 
   //whoWon: 1 is user, 2 is computer
   public void gameOver(int whoWon, PFont f) {
-    fill(0, 255, 0);
+    background(0);
     rect(height/2-100, width/2-20, 200, 40);
 
     String t = "";
@@ -577,7 +577,8 @@ class Game {
     if (whoWon == 2) t = "COMP won!";
 
     textFont(f, 16);                  // STEP 3 Specify font to be used
-    fill(0);     // STEP 4 Specify font color 
-    text(t, height/2, width/2);   // STEP 5 Display Text
+    fill(0,255,0);     // STEP 4 Specify font color 
+    text(t, width/2, height/2);   // STEP 5 Display Text
+    text("Thanks for playing!", width/2, height/2 + 30);
   }
 }
