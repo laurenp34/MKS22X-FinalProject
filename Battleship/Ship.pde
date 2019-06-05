@@ -25,7 +25,7 @@ class Ship {
   boolean placed;
 
   //drag info:
-  boolean dragged;
+  boolean selected;
   float xdist;
   float ydist;
   PImage p;
@@ -59,42 +59,60 @@ class Ship {
     if (size == 3) {
       //horizontal ship
       if (dir == 1) {
-        if (alive) {
+        if (selected) p = loadImage("ship3select.png");
+        else if (alive) {
           p = loadImage("ship3.png");
         } else p = loadImage("ship3dead.png");
       } else {
-        if (alive) {
+        if (selected) p = loadImage("ship3upselect.png");
+        else if (alive) {
           p = loadImage("ship3up.png");
-        } else p = loadImage("ship3updead.png");
+        } else p = loadImage("ship3upde.png");
       }
     }
     if (size == 2) {
       //horizontal ship
       if (dir == 1) {
-        if (alive) p = loadImage("ship2.png");
+        if (selected) p = loadImage("ship2select.png");
+        else if (alive) p = loadImage("ship2.png");
       } else {
+        if (selected) p = loadImage("ship2upselect.png");
         if (alive) p = loadImage("ship2up.png");
       }
     }
     if (size == 4) {
       //horizontal ship
       if (dir == 1) {
-        if (alive) p = loadImage("ship4.png");
+        if (selected) p = loadImage("ship4select.png");
+        else if (alive) p = loadImage("ship4.png");
       } else {
-        if (alive) p = loadImage("ship4up.png");
+        if (selected) p = loadImage("ship4upselect.png");
+        else if (alive) p = loadImage("ship4up.png");
       }
     }
     if (size == 5) {
       //horizontal ship
       if (dir == 1) {
-        if (alive) p = loadImage("ship5.png");
+        if (selected) p = loadImage("ship5select.png");
+        else if (alive) p = loadImage("ship5.png");
       } else {
-        if (alive) p = loadImage("ship5up.png");
+        if (selected) p = loadImage("ship5upselect.png");
+        else if (alive) p = loadImage("ship5up.png");
       }
     }
   }
 
   public void rot() {
+  }
+  
+  public void select() {
+   selected = true;
+   setImg();
+  }
+  
+  public void deselect() {
+   selected = false;
+   setImg();
   }
 
   public void clearSquares() {
