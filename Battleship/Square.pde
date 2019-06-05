@@ -1,4 +1,4 @@
-class Square {
+  class Square {
   int x1; //x1 and y1 represent the upper left coordinates of the square
   int y1;
   int r;

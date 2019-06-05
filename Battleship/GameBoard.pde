@@ -261,25 +261,30 @@ class GameBoard {
     //add ship size 5
     Ship a = new Ship(5);
     a.setXY(900, 50);
+    a.setStartXY(900, 50);
     ships[0] = a;
 
     //add ship size 4
     Ship b = new Ship(4);
     b.setXY(900, 450);
+    b.setStartXY(900, 450);
     ships[1] = b;
 
     //add 2 ships size 3
     Ship c = new Ship(3);
     c.setXY(1300, 50);
+    c.setStartXY(1300, 50);
     ships[2] = c;
 
     Ship d = new Ship(3);
     d.setXY(1300, 310);
+    d.setStartXY(1300, 310);
     ships[3] = d;
 
     //add ship size 2
     Ship e = new Ship(2);
     e.setXY(1300, 570);
+    e.setStartXY(1300, 570);
     ships[4] = e;
   }
 
@@ -338,15 +343,17 @@ class GameBoard {
          if (ships[4].dir == 1 && mouseX >= 1300 && mouseX <= 1440 && mouseY >= 570 && mouseY <= 640) return 4; */
       }
     }
+    //the ship was just unclicked (shipDragged hasn't been updated)
+    else if (shipDragged != -1) {
+      placeShip(); 
+      background(255);
+      printOcean();
+      printGrid();
+      printShips();
+    }
     //no ship found or mouse not clicked:
     shipDragged = -1;
     return false;
-  }
-
-  //user selects a square 
-  //return whether or not the ship can be placed there
-  public boolean selectSquare(Ship s) {
-    return true;
   }
 
   public void noDrag() {
@@ -359,7 +366,7 @@ class GameBoard {
   //output is whether or not the ship was moved
   public boolean drag() {
     shipClicked();
-    System.out.println(shipDragged);
+    //System.out.println(shipDragged);
     if (shipDragged != -1) {
       Ship ship = ships[shipDragged];
       //float xdist = ship.xdist;
@@ -380,5 +387,19 @@ class GameBoard {
       return true;
     }
     return false;
+  }
+
+  public void placeShip() {
+    Ship ship = ships[shipDragged];
+    int c = (int) ((ship.x1 - 50) / 70);
+    int r = (int) ((ship.y1 - 150) / 70);
+    System.out.println(ship.x1+" "+ship.y1+" "+r+" "+c);
+
+    //check to see if ship is in range: 
+    if ((!(r < 0 || c < 0 || r > 10 || c > 10))&&((ship.dir == 0 && c + ship.size < 10) || (ship.dir == 1 && r + ship.size < 10))) {
+      addShip(ship, r, c);
+    } else {
+      ship.setXY(ship.startx, ship.starty);
+    }
   }
 }
