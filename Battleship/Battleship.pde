@@ -8,8 +8,9 @@ void setup() {
 
   f = createFont("Arial", 16, true);
   g.userBoard.setupShips();
+  g.displayBoard(f);
   //g.displayBoard(f);
-  g.userBoard.printShips();
+  //g.userBoard.printShips();
   g.displayTurns(0, f, 0, 0);
   //g.displayBoard(f);
   boolean found = false;
@@ -30,10 +31,11 @@ void setup() {
 }
 
 void draw() {
-  g.rotateButton();
   //System.out.println(mousePressed);
+  g.displayBoard(f);
   g.userBoard.drag();
   g.rotateButton();
+  g.checkButton();
   //System.out.println(mousePressed);
   //g.userBoard.drag();
   
