@@ -1,5 +1,5 @@
 # MKS22X-FinalProject
-Single player Battleship against the computer
+Single player Battleship against the computer, where the computer has a strategy.
 
 <b>Saturday, May 18th</b>
 <br>
