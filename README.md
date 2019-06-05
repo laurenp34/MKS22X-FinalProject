@@ -7,7 +7,7 @@ Lauren:
 * Created class structure based on UML
 * Started constructors for each class
 * Started creating gameBoard and displaying it to screen
-<br>
+
 Sophie:
 * Made grid of squares in graphics
 * Added a lot of accessors to be able to access ships from other classes (especially square and gameBoard)
