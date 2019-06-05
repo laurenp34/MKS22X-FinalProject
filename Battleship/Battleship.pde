@@ -29,6 +29,7 @@ void setup() {
 }
 
 void draw() {
+  //System.out.println(mousePressed);
   g.userBoard.drag();
   //System.out.println(mousePressed);
   //g.userBoard.drag();
