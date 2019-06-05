@@ -26,7 +26,7 @@ Lauren:
 Sophie:
 * Worked on toggling between the two boards
 * Looked up ways to tell the board when to change and started turnOver() method to tell the board to switch its display
-<br>
+
 Lauren:
 * Finished the add ship methods that work with varying size and direction of ships
 * Made addShipsRandomly() method to add 6 ships randomly without overlap
@@ -37,7 +37,7 @@ Lauren:
 Sophie:
 * fixed the display method so that it displays the computer board and the user board differently depending on what the user should be able to see, troubleshooted
 * made compChooseSquare(), which for now has the computer just randomly choose a square that is not already attacked, but will expand
-<br>
+
 Lauren:
 * Made attack() method in Square class
 * Made userChooseSquare() method that attacks a square based on mouse click
@@ -47,7 +47,7 @@ Lauren:
 <br>
 Sophie:
 * completed method turnOver() which should tell when the user or computer are done with their turn so that we can switch the board y comparing the old board to the new board
-<br>
+
 Lauren:
 * Kept testing because displayBoard doesn't work, spent period debugging.
 * Couldn't figure out why displayBoard didn't work.
@@ -58,7 +58,6 @@ Lauren:
 Sophie:
 * experimented with delay() as a way to change between the boards, but it works weirdly so I tried to look up other ways
 
-<br>
 Lauren:
 * Spent period trying to figure out why displayBoard didn't work again.
 
@@ -70,7 +69,7 @@ Sophie:
 <b>Monday, May 27th</b>
 <br>
 Sophie:
-<br>
+
 Lauren:
 * Spent a long time debugging again to figure out why displayBoard didn't work in draw().
 * Finally figured out the error- redundant Game declaration that overwrote the one in setup.
@@ -83,7 +82,7 @@ Lauren:
 <br>
 Sophie:
 * make method for computer to choose the square
-<br>
+
 Lauren:
 * In class, used frameRate to successfully pause between screens for the player to view the boards before switching- this replaced delay() which didn't work.
 * Fixed compChooseSquare to add only available squares to array and choose from there, to only choose a valid square and eliminate the possibility of choosing forever.
@@ -98,7 +97,7 @@ Lauren:
 <br>
 Sophie:
 * started the computer strategy so that if the computer finds a hit on the board, instead of choosing randomly it will randomly choose one of the squares around it to attack. I started tracking the hits and updating them whenever attack() is called
-<br>
+
 Lauren:
 * Imported photos of ocean and ship, edited to fit the right size. 
 * Added print methods to display these pictures on screen for the board.
@@ -112,7 +111,7 @@ Sophie:
 * I redid the computer strategy so that the computer will add all adjacent squares that are in bounds and not already attacked and then choose randomly from those squares which one to attack
 * tried printing things onto the board to figure out why getHits() / the hits variable isn't updating properly
 * integrated the code for computer choosing square, fixed a problem because part of the code wasn't being called
-<br>
+
 Lauren:
 * Edited methods to place ships to extend to ships of all sizes 
 * Found and edited pictures of ships of all sizes 
@@ -129,7 +128,7 @@ Both:
 <br>
 Sophie:
 * fixed getHits() in attack again so its doesn't become negative after a whole ship is found and the methid also attacks all of the surrounding ships
-<br>
+
 Lauren:
 * Began settup up the board for drag- widened board and figured out coordinates for ships to placed there without touching.
 * Created setupShips method that places ships on the side before they are placed.
@@ -140,7 +139,7 @@ Lauren:
 <br>
 Sophie:
 * Added to computer strategy so that if there is more than one hit in a row, the computer will only choose the adjacent squares in the row or column of the ship's direction. Essentially, now there are only two possibilities if there are already two hits in a row.
-<br>
+
 Lauren:
 * Spent a long time debugging ShipClicked, because direction didn't work. Finally got it to work. 
 * Converted hardcoded part of shipClicked to a generalized statement.
@@ -152,7 +151,7 @@ Lauren:
 Sophie:
 * Debugged computer strategy for a long time by printing relevant variables to the board. I found out that when the computer randomly chooses a coordinate, it always chooses 0, so I changed the random I was using from Math.random() to Random() and that worked for some reason. Now it sometimes returns an index out of bounds error, so I think there is a problem with the coordinates
 * Fixed the comp strategy with 2 hits so that it makes an array of possible coordinates and chooses randomly from those in case the first coordinate it chooses fails
-<br>
+
 Lauren:
 * Made a drag method that had a loop for mousePressed and moves ship based on shipClicked.
 * Spent a long time debugging again because mousePressed only updates every frame, but I had a loop within draw.
@@ -162,7 +161,7 @@ Lauren:
 <br>
 Sophie:
 * I was trying to fix 2 problems with the computer strategy for so long! I printed out all of the variables and arrays that the method used onto the screen to try to figure out why the method didn't always print out the right coordinates. It turned out to me that one of the variables in another class wasn't properly updated and that part of the method wasn't looking at the right square when it checked if the surrounding squares were attacked
-<br>
+
 Lauren:
 * Finally figured out how to drag ships without a loop in draw - used instance variables and conditionals.
 * Also created a placeShip method that snaps the ship to the right squares
