@@ -87,7 +87,8 @@
   }
   
   public void displayCompSquareTest() {
-    if (hasShip) fill(0,0,255);
+    fill(0,0,255);
+    if (hasShip) fill(255,0,0);
     rect(x1,y1,70,70);
   }
 }
